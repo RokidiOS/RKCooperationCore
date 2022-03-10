@@ -1,0 +1,4 @@
+framework module RKCooperationCore {
+  header "RKCooperationCore-Swift.h"
+  requires objc
+}
