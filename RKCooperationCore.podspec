@@ -2,15 +2,15 @@
 Pod::Spec.new do |s|
   s.name             = 'RKCooperationCore'
   s.version          = '1.0.4'
-  s.summary          = 'A short description of RKCooperationCore.'
+  s.summary          = 'iOS Rokid meeting core .'
   s.description      = <<-DESC
   Rokid iOS Core SDK .
                        DESC
 
-  s.homepage         = 'https://github.com/751547752/RKCooperationCore'
+  s.homepage         = 'https://github.com/RokidiOS/RKCooperationCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'amos' => 'xiaodong.chen@rokid.com' }
-  s.source = { :git => "https://github.com/751547752/RKCooperationCore.git", :tag => s.version.to_s }
+  s.source = { :git => "https://github.com/RokidiOS/RKCooperationCore.git", :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
   
