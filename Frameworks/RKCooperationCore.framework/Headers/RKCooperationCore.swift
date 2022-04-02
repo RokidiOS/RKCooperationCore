@@ -23,7 +23,7 @@ extension RKCooperationCore: RKCooperationInterface {
     }
     
     static var loginListeners: NSHashTable = NSHashTable<AnyObject>(options: .weakMemory)
-        
+    
     // MARK: - 内部方法
     
     static func getLoginListeners() -> [RKLoginCallback]? {
@@ -38,7 +38,7 @@ extension RKCooperationCore: RKCooperationInterface {
         return results
         
     }
-        
+    
     public func getCallManager() -> RKCallManager {
         
         return RKCallManager.shared
@@ -62,13 +62,13 @@ extension RKCooperationCore: RKCooperationInterface {
         return RKShareScreenManager.shared
         
     }
-
+    
     public func getShareSlamManager() -> RKShareSlamManager {
         
         return RKShareSlamManager.shared
         
     }
-
+    
     public func getSharePointManager() -> RKSharePointManager {
         
         return RKSharePointManager.shared
@@ -83,73 +83,66 @@ extension RKCooperationCore: RKCooperationInterface {
     
     public func initWith(params: RKCooperationCoreParams) {
         
+        assert(params.saasUrl.isEmpty == false, "params saasUrl 不能为空！")
+        
+        assert(params.rtcUrl.isEmpty == false, "params rtcUrl 不能为空！")
+        
+        assert(params.wssUrl.isEmpty == false, "params wssUrl 不能为空！")
+        
         // 公共参数配置
-        RKCooperationCoreConfig.shared.coreParams.apiHost = params.apiHost
+        RKCooperationCoreConfig.shared.coreParams = params
         
-        RKCooperationCoreConfig.shared.coreParams.appKey = params.appKey
-        
-        RKCooperationCoreConfig.shared.coreParams.token = params.token
-        
-        RKAPIManager.token = params.token
-        
-        // 初始化JC
-        RKJCMideaManager.shared.initClient(appKey: params.appKey)
-        // 监听来电
-        RKCallManager.shared.startCallListener()
-        
+        // rtc 初始化
+        RKRTCManager.shared.initClient(appKey: params.appKey)
     }
     
-    public func login(company: String?,
-                      userName: String?,
-                      password: String?) {
+    public func login(with token: String, userInfo: RKCompanyUser) {
         
-        if let userName = userName, let password = password, let company = company {
-            RKUserManager.shared.userLogin(companyId: company,
-                                           username: userName,
-                                           password: password) { data in
-                self.getUserInfo()
-            } onFailed: { error in
-                var errorCode: RKErrorCode = .OTHER_ERROR
-                if let error = error,
-                   let errCode = RKErrorCode(rawValue: error.code) {
-                    errorCode = errCode
-                }
-                RKCooperationCore.getLoginListeners()?.forEach({ loginCallback in
-                    loginCallback.onLogin(reason: errorCode)
-                })
-            }
-        } else {
-            getUserInfo()
-        }
+        assert(token.isEmpty == false, "token 不能为空！")
+        
+        assert(userInfo.userId.isEmpty == false, "userInfo.userId 不能为空！")
+        // 配置用户信息
+        RKUserManager.shared.userInfo = userInfo
+        /// 配置全局token
+        RKAPIManager.shared.token = token
+        /// rtc 登录
+        rtcLogin()
     }
     
-    fileprivate func getUserInfo() {
+    func login(with company: String, userName: String, password: String) {
         
-        RKUserManager.shared.getUserInfo { userInfo in
-            if let userInfo = userInfo as? RKCompanyUser {
-                // 拿到UserId 登录JC
-                RKJCMideaManager.shared.login(userId: userInfo.userId, password: "123456")
+        assert(company.isEmpty == false, "company 不能为空！")
+        assert(userName.isEmpty == false, "userName 不能为空！")
+        assert(password.isEmpty == false, "password 不能为空！")
+        
+        RKUserManager.shared.userLogin(companyId: company,
+                                       username: userName,
+                                       password: password) { data in
+            if RKUserManager.shared.authorization.isEmpty == false {
+                /// 配置全局token
+                RKAPIManager.shared.token = RKUserManager.shared.authorization
+                /// rtc 登录
+                self.rtcLogin()
             } else {
                 RKCooperationCore.getLoginListeners()?.forEach({ loginCallback in
                     loginCallback.onLogin(reason: .OTHER_ERROR)
                 })
             }
         } onFailed: { error in
-            var errorCode: RKErrorCode = .OTHER_ERROR
+            var errorCode: RKCooperationCode = .OTHER_ERROR
             if let error = error,
-               let errCode = RKErrorCode(rawValue: error.code) {
+               let errCode = RKCooperationCode(rawValue: error.code) {
                 errorCode = errCode
             }
             RKCooperationCore.getLoginListeners()?.forEach({ loginCallback in
                 loginCallback.onLogin(reason: errorCode)
             })
         }
-
     }
     
     public func logout() {
         
-        RKJCMideaManager.shared.logout()
+        RKRTCManager.shared.logout()
         
         RKUserManager.shared.authorization = ""
         
@@ -161,22 +154,15 @@ extension RKCooperationCore: RKCooperationInterface {
         
     }
     
-    public func reLogin() {
-        
-        guard RKUserManager.isLogined() else {
-            return
-        }
-        
-        RKJCMideaManager.shared.relogin(userId: RKUserManager.shared.userId,
-                                        password: "123456")
-    }
-    
     public func destroy() {
         
         logout()
         
+        RKCooperationCoreConfig.shared.coreParams = nil
+        
         RKCooperationCore._shared = nil
         
+        RKRTCManager.shared.dispose()
     }
     
     public func addLogin(listener: RKLoginCallback) {
@@ -214,17 +200,38 @@ extension RKCooperationCore: RKCooperationInterface {
         RKCallManager.shared.removeCallState(listener: listener)
         
     }
-            
-    public func addMessage(listener: RKMsgListener) {
-        
-        RKMessageCenter.addMsg(listener: listener, msgType: "Extra")
-        
-    }
+}
+
+// MARK: - Private
+
+extension RKCooperationCore {
     
-    public func removeMessage(listener: RKMsgListener) {
+    /// rtc 登录
+    fileprivate func rtcLogin() {
         
-        RKMessageCenter.removeMsg(listener: listener, msgType: "Extra")
+        guard let userInfo = RKUserManager.shared.userInfo else {
+            RKCooperationCore.getLoginListeners()?.forEach({ loginCallback in
+                loginCallback.onLogin(reason: .PARAMS_ERROR)
+            })
+            return
+        }
         
+        // 配置rtc
+        RKRTCManager.shared.login(with: RKCooperationCoreConfig.shared.coreParams!.rtcUrl,
+                                  wssUrl: RKCooperationCoreConfig.shared.coreParams!.wssUrl,
+                                  userId: userInfo.userId,
+                                  token: RKAPIManager.shared.token) { data in
+            // 监听来电
+            RKCallManager.shared.startCallListener()
+            // 回调登录成功
+            RKCooperationCore.getLoginListeners()?.forEach({ loginCallback in
+                loginCallback.onLogin(reason: .OK)
+            })
+        } onFailed: { error in
+            let code = RKCooperationCode(rawValue: error?.code ?? RKCooperationCode.OTHER_ERROR.rawValue)
+            RKCooperationCore.getLoginListeners()?.forEach({ loginCallback in
+                loginCallback.onLogin(reason: code ?? .OTHER_ERROR)
+            })
+        }
     }
-    
 }

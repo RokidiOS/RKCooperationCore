@@ -23,7 +23,7 @@ import UIKit
     /// - Parameters:
     /// - width     采集宽度，默认640
     /// - height    采集高度，默认360
-    /// - frameRate 采集帧速率，默认24
+    /// - frameRate 采集帧速率，默认15
     @objc static func setCameraProperty(width: Int32, height: Int32, framerate: Int32)
         
     /// 开始自身视频渲染
@@ -32,6 +32,15 @@ import UIKit
     ///  - view 需要渲染视频到的视图
     @objc static func startCameraVideo(type: RKRenderType, view: UIView)
     
+    /// 开启自定义视频流传输
+    @objc static func startVideoFile()
+
+    /// 逐帧传递自定义视频流
+    @objc static func setVideoFileFrame(_ bufferRef: CVPixelBuffer, rotation: RKRotation)
+    
+    /// 结束自定义视频流传输，如果之前开启了相机视频流，默认恢复相机视频流
+    @objc static func stopVideoFile()
+
 }
 
 @objcMembers

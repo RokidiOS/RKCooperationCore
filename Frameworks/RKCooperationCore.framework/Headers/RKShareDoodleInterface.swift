@@ -67,4 +67,6 @@ public class RKShareDoodleManager: NSObject {
     
     public lazy var doodles: [RKDoodle] = []
     
+    var channelId: String?
+    
 }

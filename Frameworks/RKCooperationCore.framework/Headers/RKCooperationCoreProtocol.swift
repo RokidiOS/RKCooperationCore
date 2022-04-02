@@ -13,11 +13,13 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
 
 // MARK: - 登录状态回调
 @objc public protocol RKLoginCallback: NSObjectProtocol {
-    // 登录成功回调
-    @objc func onLogin(reason: RKErrorCode)
-    // 登出回调
-    @objc func onLogout(reason: RKErrorCode)
     
+    // 登录结果回调
+    @objc func onLogin(reason: RKCooperationCode)
+    // 登出回调
+    @objc func onLogout(reason: RKCooperationCode)
+    /// 登录回调用户已经加入的频道
+    @objc func onJoinedChannelList(_ channelList: [RKIJoinedChannel]?)
 }
 
 // MARK: - sdk回调
@@ -36,7 +38,7 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     @objc func getShareDoodleManager() -> RKShareDoodleManager
     
     /// 获取屏幕共享管理类
-    @objc func getShareScreenManager() -> RKShareScreenManager
+    @objc func getShareScreenManager() -> RKShareScreenManager; @available(iOS 11.0, *)
     
     /// 获取AR标注管理类
     @objc func getShareSlamManager() -> RKShareSlamManager
@@ -50,15 +52,11 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     /// sdk参数配置
     @objc func initWith(params: RKCooperationCoreParams)
     
-    /// sdk登录 如果已经登录过了 可以不用传用户信息
-    @objc func login(company: String?,
-                     userName: String?,
-                     password: String?)
+    /// sdk登录 token登录
+    @objc func login(with token: String, userInfo: RKCompanyUser)
+    
     /// sdk登出
     @objc func logout()
-    
-    /// sdk重登
-    @objc func reLogin()
     
     /// sdk销毁
     @objc func destroy()
@@ -80,12 +78,6 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     
     /// 移除呼叫监听
     @objc func removeCall(listener: RKCallListener)
-    
-    /// 添加消息监听
-    @objc func addMessage(listener: RKMsgListener)
-    
-    /// 移除消息监听
-    @objc func removeMessage(listener: RKMsgListener)
     
 }
 

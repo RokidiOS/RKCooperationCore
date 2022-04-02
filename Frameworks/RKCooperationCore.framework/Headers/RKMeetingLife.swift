@@ -12,43 +12,10 @@ import RKIUtils
 @objcMembers
 public class RKMeetingLife: NSObject, HandyJSON  {
     // 频道ID
-    public var channelId: String = "" {
-        didSet {
-            if !channelId.isEmpty,
-               meetingId.isEmpty {
-                meetingId = channelId
-            }
-        }
-    }
-    // 会议id
-    public var meetingId: String = "" {
-        didSet {
-            if !meetingId.isEmpty,
-               channelId.isEmpty {
-                channelId = meetingId
-            }
-        }
-    }
-    
-    // 会议名称
-    public var meetingTitle: String = "" {
-        didSet {
-            if !meetingTitle.isEmpty,
-               channelTitle.isEmpty {
-                channelTitle = meetingTitle
-            }
-        }
-    }
-    // 频道名称
-    public var channelTitle: String = "" {
-        didSet {
-            if !channelTitle.isEmpty,
-               meetingTitle.isEmpty {
-                meetingTitle = channelTitle
-            }
-        }
-    }
-    
+    public var channelId: String = ""
+    public var channelTitle: String = ""
+    public var meetingId: String = ""
+    public var meetingTitle: String = ""
     public var createTime: Int64         = 0        // | 会议创建时间
     public var endTime: Int64            = 0        // | 会议退出时间
     public var shareInfo: RKShareInfo?   = nil      // | 保存的共享状态对象

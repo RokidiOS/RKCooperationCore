@@ -35,8 +35,6 @@ public class RKVideoControlMessage: NSObject, HandyJSON {
     public var scale: CGFloat               = 1                  // | 放大比例
     public var code: Int                   = 1                  // | pointvideo MessageCode 错误码
     public var errorMessage: String       = ""                 // | errorMessage 错误描述
-    public var sponsorLicense: String?                         // | 消息控制者license
-    public var license:    String?                             // | 消息发送者license
     public var promoterUserId:    String?                        // | 控制者 ID
     public var executorUserId: String?                          // | 发送者 ID
     
