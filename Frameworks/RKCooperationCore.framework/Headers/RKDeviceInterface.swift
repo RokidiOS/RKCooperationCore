@@ -10,10 +10,10 @@ import UIKit
 @objc public protocol RKDeviceInterface: NSObjectProtocol {
     
     /// 开启摄像头
-    @objc static func startCamera()
+    @objc static func openCamera()
 
     /// 关闭摄像头
-    @objc static func stopCamera()
+    @objc static func closeCamera()
 
     /// 切换摄像头
     @objc static func switchCamera()
@@ -31,6 +31,9 @@ import UIKit
     ///  - type @RKRenderType
     ///  - view 需要渲染视频到的视图
     @objc static func startCameraVideo(type: RKRenderType, view: UIView)
+    
+    /// 开关扬声器
+    @objc static func enableSpeaker(_ enable: Bool)
     
     /// 开启自定义视频流传输
     @objc static func startVideoFile()

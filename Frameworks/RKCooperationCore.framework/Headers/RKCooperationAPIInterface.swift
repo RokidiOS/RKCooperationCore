@@ -38,7 +38,7 @@ import UIKit
     ///   - keyword: 查询关键字
     ///   - onSuccess: 成功回调
     ///   - onFailed: 失败回调
-    @objc func gourpList(keyword: String?,
+    @objc func groupList(keyword: String?,
                          onSuccess: RKOnSuccess?,
                          onFailed: RKOnFailed?)
     
@@ -51,22 +51,13 @@ import UIKit
                             onSuccess: RKOnSuccess?,
                             onFailed: RKOnFailed?)
     
-    // 通过license批量查询联系人信息
-    @objc func queryCompanyUserList(by licenseCodeList: [String],
-                                    onSuccess: RKOnSuccess?,
-                                    onFailed: RKOnFailed?)
-    
     /// 创建会议
     /// - Parameters:
-    ///   - meetingId: 会议ID
-    ///   - userId: 用户Id
     ///   - resolutionRatio: 分辨率
     ///   - meetingName: 会议名称
     ///   - onSuccess: 成功回调
     ///   - onFailed: 失败回调
-    @objc func createMeeting(with meetingId: String,
-                             userId: String,
-                             resolutionRatio: String?,
+    @objc func createMeeting(with resolutionRatio: String?,
                              meetingName: String?,
                              onSuccess: RKOnSuccess?,
                              onFailed: RKOnFailed?)

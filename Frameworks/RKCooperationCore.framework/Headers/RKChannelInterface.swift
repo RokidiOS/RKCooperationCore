@@ -11,11 +11,11 @@ import Foundation
     
     /// 添加频道内消息监听
     /// - Parameter listener @RKChannelMessageListener
-    @objc func addChannelMsg(listener: RKChannelMessageListener)
+    @objc func addChannelMsg(listener: RKChannelMsgListener)
     
     /// 移除频道内监听
     /// - Parameter listener @RKChannelMessageListener
-    @objc func removeChannelMsg(listener: RKChannelMessageListener)
+    @objc func removeChannelMsg(listener: RKChannelMsgListener)
     
     /// 添加监听
     /// - Parameter listener @RKChannelListener
@@ -59,9 +59,7 @@ import Foundation
     /// - Parameter userId 踢出用户的userId
     @objc func kickOutUser(userId: String)
     
-    /// 关闭频道，其他端将自动退出频道，调用后将在[RKChannelListener.onChannelStopResult]收到关闭结果
-    /// 调用端将收到onChannelStopResult回调，其他端将受到[RKChannelListener.onChannelStopResult]，
-    /// 并且reason值为[RKErrorCode.CHANNEL_OVER]
+    /// 关闭频道，其他端将自动退出频道，其他端将收到 RKChannelListener.onDispose
     @objc func dispose()
     
     /// 是否开启上传音频流

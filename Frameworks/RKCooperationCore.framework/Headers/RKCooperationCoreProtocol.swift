@@ -53,7 +53,7 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     @objc func initWith(params: RKCooperationCoreParams)
     
     /// sdk登录 token登录
-    @objc func login(with token: String, userInfo: RKCompanyUser)
+    @objc func login(with token: String, userInfo: RKUser)
     
     /// sdk登出
     @objc func logout()
