@@ -27,9 +27,13 @@ import Foundation
     
     ///  加入频道
     /// - Parameter channelId 频道ID，不传由内部创建，外部传入需要调用SDK接口生成
-    /// - Parameter channelPassword 频道密码  默认 123456
+    /// - Parameter channelPassword 频道密码  默认 无密码
     @objc func join(channelId: String,
                     channelPassword: String?)
+    
+    ///  离开频道， 用于离开登录返回的已经在的频道
+    /// - Parameter channelId 频道ID
+    @objc func leave(channelId: String)
     
     /// 添加频道监听
     @objc func addChannel(listener: RKChannelListener)

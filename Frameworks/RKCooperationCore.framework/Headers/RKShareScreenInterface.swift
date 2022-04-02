@@ -14,14 +14,17 @@ import Foundation
     /// 开启屏幕共享
     /// - Parameter channelId: 频道ID
     @objc func startShareScreen(channelId: String)
-    /// 获取屏幕共享视图
-    @objc func getShareScreenVideo(renderType: RKRenderType,
-                                   videoSize: RKVideoSize) -> RKVideoCanvas?
-    
+   
     /// 结束屏幕共享
     /// - Parameter channelId: 频道ID
     @objc func stopShareScreen(channelId: String)
     
+    /// 获取屏幕共享视图
+    @objc func getShareScreenVideo(channelId: String,
+                                   renderType: RKRenderType,
+                                   videoSize: RKVideoSize,
+                                   onSuccess: RKOnSuccess?,
+                                   onFailed: RKOnFailed?)
 }
 
 @objcMembers
