@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   
   s.dependency 'RKIHandyJSON'
 
-  s.dependency 'JuphoonCloudSDK_iOS'
+  s.dependency 'RKRTC'  # :git => "https://github.com/RokidiOS/RKRTC", :branch => 'x.x.x_swiftx.x.x'
 
   s.dependency 'Moya'
 
