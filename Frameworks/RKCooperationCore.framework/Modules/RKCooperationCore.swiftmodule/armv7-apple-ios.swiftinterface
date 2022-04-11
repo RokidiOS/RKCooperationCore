@@ -122,11 +122,8 @@ extension RKCooperationCore.RKShareSlamManager : RKCooperationCore.RKShareSlamIn
 }
 @objc public protocol RKSharePointInterface : ObjectiveC.NSObjectProtocol {
   @objc static var shared: RKCooperationCore.RKSharePointManager! { get }
-  @objc func establishRequest(channelId: Swift.String, userId: Swift.String)
-  @objc func establishRespond(channelId: Swift.String, userId: Swift.String)
   @objc func stopSharePointVideo(channelId: Swift.String)
   @objc func inviteSharePointVideo(channelId: Swift.String, userId: Swift.String)
-  @objc func stopInviteSharePointVideo(channelId: Swift.String)
   @objc func sendPoint(channelId: Swift.String, slamColor: Swift.Int, markPoint: RKCooperationCore.RKPoint, pointWidth: Swift.Float)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKSharePointManager : ObjectiveC.NSObject {
@@ -405,7 +402,7 @@ public let RKAPI: RKCooperationCore.RKProvider
 public enum RKAPIs {
   case login(data: [Swift.String : Swift.String])
   case refreshToken(data: [Swift.String : Swift.String])
-  case gourpList(keyword: Swift.String?)
+  case groupList(keyword: Swift.String?)
   case contactsList(keyword: Swift.String?)
   case queryCompanyUserListByUserIdList(userIdList: [Swift.String])
   case queryCompanyUserListByLicenceList(licenseCodeList: [Swift.String])
@@ -416,8 +413,8 @@ public enum RKAPIs {
   case getMeeting(id: Swift.String!)
   case changePwd(old: Swift.String!, new: Swift.String!)
   case uploadImage(imgs: [UIKit.UIImage])
-  case getUserBindToken
-  case getFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!)
+  case getGlassBindToken
+  case getRecordVideoFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!)
   case queryUserMeetingRecordPage(pageNum: Swift.Int = 1, pageSize: Swift.Int = 10)
   case saveMeetingUsers(meetingId: Swift.String!, userIdList: [Swift.String]!, sessionStatus: Swift.Int)
   case deleteMeetingUsers(meetingId: Swift.String!, userIdList: [Swift.String]!)
@@ -617,6 +614,7 @@ extension RKCooperationCore.RKShareDoodleManager : RKCooperationCore.RKShareList
   @objc public var x: Swift.Float
   @objc public var y: Swift.Float
   @objc required override dynamic public init()
+  public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc deinit
 }
 @objc public protocol RKChannelListener : ObjectiveC.NSObjectProtocol {
@@ -804,28 +802,28 @@ extension RKCooperationCore.RKJCMideaManager {
   @objc override dynamic public init()
   @objc deinit
 }
-extension RKCooperationCore.RKAPIManager {
+extension RKCooperationCore.RKAPIManager : RKCooperationCore.RKCooperationAPIInterface {
   @objc public static let shared: RKCooperationCore.RKAPIManager
   @objc public static var token: Swift.String
   @objc dynamic public func login(companyId: Swift.String, userName: Swift.String, password: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func refreshToken(params: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func gourpList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func groupList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func contactsList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func queryCompanyUserList(by licenseCodeList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func createMeeting(with meetingId: Swift.String, userId: Swift.String, resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func createChannel(resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func getUserInfo(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func getCompanyLisence(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func heartBeat(lisence: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func getMeeting(with meetingId: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func heartBeat(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func getMeeting(meetingId: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func changePwd(old: Swift.String!, new: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func uploadImage(imgs: [UIKit.UIImage], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func getUserBindToken(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func getFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func getGlassBindToken(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func getRecordVideoFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func queryUserMeetingRecordPage(with pageNum: Swift.Int = 1, pageSize: Swift.Int = 10, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func saveMeetingUsers(with meetingId: Swift.String!, userIdList: [Swift.String]!, sessionStatus: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func deleteMeetingUsers(with meetingId: Swift.String!, userIdList: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func saveMeetingVideoUrl(with meetingId: Swift.String, bucket: Swift.String, videoUrl: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func reportDeviceInfo(with registerId: Swift.String?, deviceType: Swift.Int, isSlam: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func reportDeviceInfo(with registerId: Swift.String?, isSlam: Swift.Bool, deviceType: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func sendPushMessage(to userIdList: [Swift.String]?, notificationMessage: [Swift.String : Swift.String], extraMap: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func getTaggingColor(meetingId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func reportMeetingInfo(meetingId: Swift.String, promoterUserId: Swift.String, executorUserId: Swift.String, shareType: Swift.Int, shareImageUrl: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
@@ -871,24 +869,18 @@ extension RKCooperationCore.RKAPIManager {
   @objc static var shared: RKCooperationCore.RKAPIManager! { get }
   @objc func login(companyId: Swift.String, userName: Swift.String, password: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func refreshToken(params: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func gourpList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func groupList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func contactsList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func queryCompanyUserList(by licenseCodeList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func createMeeting(with meetingId: Swift.String, userId: Swift.String, resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func createChannel(resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func getUserInfo(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func getCompanyLisence(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func heartBeat(lisence: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func getMeeting(with meetingId: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func heartBeat(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func getMeeting(meetingId: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func changePwd(old: Swift.String!, new: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func uploadImage(imgs: [UIKit.UIImage], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func getUserBindToken(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func getFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func getGlassBindToken(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func getRecordVideoFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func queryUserMeetingRecordPage(with pageNum: Swift.Int, pageSize: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func saveMeetingUsers(with meetingId: Swift.String!, userIdList: [Swift.String]!, sessionStatus: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func deleteMeetingUsers(with meetingId: Swift.String!, userIdList: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func saveMeetingVideoUrl(with meetingId: Swift.String, bucket: Swift.String, videoUrl: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func reportDeviceInfo(with registerId: Swift.String?, deviceType: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func sendPushMessage(to userIdList: [Swift.String]?, notificationMessage: [Swift.String : Swift.String], extraMap: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func reportDeviceInfo(with registerId: Swift.String?, isSlam: Swift.Bool, deviceType: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKAPIManager : ObjectiveC.NSObject {
   @objc override dynamic public init()
@@ -1264,11 +1256,8 @@ extension RKCooperationCore.RKSharePointManager : RKCooperationCore.RKSharePoint
   @objc public static var shared: RKCooperationCore.RKSharePointManager! {
     @objc get
   }
-  @objc dynamic public func establishRequest(channelId: Swift.String, userId: Swift.String)
-  @objc dynamic public func establishRespond(channelId: Swift.String, userId: Swift.String)
   @objc dynamic public func stopSharePointVideo(channelId: Swift.String)
   @objc dynamic public func inviteSharePointVideo(channelId: Swift.String, userId: Swift.String)
-  @objc dynamic public func stopInviteSharePointVideo(channelId: Swift.String)
   @objc dynamic public func sendPoint(channelId: Swift.String, slamColor: Swift.Int, markPoint: RKCooperationCore.RKPoint, pointWidth: Swift.Float)
 }
 @objc public enum RKDoodleAction : Swift.Int, RKIHandyJSON.HandyJSONEnum {

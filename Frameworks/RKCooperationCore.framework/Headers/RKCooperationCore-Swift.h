@@ -227,15 +227,11 @@ SWIFT_CLASS("_TtC17RKCooperationCore12RKAPIManager")
 
 @class NSString;
 @class NSError;
-@class UIImage;
 
-@interface RKAPIManager (SWIFT_EXTENSION(RKCooperationCore))
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Nonnull shared;)
-+ (RKAPIManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
-/// 用户token
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull token;)
-+ (NSString * _Nonnull)token SWIFT_WARN_UNUSED_RESULT;
-+ (void)setToken:(NSString * _Nonnull)value;
+SWIFT_PROTOCOL("_TtP17RKCooperationCore25RKCooperationAPIInterface_")
+@protocol RKCooperationAPIInterface <NSObject>
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Null_unspecified shared;)
++ (RKAPIManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
 /// 登录
 /// \param companyId 公司
 ///
@@ -249,8 +245,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 - (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 刷新token
-/// \param params 参数
-///
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
@@ -263,7 +257,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)gourpListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)groupListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 联系人列表
 /// \param keyword 查询关键字
 ///
@@ -274,10 +268,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 - (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)queryCompanyUserListBy:(NSArray<NSString *> * _Nonnull)licenseCodeList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 创建会议
-/// \param meetingId 会议ID
-///
-/// \param userId 用户Id
-///
 /// \param resolutionRatio 分辨率
 ///
 /// \param meetingName 会议名称
@@ -286,15 +276,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)createMeetingWith:(NSString * _Nonnull)meetingId userId:(NSString * _Nonnull)userId resolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)createChannelWithResolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 获取用户信息
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
 - (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)getCompanyLisenceOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)heartBeatWithLisence:(NSString * _Null_unspecified)lisence onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 上报心跳
+/// \param onSuccess 成功回调
+///
+/// \param onFailed 失败回调
+///
+- (void)heartBeatOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 通过会议ID查询会议
 /// \param meetingId 会议ID
 ///
@@ -302,7 +296,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getMeetingWith:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getMeetingWithMeetingId:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 修改密码
 /// \param old 旧密码
 ///
@@ -313,21 +307,13 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 /// \param onFailed 失败回调
 ///
 - (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传图片
-/// \param imgs 图片数组
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)uploadImageWithImgs:(NSArray<UIImage *> * _Nonnull)imgs onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 获取二维码token
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getUserBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取用户URL
+- (void)getGlassBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取录制视频的URL
 /// \param bucketName 文件夹名字
 ///
 /// \param expireTime 过期时间
@@ -338,7 +324,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getRecordVideoFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 查询会议记录分页列表
 /// \param pageNum 页码 默认1
 ///
@@ -349,63 +335,65 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 /// \param onFailed 失败回调
 ///
 - (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 新增会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param sessionStatus 成员会话状态 0:预创建会议 1，会议创建成功
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 删除会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传录制会议视频
-/// \param meetingId 会议ID
-///
-/// \param bucket 文件夹名字
-///
-/// \param videoUrl 视频路径
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 设备用户设备信息上报
 /// \param registerId 极光推送ID
 ///
+/// \param isSlam 是否支持slam
+///
 /// \param deviceType 1-android  2-ios  3-pc  4-glass  5-web
 ///
-/// \param isSlam 是否支持AR标注
-///
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
-- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId deviceType:(NSInteger)deviceType isSlam:(BOOL)isSlam onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId isSlam:(BOOL)isSlam deviceType:(NSInteger)deviceType onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+@end
+
+@class UIImage;
+
+@interface RKAPIManager (SWIFT_EXTENSION(RKCooperationCore)) <RKCooperationAPIInterface>
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Nonnull shared;)
++ (RKAPIManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// 用户token
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull token;)
++ (NSString * _Nonnull)token SWIFT_WARN_UNUSED_RESULT;
++ (void)setToken:(NSString * _Nonnull)value;
+/// 登录
+- (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 刷新token
+- (void)refreshTokenWithParams:(NSDictionary<NSString *, NSString *> * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 联系人分组列表
+- (void)groupListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 联系人列表
+- (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)queryCompanyUserListBy:(NSArray<NSString *> * _Nonnull)licenseCodeList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 创建会议
+- (void)createChannelWithResolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取用户信息
+- (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getCompanyLisenceOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)heartBeatOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 通过会议ID查询会议
+- (void)getMeetingWithMeetingId:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 修改密码
+- (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 上传图片
+- (void)uploadImageWithImgs:(NSArray<UIImage *> * _Nonnull)imgs onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取二维码token
+- (void)getGlassBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取用户URL
+- (void)getRecordVideoFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 查询会议记录分页列表
+- (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 新增会议参会人
+- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 删除会议参会人
+- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 上传录制会议视频
+- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 设备用户设备信息上报
+- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId isSlam:(BOOL)isSlam deviceType:(NSInteger)deviceType onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 发送推送
-/// \param userIdList 用户ID集
-///
-/// \param notificationMessage 配置项
-///
-/// \param extraMap 拓展参数
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
 - (void)sendPushMessageTo:(NSArray<NSString *> * _Nullable)userIdList notificationMessage:(NSDictionary<NSString *, NSString *> * _Nonnull)notificationMessage extraMap:(NSDictionary<NSString *, NSString *> * _Nonnull)extraMap onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)getTaggingColorWithMeetingId:(NSString * _Nonnull)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)reportMeetingInfoWithMeetingId:(NSString * _Nonnull)meetingId promoterUserId:(NSString * _Nonnull)promoterUserId executorUserId:(NSString * _Nonnull)executorUserId shareType:(NSInteger)shareType shareImageUrl:(NSString * _Nonnull)shareImageUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
@@ -1263,183 +1251,6 @@ SWIFT_CLASS("_TtC17RKCooperationCore13RKCompanyUser")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-
-SWIFT_PROTOCOL("_TtP17RKCooperationCore25RKCooperationAPIInterface_")
-@protocol RKCooperationAPIInterface <NSObject>
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Null_unspecified shared;)
-+ (RKAPIManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
-/// 登录
-/// \param companyId 公司
-///
-/// \param userName 用户名
-///
-/// \param password 密码
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 刷新token
-/// \param params 参数
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)refreshTokenWithParams:(NSDictionary<NSString *, NSString *> * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 联系人分组列表
-/// \param keyword 查询关键字
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)gourpListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 联系人列表
-/// \param keyword 查询关键字
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)queryCompanyUserListBy:(NSArray<NSString *> * _Nonnull)licenseCodeList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 创建会议
-/// \param meetingId 会议ID
-///
-/// \param userId 用户Id
-///
-/// \param resolutionRatio 分辨率
-///
-/// \param meetingName 会议名称
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)createMeetingWith:(NSString * _Nonnull)meetingId userId:(NSString * _Nonnull)userId resolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取用户信息
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 分配license
-- (void)getCompanyLisenceOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上报心跳
-- (void)heartBeatWithLisence:(NSString * _Null_unspecified)lisence onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 通过会议ID查询会议
-/// \param meetingId 会议ID
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getMeetingWith:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 修改密码
-/// \param old 旧密码
-///
-/// \param new 新密码
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传图片
-/// \param imgs 图片数组
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)uploadImageWithImgs:(NSArray<UIImage *> * _Nonnull)imgs onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取二维码token
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getUserBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取用户URL
-/// \param bucketName 文件夹名字
-///
-/// \param expireTime 过期时间
-///
-/// \param fileName 文件名
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 查询会议记录分页列表
-/// \param pageNum 页码 默认1
-///
-/// \param pageSize 分页数量 默认10
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 新增会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param sessionStatus 成员会话状态 0:预创建会议 1，会议创建成功
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 删除会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传录制会议视频
-/// \param meetingId 会议ID
-///
-/// \param bucket 文件夹名字
-///
-/// \param videoUrl 视频路径
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 设备用户设备信息上报
-/// \param registerId 极光推送ID
-///
-/// \param deviceType 1-android  2-ios  3-pc  4-glass  5-web
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId deviceType:(NSInteger)deviceType onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 发送推送
-/// \param userIdList 用户ID集
-///
-/// \param notificationMessage 配置项
-///
-/// \param extraMap 拓展参数
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)sendPushMessageTo:(NSArray<NSString *> * _Nullable)userIdList notificationMessage:(NSDictionary<NSString *, NSString *> * _Nonnull)notificationMessage extraMap:(NSDictionary<NSString *, NSString *> * _Nonnull)extraMap onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-@end
 
 
 SWIFT_CLASS("_TtC17RKCooperationCore17RKCooperationCore")
@@ -2506,8 +2317,6 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore21RKSharePointInterface_")
 @protocol RKSharePointInterface <NSObject>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePointManager * _Null_unspecified shared;)
 + (RKSharePointManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
-- (void)establishRequestWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-- (void)establishRespondWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
 /// 结束自己发起的视频点选
 /// \param channelId 频道ID
 ///
@@ -2518,10 +2327,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePoint
 /// \param userId 对方userID
 ///
 - (void)inviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-/// 请求结束自己邀请别人发起的视频点选
-/// \param - channelId 频道ID
-///
-- (void)stopInviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId;
 /// 发送视频点选消息
 - (void)sendPointWithChannelId:(NSString * _Nonnull)channelId slamColor:(NSInteger)slamColor markPoint:(RKPoint * _Nonnull)markPoint pointWidth:(float)pointWidth;
 @end
@@ -2536,8 +2341,6 @@ SWIFT_CLASS("_TtC17RKCooperationCore19RKSharePointManager")
 @interface RKSharePointManager (SWIFT_EXTENSION(RKCooperationCore)) <RKSharePointInterface>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePointManager * _Null_unspecified shared;)
 + (RKSharePointManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
-- (void)establishRequestWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-- (void)establishRespondWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
 /// 结束自己发起的视频点选
 /// \param channelId 频道ID
 ///
@@ -2548,10 +2351,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePoint
 /// \param userId 对方userID
 ///
 - (void)inviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-/// 请求结束自己邀请别人发起的视频点选
-/// \param - channelId 频道ID
-///
-- (void)stopInviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId;
 /// 发送视频点选消息
 - (void)sendPointWithChannelId:(NSString * _Nonnull)channelId slamColor:(NSInteger)slamColor markPoint:(RKPoint * _Nonnull)markPoint pointWidth:(float)pointWidth;
 @end
@@ -3130,15 +2929,11 @@ SWIFT_CLASS("_TtC17RKCooperationCore12RKAPIManager")
 
 @class NSString;
 @class NSError;
-@class UIImage;
 
-@interface RKAPIManager (SWIFT_EXTENSION(RKCooperationCore))
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Nonnull shared;)
-+ (RKAPIManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
-/// 用户token
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull token;)
-+ (NSString * _Nonnull)token SWIFT_WARN_UNUSED_RESULT;
-+ (void)setToken:(NSString * _Nonnull)value;
+SWIFT_PROTOCOL("_TtP17RKCooperationCore25RKCooperationAPIInterface_")
+@protocol RKCooperationAPIInterface <NSObject>
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Null_unspecified shared;)
++ (RKAPIManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
 /// 登录
 /// \param companyId 公司
 ///
@@ -3152,8 +2947,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 - (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 刷新token
-/// \param params 参数
-///
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
@@ -3166,7 +2959,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)gourpListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)groupListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 联系人列表
 /// \param keyword 查询关键字
 ///
@@ -3177,10 +2970,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 - (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)queryCompanyUserListBy:(NSArray<NSString *> * _Nonnull)licenseCodeList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 创建会议
-/// \param meetingId 会议ID
-///
-/// \param userId 用户Id
-///
 /// \param resolutionRatio 分辨率
 ///
 /// \param meetingName 会议名称
@@ -3189,15 +2978,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)createMeetingWith:(NSString * _Nonnull)meetingId userId:(NSString * _Nonnull)userId resolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)createChannelWithResolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 获取用户信息
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
 - (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)getCompanyLisenceOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)heartBeatWithLisence:(NSString * _Null_unspecified)lisence onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 上报心跳
+/// \param onSuccess 成功回调
+///
+/// \param onFailed 失败回调
+///
+- (void)heartBeatOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 通过会议ID查询会议
 /// \param meetingId 会议ID
 ///
@@ -3205,7 +2998,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getMeetingWith:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getMeetingWithMeetingId:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 修改密码
 /// \param old 旧密码
 ///
@@ -3216,21 +3009,13 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 /// \param onFailed 失败回调
 ///
 - (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传图片
-/// \param imgs 图片数组
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)uploadImageWithImgs:(NSArray<UIImage *> * _Nonnull)imgs onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 获取二维码token
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getUserBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取用户URL
+- (void)getGlassBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取录制视频的URL
 /// \param bucketName 文件夹名字
 ///
 /// \param expireTime 过期时间
@@ -3241,7 +3026,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getRecordVideoFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 查询会议记录分页列表
 /// \param pageNum 页码 默认1
 ///
@@ -3252,63 +3037,65 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull toke
 /// \param onFailed 失败回调
 ///
 - (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 新增会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param sessionStatus 成员会话状态 0:预创建会议 1，会议创建成功
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 删除会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传录制会议视频
-/// \param meetingId 会议ID
-///
-/// \param bucket 文件夹名字
-///
-/// \param videoUrl 视频路径
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 设备用户设备信息上报
 /// \param registerId 极光推送ID
 ///
+/// \param isSlam 是否支持slam
+///
 /// \param deviceType 1-android  2-ios  3-pc  4-glass  5-web
 ///
-/// \param isSlam 是否支持AR标注
-///
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
-- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId deviceType:(NSInteger)deviceType isSlam:(BOOL)isSlam onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId isSlam:(BOOL)isSlam deviceType:(NSInteger)deviceType onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+@end
+
+@class UIImage;
+
+@interface RKAPIManager (SWIFT_EXTENSION(RKCooperationCore)) <RKCooperationAPIInterface>
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Nonnull shared;)
++ (RKAPIManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// 用户token
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, copy) NSString * _Nonnull token;)
++ (NSString * _Nonnull)token SWIFT_WARN_UNUSED_RESULT;
++ (void)setToken:(NSString * _Nonnull)value;
+/// 登录
+- (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 刷新token
+- (void)refreshTokenWithParams:(NSDictionary<NSString *, NSString *> * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 联系人分组列表
+- (void)groupListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 联系人列表
+- (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)queryCompanyUserListBy:(NSArray<NSString *> * _Nonnull)licenseCodeList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 创建会议
+- (void)createChannelWithResolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取用户信息
+- (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getCompanyLisenceOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)heartBeatOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 通过会议ID查询会议
+- (void)getMeetingWithMeetingId:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 修改密码
+- (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 上传图片
+- (void)uploadImageWithImgs:(NSArray<UIImage *> * _Nonnull)imgs onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取二维码token
+- (void)getGlassBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 获取用户URL
+- (void)getRecordVideoFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 查询会议记录分页列表
+- (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 新增会议参会人
+- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 删除会议参会人
+- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 上传录制会议视频
+- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 设备用户设备信息上报
+- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId isSlam:(BOOL)isSlam deviceType:(NSInteger)deviceType onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 发送推送
-/// \param userIdList 用户ID集
-///
-/// \param notificationMessage 配置项
-///
-/// \param extraMap 拓展参数
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
 - (void)sendPushMessageTo:(NSArray<NSString *> * _Nullable)userIdList notificationMessage:(NSDictionary<NSString *, NSString *> * _Nonnull)notificationMessage extraMap:(NSDictionary<NSString *, NSString *> * _Nonnull)extraMap onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)getTaggingColorWithMeetingId:(NSString * _Nonnull)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)reportMeetingInfoWithMeetingId:(NSString * _Nonnull)meetingId promoterUserId:(NSString * _Nonnull)promoterUserId executorUserId:(NSString * _Nonnull)executorUserId shareType:(NSInteger)shareType shareImageUrl:(NSString * _Nonnull)shareImageUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
@@ -4166,183 +3953,6 @@ SWIFT_CLASS("_TtC17RKCooperationCore13RKCompanyUser")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-
-SWIFT_PROTOCOL("_TtP17RKCooperationCore25RKCooperationAPIInterface_")
-@protocol RKCooperationAPIInterface <NSObject>
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager * _Null_unspecified shared;)
-+ (RKAPIManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
-/// 登录
-/// \param companyId 公司
-///
-/// \param userName 用户名
-///
-/// \param password 密码
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 刷新token
-/// \param params 参数
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)refreshTokenWithParams:(NSDictionary<NSString *, NSString *> * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 联系人分组列表
-/// \param keyword 查询关键字
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)gourpListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 联系人列表
-/// \param keyword 查询关键字
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)queryCompanyUserListBy:(NSArray<NSString *> * _Nonnull)licenseCodeList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 创建会议
-/// \param meetingId 会议ID
-///
-/// \param userId 用户Id
-///
-/// \param resolutionRatio 分辨率
-///
-/// \param meetingName 会议名称
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)createMeetingWith:(NSString * _Nonnull)meetingId userId:(NSString * _Nonnull)userId resolutionRatio:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取用户信息
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 分配license
-- (void)getCompanyLisenceOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上报心跳
-- (void)heartBeatWithLisence:(NSString * _Null_unspecified)lisence onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 通过会议ID查询会议
-/// \param meetingId 会议ID
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getMeetingWith:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 修改密码
-/// \param old 旧密码
-///
-/// \param new 新密码
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传图片
-/// \param imgs 图片数组
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)uploadImageWithImgs:(NSArray<UIImage *> * _Nonnull)imgs onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取二维码token
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getUserBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 获取用户URL
-/// \param bucketName 文件夹名字
-///
-/// \param expireTime 过期时间
-///
-/// \param fileName 文件名
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 查询会议记录分页列表
-/// \param pageNum 页码 默认1
-///
-/// \param pageSize 分页数量 默认10
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 新增会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param sessionStatus 成员会话状态 0:预创建会议 1，会议创建成功
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 删除会议参会人
-/// \param meetingId 会议ID
-///
-/// \param userIdList 用户ID集
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上传录制会议视频
-/// \param meetingId 会议ID
-///
-/// \param bucket 文件夹名字
-///
-/// \param videoUrl 视频路径
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 设备用户设备信息上报
-/// \param registerId 极光推送ID
-///
-/// \param deviceType 1-android  2-ios  3-pc  4-glass  5-web
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId deviceType:(NSInteger)deviceType onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 发送推送
-/// \param userIdList 用户ID集
-///
-/// \param notificationMessage 配置项
-///
-/// \param extraMap 拓展参数
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)sendPushMessageTo:(NSArray<NSString *> * _Nullable)userIdList notificationMessage:(NSDictionary<NSString *, NSString *> * _Nonnull)notificationMessage extraMap:(NSDictionary<NSString *, NSString *> * _Nonnull)extraMap onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-@end
 
 
 SWIFT_CLASS("_TtC17RKCooperationCore17RKCooperationCore")
@@ -5409,8 +5019,6 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore21RKSharePointInterface_")
 @protocol RKSharePointInterface <NSObject>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePointManager * _Null_unspecified shared;)
 + (RKSharePointManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
-- (void)establishRequestWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-- (void)establishRespondWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
 /// 结束自己发起的视频点选
 /// \param channelId 频道ID
 ///
@@ -5421,10 +5029,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePoint
 /// \param userId 对方userID
 ///
 - (void)inviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-/// 请求结束自己邀请别人发起的视频点选
-/// \param - channelId 频道ID
-///
-- (void)stopInviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId;
 /// 发送视频点选消息
 - (void)sendPointWithChannelId:(NSString * _Nonnull)channelId slamColor:(NSInteger)slamColor markPoint:(RKPoint * _Nonnull)markPoint pointWidth:(float)pointWidth;
 @end
@@ -5439,8 +5043,6 @@ SWIFT_CLASS("_TtC17RKCooperationCore19RKSharePointManager")
 @interface RKSharePointManager (SWIFT_EXTENSION(RKCooperationCore)) <RKSharePointInterface>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePointManager * _Null_unspecified shared;)
 + (RKSharePointManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
-- (void)establishRequestWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-- (void)establishRespondWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
 /// 结束自己发起的视频点选
 /// \param channelId 频道ID
 ///
@@ -5451,10 +5053,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKSharePoint
 /// \param userId 对方userID
 ///
 - (void)inviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId;
-/// 请求结束自己邀请别人发起的视频点选
-/// \param - channelId 频道ID
-///
-- (void)stopInviteSharePointVideoWithChannelId:(NSString * _Nonnull)channelId;
 /// 发送视频点选消息
 - (void)sendPointWithChannelId:(NSString * _Nonnull)channelId slamColor:(NSInteger)slamColor markPoint:(RKPoint * _Nonnull)markPoint pointWidth:(float)pointWidth;
 @end
