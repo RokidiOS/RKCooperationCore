@@ -7,24 +7,26 @@
 
 import Foundation
 
-class RKCooperationCoreConfig: NSObject {
+@objcMembers
+public class RKCooperationCoreConfig: NSObject {
     
-    static let shared = RKCooperationCoreConfig()
+    public static let shared = RKCooperationCoreConfig()
     /// 必要参数
-    var coreParams: RKCooperationCoreParams?
+    public var coreParams = RKCooperationCoreParams()
     /// 录制参数
-    var recordParams: RKRemoteRecordParams?
+    public var recordParams = RKRemoteRecordParams()
+
 }
 
 @objcMembers
 public class RKCooperationCoreParams: NSObject {
     
-    /// SaaS 服务器地址
-    public var saasUrl: String = ""
-    /// rtc 服务器地址
-    public var rtcUrl: String = ""
-    /// socket 服务器地址
-    public var wssUrl: String = ""
+    /// 商户服务器地址 （默认使用标准产品host）
+    public var apiHost: String = ""
+    /// 用户token
+    public var token: String = ""
+    /// appKey
+    public var appKey: String = ""
 }
 
 @objcMembers

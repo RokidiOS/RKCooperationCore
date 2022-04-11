@@ -12,7 +12,7 @@ public struct RKError: Error {
 }
 
 @objc
-public enum RKCooperationCode: Int {
+public enum RKErrorCode: Int {
     
     /// 正常
     case OK = 0
@@ -74,8 +74,6 @@ public enum RKCooperationCode: Int {
     case SELF_QUIT = 104
     /// 频道密码错误
     case CHANNEL_PASSWORD_ERROR = 105
-    /// 参数异常
-    case PARAMS_ERROR = 198
     /// 其他异常
     case OTHER_ERROR = 199
 }

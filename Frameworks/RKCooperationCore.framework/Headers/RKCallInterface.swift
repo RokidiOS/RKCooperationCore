@@ -11,39 +11,31 @@ import Foundation
     
     static var shared: RKCallManager! { get }
     
-    
-    /// 创建频道
-    ///  - Parameters:
-    ///  - userIds:  邀请的用户ID列表
-    ///  - resolutionRatio:  分辨率
-    ///  - channelName: 频道名称
-    ///  - password: 频道密码
-    ///  - onSuccess: 成功回调
-    ///  - onFailed: 失败回调
-    @objc func createChannel(_ thirdChannelId: String?,
-                             userIds:[String]?,
-                             resolutionRatio: RKResolution,
-                             channelName: String,
-                             password: String?,
-                             onSuccess:@escaping RKOnSuccess,
-                             onFailed:@escaping RKOnFailed)
-    
-    /// 邀请加入频道，对方将收到 RKIncomingCallListener.onReceiveCall
+    /// 邀请加入频道 对方将收到 RKIncomingCallListener.onReceiveCall
     /// - Parameters:
     ///  - channelId: 频道ID
     ///  - userIdList:  邀请的用户ID列表
+    ///  - channelTitle: 邀请的用户ID列表
+    ///  - channelParam:  频道参数
     @objc func invite(channelId: String,
-                      userIdList: [String])
+                      userIdList: [String],
+                      channelTitle: String?,
+                      channelParam: RKChannelParam?)
     
-    /// 取消邀请，在对方进入会议之前有效，呼叫方将收到 RKCallListener.onCallCancel
+    /// 取消呼叫，呼叫方将收到 RKCallListener.onCallCancel
     /// - Parameter channelId 频道ID
     @objc func cancel(channelId: String)
     
-    /// 接听，直接加入频道
+    /// 接听
     /// - Parameter channelId 频道ID
     @objc func accept(channelId: String)
-
-    /// 挂断，拒绝加入频道
+    
+    /// 拒绝加入频道、原因是正在其他频道忙(同时只能加入一个频道) 对方将收到 RKCallListener.onCallBusy
+    /// - Parameter channelId 频道ID
+    @objc func busy(channelId: String)
+    
+    /// 主动拒绝加入频道
+    /// - Parameter对方将收到 RKCallListener.onCallRejected
     /// - Parameter channelId 拒绝的频道ID
     @objc func reject(channelId: String)
     
@@ -51,7 +43,7 @@ import Foundation
     /// - Parameter listener: @RKCallListener
     @objc func addCallState(listener: RKCallListener)
     
-    /// 移除呼叫监听
+    /// 设置呼叫监听
     /// - Parameter listener: @RKCallListener
     @objc func removeCallState(listener: RKCallListener)
     

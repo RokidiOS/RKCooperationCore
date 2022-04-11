@@ -10,11 +10,11 @@ import Foundation
 @objc public protocol RKChannelInterface: NSObjectProtocol {
     
     /// 添加频道内消息监听
-    /// - Parameter listener @RKChannelMessageListener
+    /// - Parameter listener @RKChannelMsgListener
     @objc func addChannelMsg(listener: RKChannelMsgListener)
     
     /// 移除频道内监听
-    /// - Parameter listener @RKChannelMessageListener
+    /// - Parameter listener @RKChannelMsgListener
     @objc func removeChannelMsg(listener: RKChannelMsgListener)
     
     /// 添加监听
@@ -59,7 +59,9 @@ import Foundation
     /// - Parameter userId 踢出用户的userId
     @objc func kickOutUser(userId: String)
     
-    /// 关闭频道，其他端将自动退出频道，其他端将收到 RKChannelListener.onDispose
+    /// 关闭频道，其他端将自动退出频道，调用后将在[RKChannelListener.onChannelStopResult]收到关闭结果
+    /// 调用端将收到onChannelStopResult回调，其他端将受到[RKChannelListener.onChannelStopResult]，
+    /// 并且reason值为[RKErrorCode.CHANNEL_OVER]
     @objc func dispose()
     
     /// 是否开启上传音频流
@@ -107,7 +109,13 @@ import Foundation
     /// - Parameter userId 用户ID
     /// - Return 用户设置的显示昵称
     @objc func getDisplayName(userId: String) -> String?
-        
+    
+    /// 获取屏幕共享流
+    /// - Parameters:
+    ///  - userId: 获取视频流所属用户id
+    ///  - videoSize: 共享流的视频尺寸， @RKVideoSize
+    @objc func requestScreenVideo(userId: String, videoSize: RKVideoSize)
+    
     /// 设置频道自定义属性，设置后所有成员将通过 [RKChannelListener.onCustomPropertyChanged]
     /// 收到最新的属性值
     /// - Parameter property 要设置的频道自定义属性
@@ -120,8 +128,9 @@ import Foundation
     /// 发送频道内消息，toUserId不为空时将发送给指定用户，否则发给频道内所有用户
     /// - Parameters:
     ///  - msg: 要发送的频道消息主体
+    ///  - toUserIds: 要发送的频道用户Id list，如果传nil则发送给频道内所有成员
     ///  - operationListener: 发送频道消息的结果，@RKOperationListener
-    @objc func sendChannelMessage(msg: String)
+    @objc func sendChannelMessage(msg: String, to userIds: [String]?)
     
     /// 获取频道id
     /// - Return 当前频道ID，如果未加入频道则返回null
@@ -131,7 +140,7 @@ import Foundation
     /// - Return @RKChannelState
     @objc func getChannelState() ->RKChannelState
     
-    /// 获取频道密码，未设置默认无密码
+    /// 获取频道密码，未设置默认123456
     /// - Return 当前频道的密码，密码由创建房间的人设置，见[ChannelParam.password]
     @objc func getChannelPassword() -> String?
     
@@ -154,12 +163,6 @@ import Foundation
     /// 获取频道内正在共享的用户userId
     /// - Return 返回当前正在屏幕共享的用户id，如果当前没有用户在共享屏幕则返回null
     @objc func getScreenShareUserId() -> String?
-    
-    /// 大小流切换
-    @objc func switchStream(userId: String, isHighStram: Bool)
-    
-    /// 全员静音
-    @objc func muteAll()
     
     /// 查询频道信息
     /// - Parameter result 查询频道信息结果，@RKOperationListener
