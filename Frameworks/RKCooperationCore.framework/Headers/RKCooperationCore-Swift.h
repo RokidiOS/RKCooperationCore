@@ -469,7 +469,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManage
 ///     onFailed: 失败回调
 ///   </li>
 /// </ul>
-- (void)createChannel:(NSString * _Nullable)thirdChannelId userIds:(NSArray<NSString *> * _Nullable)userIds resolutionRatio:(enum RKResolution)resolutionRatio channelName:(NSString * _Nonnull)channelName password:(NSString * _Nullable)password onSuccess:(void (^ _Nonnull)(id _Nullable))onSuccess onFailed:(void (^ _Nonnull)(NSError * _Nullable))onFailed;
+- (void)createChannel:(NSString * _Nullable)thirdChannelId userIds:(NSArray<NSString *> * _Nullable)userIds resolutionRatio:(enum RKResolution)resolutionRatio channelName:(NSString * _Nonnull)channelName password:(NSString * _Nullable)password onSuccess:(void (^ _Nonnull)(id _Nullable))onSuccess onFailed:(void (^ _Nonnull)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.0.0 开始不再支持！ 请使用@RKChannelManagerInterface中的create方法创建频道");
 /// 邀请加入频道，对方将收到 RKIncomingCallListener.onReceiveCall
 /// <ul>
 ///   <li>
@@ -2688,6 +2688,18 @@ typedef SWIFT_ENUM(NSInteger, RKSlamMessageType, open) {
 
 SWIFT_CLASS("_TtC17RKCooperationCore6RKUser")
 @interface RKUser : NSObject
+/// 用户ID
+@property (nonatomic, copy) NSString * _Nonnull userId;
+/// 公司ID
+@property (nonatomic, copy) NSString * _Nullable companyId;
+/// 用户名
+@property (nonatomic, copy) NSString * _Nullable userName;
+/// 姓名
+@property (nonatomic, copy) NSString * _Nullable realName;
+/// 手机号
+@property (nonatomic, copy) NSString * _Nullable phone;
+/// 头像
+@property (nonatomic, copy) NSString * _Nullable avatar;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -3296,7 +3308,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManage
 ///     onFailed: 失败回调
 ///   </li>
 /// </ul>
-- (void)createChannel:(NSString * _Nullable)thirdChannelId userIds:(NSArray<NSString *> * _Nullable)userIds resolutionRatio:(enum RKResolution)resolutionRatio channelName:(NSString * _Nonnull)channelName password:(NSString * _Nullable)password onSuccess:(void (^ _Nonnull)(id _Nullable))onSuccess onFailed:(void (^ _Nonnull)(NSError * _Nullable))onFailed;
+- (void)createChannel:(NSString * _Nullable)thirdChannelId userIds:(NSArray<NSString *> * _Nullable)userIds resolutionRatio:(enum RKResolution)resolutionRatio channelName:(NSString * _Nonnull)channelName password:(NSString * _Nullable)password onSuccess:(void (^ _Nonnull)(id _Nullable))onSuccess onFailed:(void (^ _Nonnull)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.0.0 开始不再支持！ 请使用@RKChannelManagerInterface中的create方法创建频道");
 /// 邀请加入频道，对方将收到 RKIncomingCallListener.onReceiveCall
 /// <ul>
 ///   <li>
@@ -5515,6 +5527,18 @@ typedef SWIFT_ENUM(NSInteger, RKSlamMessageType, open) {
 
 SWIFT_CLASS("_TtC17RKCooperationCore6RKUser")
 @interface RKUser : NSObject
+/// 用户ID
+@property (nonatomic, copy) NSString * _Nonnull userId;
+/// 公司ID
+@property (nonatomic, copy) NSString * _Nullable companyId;
+/// 用户名
+@property (nonatomic, copy) NSString * _Nullable userName;
+/// 姓名
+@property (nonatomic, copy) NSString * _Nullable realName;
+/// 手机号
+@property (nonatomic, copy) NSString * _Nullable phone;
+/// 头像
+@property (nonatomic, copy) NSString * _Nullable avatar;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

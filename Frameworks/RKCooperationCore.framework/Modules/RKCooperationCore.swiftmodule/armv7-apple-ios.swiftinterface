@@ -500,27 +500,20 @@ public enum VideoCtrType : Swift.Int, RKIHandyJSON.HandyJSONEnum {
   @objc public init(messageType: RKCooperationCore.RKSlamMessageType)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class RKUser : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
-  public var companyId: Swift.String
-  public var userId: Swift.String
-  public var userName: Swift.String
-  public var realName: Swift.String
-  public var phone: Swift.String
-  public var avatar: Swift.String
-  public var deviceInfo: RKCooperationCore.RKUser.RKDeviceInfo?
+@objc @_inheritsConvenienceInitializers @objcMembers public class RKUser : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
+  @objc public var userId: Swift.String
+  @objc public var companyId: Swift.String?
+  @objc public var userName: Swift.String?
+  @objc public var realName: Swift.String?
+  @objc public var phone: Swift.String?
+  @objc public var avatar: Swift.String?
   public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc required override dynamic public init()
-  @objc @_inheritsConvenienceInitializers public class RKDeviceInfo : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
-    public var deviceType: Swift.Int
-    public var isSlam: Swift.Bool
-    public var registerId: Swift.String?
-    @objc required override dynamic public init()
-    @objc deinit
-  }
   @objc deinit
 }
 @objc public protocol RKCallInterface : ObjectiveC.NSObjectProtocol {
   @objc static var shared: RKCooperationCore.RKCallManager! { get }
+  @available(*, deprecated, message: "2.0.0 开始不再支持！ 请使用@RKChannelManagerInterface中的create方法创建频道")
   @objc func createChannel(_ thirdChannelId: Swift.String?, userIds: [Swift.String]?, resolutionRatio: RKCooperationCore.RKResolution, channelName: Swift.String, password: Swift.String?, onSuccess: @escaping RKCooperationCore.RKOnSuccess, onFailed: @escaping RKCooperationCore.RKOnFailed)
   @objc func invite(channelId: Swift.String, userIdList: [Swift.String])
   @objc func cancel(channelId: Swift.String)

@@ -20,13 +20,14 @@ import Foundation
     ///  - password: 频道密码
     ///  - onSuccess: 成功回调
     ///  - onFailed: 失败回调
+    @available(*, deprecated, message: "2.0.0 开始不再支持！ 请使用@RKChannelManagerInterface中的create方法创建频道")
     @objc func createChannel(_ thirdChannelId: String?,
                              userIds:[String]?,
                              resolutionRatio: RKResolution,
                              channelName: String,
                              password: String?,
                              onSuccess:@escaping RKOnSuccess,
-                             onFailed:@escaping RKOnFailed)
+                             onFailed:@escaping RKOnFailed) 
     
     /// 邀请加入频道，对方将收到 RKIncomingCallListener.onReceiveCall
     /// - Parameters:
