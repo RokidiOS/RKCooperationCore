@@ -1124,7 +1124,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore25RKChannelManagerInterface_")
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKChannelManager * _Null_unspecified shared;)
 + (RKChannelManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
 /// 新建频道
-/// \param channelId 频道ID，不传由内部创建，外部传入需要调用SDK接口生成 
+/// \param channelId 频道ID，不传由内部创建，外部传入需要调用SDK接口生成， 长度限制50个字符 
 ///
 /// \param channelTitle 频道标题 
 ///
