@@ -1208,6 +1208,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKChannelMan
 - (void)addChannelShareWithListener:(id <RKShareListener> _Nonnull)listener;
 - (void)removeChannelShareWithListener:(id <RKShareListener> _Nonnull)listener;
 - (void)createWithChannelId:(NSString * _Nullable)channelId channelTitle:(NSString * _Nullable)channelTitle channelParam:(RKChannelParam * _Nullable)channelParam userIdList:(NSArray<NSString *> * _Nullable)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
+- (RKChannel * _Nonnull)createLocalChannel:(NSString * _Nonnull)channelId channelTitle:(NSString * _Nullable)channelTitle channelParam:(RKChannelParam * _Nullable)channelParam;
 - (void)joinWithChannelId:(NSString * _Nonnull)channelId channelPassword:(NSString * _Nullable)channelPassword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)leaveWithChannelId:(NSString * _Nonnull)channelId;
 /// 开始频道录制

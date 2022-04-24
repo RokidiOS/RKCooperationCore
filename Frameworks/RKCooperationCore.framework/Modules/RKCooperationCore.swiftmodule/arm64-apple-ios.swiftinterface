@@ -272,6 +272,8 @@ extension RKCooperationCore.RKChannelManager : RKCooperationCore.RKChannelManage
   @objc dynamic public func addChannelShare(listener: RKCooperationCore.RKShareListener)
   @objc dynamic public func removeChannelShare(listener: RKCooperationCore.RKShareListener)
   @objc dynamic public func create(channelId: Swift.String?, channelTitle: Swift.String?, channelParam: RKCooperationCore.RKChannelParam?, userIdList: [Swift.String]?, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @objc @discardableResult
+  dynamic public func createLocalChannel(_ channelId: Swift.String, channelTitle: Swift.String?, channelParam: RKCooperationCore.RKChannelParam?) -> RKCooperationCore.RKChannel
   @objc dynamic public func join(channelId: Swift.String, channelPassword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func leave(channelId: Swift.String)
   @objc dynamic public func startServerRecording(channelId: Swift.String, bucket: Swift.String, fileName: Swift.String, resolution: RKCooperationCore.RKResolution, subStream: RKCooperationCore.RKIStreamType, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
