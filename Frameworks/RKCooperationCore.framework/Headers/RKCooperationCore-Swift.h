@@ -480,6 +480,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore15RKCallInterface_")
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManager * _Null_unspecified shared;)
 + (RKCallManager * _Null_unspecified)shared SWIFT_WARN_UNUSED_RESULT;
 /// 邀请加入频道，对方将收到 RKIncomingCallListener.onReceiveCall
+/// 注意：调用该接口需要确保自己已加入且在该channel中！
 /// <ul>
 ///   <li>
 ///     Parameters:
@@ -1129,6 +1130,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKChannelMan
 /// \param channelTitle 频道标题 
 ///
 /// \param channelParam 频道属性，不传由内部生成默认频道配置 
+///
+/// \param userIdList 创建成功 将会自动给userIdList中的用户发送邀请 
 ///
 ///
 /// returns:
@@ -2081,8 +2084,67 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore22RKRemoteDeviceListener_")
 /// </ul>
 - (void)onUserVolumeChangeWithUserId:(NSString * _Nonnull)userId status:(enum RKVolumeStatus)status;
 /// 远端音频参数回调
+/// <ul>
+///   <li>
+///     Parameters:
+///   </li>
+///   <li>
+///     userId: 用户ID
+///   </li>
+///   <li>
+///     audioLevel: 音频等级
+///   </li>
+///   <li>
+///     totalAudioEnergy: 总音频能量
+///   </li>
+///   <li>
+///     totalSamplesDuration: 统计时长
+///   </li>
+///   <li>
+///     packetsLost: 丢包数
+///   </li>
+/// </ul>
 - (void)onRemoteAudioStatus:(NSString * _Nonnull)userId audioLevel:(double)audioLevel totalAudioEnergy:(double)totalAudioEnergy totalSamplesDuration:(double)totalSamplesDuration packetsLost:(int32_t)packetsLost;
+/// 远端视频参数回调
+/// <ul>
+///   <li>
+///     Parameters:
+///   </li>
+///   <li>
+///     userId: 用户ID
+///   </li>
+///   <li>
+///     rid: 标记大小流，大流：h，小流：l
+///   </li>
+///   <li>
+///     width: 视频宽
+///   </li>
+///   <li>
+///     height: 视频高
+///   </li>
+///   <li>
+///     fps: 帧率
+///   </li>
+///   <li>
+///     bitrate: 码率 kbps
+///   </li>
+///   <li>
+///     packetsLost: 丢包数
+///   </li>
+/// </ul>
 - (void)onRemoteVideoStatus:(NSString * _Nonnull)userId rid:(NSString * _Nullable)rid width:(int32_t)width height:(int32_t)height fps:(int32_t)fps bitrate:(int32_t)bitrate packetsLost:(int32_t)packetsLost;
+/// 远端丢包率参数回调
+/// <ul>
+///   <li>
+///     Parameters:
+///   </li>
+///   <li>
+///     userId: 用户ID
+///   </li>
+///   <li>
+///     lossRate: 丢包率 float: 0-1
+///   </li>
+/// </ul>
 - (void)onVideoStreamUnstableWithUserId:(NSString * _Nonnull)userId lossRate:(float)lossRate;
 @end
 
@@ -2418,7 +2480,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKShareScree
 /// \param channelId 频道ID
 ///
 - (void)stopShareScreenWithChannelId:(NSString * _Nonnull)channelId;
-/// 获取屏幕共享视图
+/// 获取屏幕共享视图  成功回调 @ RKVideoCanvas
 - (void)getShareScreenVideoWithChannelId:(NSString * _Nonnull)channelId renderType:(enum RKRenderType)renderType videoSize:(enum RKVideoSize)videoSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 @end
 
@@ -2595,18 +2657,18 @@ typedef SWIFT_ENUM(NSInteger, RKSlamMessageType, open) {
 
 SWIFT_CLASS("_TtC17RKCooperationCore6RKUser")
 @interface RKUser : NSObject
-/// 公司ID
-@property (nonatomic, copy) NSString * _Nonnull companyId;
 /// 用户ID
 @property (nonatomic, copy) NSString * _Nonnull userId;
+/// 公司ID
+@property (nonatomic, copy) NSString * _Nullable companyId;
 /// 用户名
-@property (nonatomic, copy) NSString * _Nonnull userName;
+@property (nonatomic, copy) NSString * _Nullable userName;
 /// 姓名
-@property (nonatomic, copy) NSString * _Nonnull realName;
+@property (nonatomic, copy) NSString * _Nullable realName;
 /// 手机号
-@property (nonatomic, copy) NSString * _Nonnull phone;
+@property (nonatomic, copy) NSString * _Nullable phone;
 /// 头像
-@property (nonatomic, copy) NSString * _Nonnull avatar;
+@property (nonatomic, copy) NSString * _Nullable avatar;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

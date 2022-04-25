@@ -113,12 +113,12 @@ extension RKCooperationCore.RKMessageCenter : RKCooperationCore.RKMessageInterfa
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKUser : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
-  @objc public var companyId: Swift.String
   @objc public var userId: Swift.String
-  @objc public var userName: Swift.String
-  @objc public var realName: Swift.String
-  @objc public var phone: Swift.String
-  @objc public var avatar: Swift.String
+  @objc public var companyId: Swift.String?
+  @objc public var userName: Swift.String?
+  @objc public var realName: Swift.String?
+  @objc public var phone: Swift.String?
+  @objc public var avatar: Swift.String?
   public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc required override dynamic public init()
   @objc deinit
