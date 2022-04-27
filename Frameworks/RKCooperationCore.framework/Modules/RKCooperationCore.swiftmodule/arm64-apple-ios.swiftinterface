@@ -178,6 +178,12 @@ extension RKCooperationCore.RKShareSlamManager : RKCooperationCore.RKShareSlamIn
   @objc deinit
 }
 @objc public protocol RKChannelInterface : ObjectiveC.NSObjectProtocol {
+  @objc var channelId: Swift.String { get }
+  @objc var channelName: Swift.String { get }
+  @objc var participants: [RKCooperationCore.RKChannelParticipant] { get }
+  @objc var shareInfo: RKCooperationCore.RKShareInfo? { get }
+  @objc var channelParam: RKCooperationCore.RKChannelParam { get }
+  @objc var participantSelf: RKCooperationCore.RKChannelParticipant? { get }
   @objc func addChannelMsg(listener: RKCooperationCore.RKChannelMsgListener)
   @objc func removeChannelMsg(listener: RKCooperationCore.RKChannelMsgListener)
   @objc func addChannel(listener: RKCooperationCore.RKChannelListener)
@@ -368,7 +374,7 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc func getVideoContrllMgr() -> RKCooperationCore.RKVideoControlManager
   @objc func initWith(params: RKCooperationCore.RKCooperationCoreParams)
   @objc func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
-  @objc func refreshToken(_ token: Swift.String)
+  @objc func updateToken(_ token: Swift.String)
   @objc func logout()
   @objc func destroy()
   @objc func addLogin(listener: RKCooperationCore.RKLoginCallback)
@@ -580,7 +586,7 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
 @objc public protocol RKCooperationAPIInterface : ObjectiveC.NSObjectProtocol {
   @objc static var shared: RKCooperationCore.RKAPIManager! { get }
   @objc func login(companyId: Swift.String, userName: Swift.String, password: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func refreshToken(params: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func refreshToken(_ refreshToken: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func groupList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func contactsList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func createMeeting(with resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
@@ -668,7 +674,7 @@ public let RKCooperationAPI: RKCooperationCore.RKCooperationProvider
 }
 public enum RKAPIs {
   case login(data: [Swift.String : Swift.String])
-  case refreshToken(data: [Swift.String : Swift.String])
+  case refreshToken(_: Swift.String)
   case groupList(keyword: Swift.String?)
   case contactsList(keyword: Swift.String?)
   case queryCompanyUserListByUserIdList(userIdList: [Swift.String])
@@ -775,7 +781,7 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
   @objc dynamic public func getVideoContrllMgr() -> RKCooperationCore.RKVideoControlManager
   @objc dynamic public func initWith(params: RKCooperationCore.RKCooperationCoreParams)
   @objc dynamic public func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
-  @objc dynamic public func refreshToken(_ token: Swift.String)
+  @objc dynamic public func updateToken(_ token: Swift.String)
   @objc dynamic public func logout()
   @objc dynamic public func destroy()
   @objc dynamic public func addLogin(listener: RKCooperationCore.RKLoginCallback)
@@ -838,7 +844,7 @@ extension RKCooperationCore.RKAPIManager : RKCooperationCore.RKCooperationAPIInt
     @objc set
   }
   @objc dynamic public func login(companyId: Swift.String, userName: Swift.String, password: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func refreshToken(params: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func refreshToken(_ refreshToken: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func groupList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func contactsList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func createMeeting(with resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)

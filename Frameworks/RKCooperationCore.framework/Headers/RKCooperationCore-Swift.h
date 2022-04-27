@@ -258,13 +258,13 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 - (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 刷新token
-/// \param params 参数
+/// \param refreshToken refreshToken
 ///
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
-- (void)refreshTokenWithParams:(NSDictionary<NSString *, NSString *> * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)refreshToken:(NSString * _Nonnull)refreshToken onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 联系人分组列表
 /// \param keyword 查询关键字
 ///
@@ -430,7 +430,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 /// 登录
 - (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 刷新token
-- (void)refreshTokenWithParams:(NSDictionary<NSString *, NSString *> * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)refreshToken:(NSString * _Nonnull)refreshToken onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 联系人分组列表
 - (void)groupListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 联系人列表
@@ -500,7 +500,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManage
 /// \param channelId 频道ID 
 ///
 - (void)cancelWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
-/// 接听，直接加入频道
+/// 接听，直接加入频道, 内部会自动join，不需要再调用join
 /// \param channelId 频道ID 
 ///
 - (void)acceptWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
@@ -639,6 +639,12 @@ enum RKResolution : int32_t;
 
 SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 @protocol RKChannelInterface <NSObject>
+@property (nonatomic, readonly, copy) NSString * _Nonnull channelId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull channelName;
+@property (nonatomic, readonly, copy) NSArray<RKChannelParticipant *> * _Nonnull participants;
+@property (nonatomic, readonly, strong) RKShareInfo * _Nullable shareInfo;
+@property (nonatomic, readonly, strong) RKChannelParam * _Nonnull channelParam;
+@property (nonatomic, readonly, strong) RKChannelParticipant * _Nullable participantSelf;
 /// 添加频道内消息监听
 /// \param listener @RKChannelMessageListener 
 ///
@@ -1391,8 +1397,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params SWIFT_METHOD_FAMILY(none);
 /// sdk登录 token登录
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
-/// 刷新token，外部更新token，在token失效之前更新
-- (void)refreshToken:(NSString * _Nonnull)token;
+/// 更新token，外部更新token，在token失效之前更新
+- (void)updateToken:(NSString * _Nonnull)token;
 /// sdk登出
 - (void)logout;
 /// sdk销毁
@@ -1424,7 +1430,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKVideoControlManager * _Nonnull)getVideoContrllMgr SWIFT_WARN_UNUSED_RESULT;
 - (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params SWIFT_METHOD_FAMILY(none);
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
-- (void)refreshToken:(NSString * _Nonnull)token;
+- (void)updateToken:(NSString * _Nonnull)token;
 - (void)logout;
 - (void)destroy;
 - (void)addLoginWithListener:(id <RKLoginCallback> _Nonnull)listener;
