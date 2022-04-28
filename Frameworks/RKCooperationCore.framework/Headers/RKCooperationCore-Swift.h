@@ -1828,6 +1828,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 + (RKRTCManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (void)initClientWithAppKey:(NSString * _Nullable)appKey SWIFT_METHOD_FAMILY(none);
 - (void)loginWith:(NSString * _Nonnull)saasUrl wssUrl:(NSString * _Nonnull)wssUrl userId:(NSString * _Nonnull)userId token:(NSString * _Nonnull)token onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)updateToken:(NSString * _Nonnull)token;
 - (void)logout;
 /// 开启摄像头
 - (void)startCamera;

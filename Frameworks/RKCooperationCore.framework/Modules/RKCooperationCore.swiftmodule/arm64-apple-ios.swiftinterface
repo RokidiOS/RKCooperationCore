@@ -1231,6 +1231,7 @@ extension RKCooperationCore.RKChannelParticipant {
   @objc public static let shared: RKCooperationCore.RKRTCManager
   @objc public func initClient(appKey: Swift.String?)
   @objc public func login(with saasUrl: Swift.String, wssUrl: Swift.String, userId: Swift.String, token: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc public func updateToken(_ token: Swift.String)
   @objc public func logout()
   @objc public func startCamera()
   @objc public func stopCamera()
