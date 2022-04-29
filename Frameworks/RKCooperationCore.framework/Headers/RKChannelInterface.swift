@@ -9,12 +9,30 @@ import Foundation
 
 @objc public protocol RKChannelInterface: NSObjectProtocol {
     
+    /// 频道ID
+    @objc var channelId: String { get }
+    
+    /// 频道名称
+    @objc var channelName: String { get }
+    
+    /// 频道内成员
+    @objc var participants: [RKChannelParticipant] { get }
+    
+    /// 频道对应的共享信息
+    @objc var shareInfo: RKShareInfo? { get }
+    
+    /// 频道参数
+    @objc var channelParam: RKChannelParam { get }
+    
+    /// 自己
+    @objc var participantSelf: RKChannelParticipant? { get }
+    
     /// 添加频道内消息监听
-    /// - Parameter listener @RKChannelMsgListener
+    /// - Parameter listener @RKChannelMessageListener
     @objc func addChannelMsg(listener: RKChannelMsgListener)
     
-    /// 移除频道内监听
-    /// - Parameter listener @RKChannelMsgListener
+    /// 移除频道消息内监听
+    /// - Parameter listener @RKChannelMessageListener
     @objc func removeChannelMsg(listener: RKChannelMsgListener)
     
     /// 添加监听
@@ -50,7 +68,9 @@ import Foundation
     @objc func removeShare(listener: RKShareListener)
     
     /// 加入频道
-    @objc func join(param: RKChannelParam?)
+    @objc func join(param: RKChannelParam?,
+                    onSuccess: RKOnSuccess?,
+                    onFailed: RKOnFailed?)
     
     /// 离开频道
     @objc func leave()
@@ -59,9 +79,7 @@ import Foundation
     /// - Parameter userId 踢出用户的userId
     @objc func kickOutUser(userId: String)
     
-    /// 关闭频道，其他端将自动退出频道，调用后将在[RKChannelListener.onChannelStopResult]收到关闭结果
-    /// 调用端将收到onChannelStopResult回调，其他端将受到[RKChannelListener.onChannelStopResult]，
-    /// 并且reason值为[RKErrorCode.CHANNEL_OVER]
+    /// 关闭频道，其他端将自动退出频道，其他端将收到 RKChannelListener.onDispose
     @objc func dispose()
     
     /// 是否开启上传音频流
@@ -109,13 +127,7 @@ import Foundation
     /// - Parameter userId 用户ID
     /// - Return 用户设置的显示昵称
     @objc func getDisplayName(userId: String) -> String?
-    
-    /// 获取屏幕共享流
-    /// - Parameters:
-    ///  - userId: 获取视频流所属用户id
-    ///  - videoSize: 共享流的视频尺寸， @RKVideoSize
-    @objc func requestScreenVideo(userId: String, videoSize: RKVideoSize)
-    
+        
     /// 设置频道自定义属性，设置后所有成员将通过 [RKChannelListener.onCustomPropertyChanged]
     /// 收到最新的属性值
     /// - Parameter property 要设置的频道自定义属性
@@ -128,19 +140,14 @@ import Foundation
     /// 发送频道内消息，toUserId不为空时将发送给指定用户，否则发给频道内所有用户
     /// - Parameters:
     ///  - msg: 要发送的频道消息主体
-    ///  - toUserIds: 要发送的频道用户Id list，如果传nil则发送给频道内所有成员
     ///  - operationListener: 发送频道消息的结果，@RKOperationListener
-    @objc func sendChannelMessage(msg: String, to userIds: [String]?)
-    
-    /// 获取频道id
-    /// - Return 当前频道ID，如果未加入频道则返回null
-    @objc func getChannelId() -> String?
+    @objc func sendChannelMessage(msg: String)
     
     /// 获取频道当前状态
     /// - Return @RKChannelState
     @objc func getChannelState() ->RKChannelState
     
-    /// 获取频道密码，未设置默认123456
+    /// 获取频道密码，未设置默认无密码
     /// - Return 当前频道的密码，密码由创建房间的人设置，见[ChannelParam.password]
     @objc func getChannelPassword() -> String?
     
@@ -164,29 +171,18 @@ import Foundation
     /// - Return 返回当前正在屏幕共享的用户id，如果当前没有用户在共享屏幕则返回null
     @objc func getScreenShareUserId() -> String?
     
-    /// 查询频道信息
-    /// - Parameter result 查询频道信息结果，@RKOperationListener
-    @objc func queryChannel(result: RKOperationListener)
+    /// 大小流切换
+    @objc func switchStream(userId: String, isHighStram: Bool)
     
+    /// 全员静音
+    @objc func muteAll()
+        
     /// 获取频道的最大分辨率
     /// 频道中的最大分辩由第一个加入频道的用户决定， JoinParam 参数中设置的分辩率并一定是频道的最大分辨率，
     /// 只有加入成功后才能准确知道
     /// - Return @RKResolution
     @objc func getMaxResolution() -> RKResolution
-    
-    // MARK: - 云端录制
-    
-    @objc func setRecord(params: RKRemoteRecordParams)
-    
-    /// 开启云端视频录制，需要在录制状态[RecordState.STATE_READY]的时候调用，同时如果需要开启云端录制，需要在
-    /// 创建频道的时候在[IChannel.join]函数的[ChannelParam.recordParam]传入录制参数
-    /// @param enable true: 开启，false: 关闭
-    @objc func enableRecord(enable: Bool)
-    
-    /// 查询视频录制状态
-    /// - Return @RKRecordState
-    @objc func getRecordState() -> RKRecordState
-    
+        
     // MARK: - 分享功能
     
     /// 开启屏幕共享
@@ -214,6 +210,10 @@ import Foundation
     
     /// 结束自己邀请发起的AR标注
     @objc func stopInviteShareSlam()
-    
+      
+    /// 配置视频质量接口（最大延迟，最大码率）
+    /// - Parameter  maxPublishBitrate 最大发送码率，单位kbps
+    /// - Parameter  maxDelay 视频最大延迟，单位ms
+    @objc func configVideoQuality(maxPublishBitrate: Int32, maxDelay: Int32)
 }
 

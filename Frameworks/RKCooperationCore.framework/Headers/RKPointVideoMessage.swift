@@ -15,7 +15,7 @@ import RKIHandyJSON
 }
 
 @objcMembers
-public class RKPointVideoMessage: NSObject, HandyJSON {
+public class RKPointVideoMessage: NSObject, HandyJSON, RKPointInterface {
     public var channelId: String          = ""                 // | 频道ID
     public var userId: String             = ""                 // | 发送人userId
     public var messageId: String          = ""                 // | 消息唯一标识 uuid

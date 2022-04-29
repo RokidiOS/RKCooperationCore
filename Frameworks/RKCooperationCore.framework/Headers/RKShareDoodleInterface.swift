@@ -51,7 +51,6 @@ import Foundation
     /// 撤销一笔
     /// - Parameters:
     ///   - channelId: 频道ID
-    ///   - doodle: doodle
     @objc func revoke(channelId: String, doodle: RKDoodle?)
     
     /// 清除标注
@@ -66,5 +65,7 @@ public class RKShareDoodleManager: NSObject {
     public lazy var drawView = RKDrawView()
     
     public lazy var doodles: [RKDoodle] = []
+    
+    var channelId: String?
     
 }
