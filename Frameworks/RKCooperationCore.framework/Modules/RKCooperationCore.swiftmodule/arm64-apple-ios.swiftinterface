@@ -112,7 +112,7 @@ extension RKCooperationCore.RKMessageCenter : RKCooperationCore.RKMessageInterfa
   @objc required override dynamic public init()
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @objcMembers public class RKUser : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
+@objc @_inheritsConvenienceInitializers @objcMembers public class RKUser : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON, RKCooperationCore.RKUserInterface {
   @objc public var userId: Swift.String
   @objc public var companyId: Swift.String?
   @objc public var userName: Swift.String?
@@ -145,11 +145,31 @@ extension RKCooperationCore.RKMessageCenter : RKCooperationCore.RKMessageInterfa
   @objc override dynamic public init()
   @objc deinit
 }
+@objc public protocol RKUserInterface : ObjectiveC.NSObjectProtocol {
+  @objc var userId: Swift.String { get set }
+  @objc var companyId: Swift.String? { get set }
+  @objc var userName: Swift.String? { get set }
+  @objc var realName: Swift.String? { get set }
+  @objc var phone: Swift.String? { get set }
+  @objc var avatar: Swift.String? { get set }
+}
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKPoint : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
   @objc public var x: Swift.Float
   @objc public var y: Swift.Float
   @objc required override dynamic public init()
+  public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc deinit
+}
+@objc public protocol RKPointInterface : ObjectiveC.NSObjectProtocol {
+  @objc var channelId: Swift.String { get set }
+  @objc var userId: Swift.String { get set }
+  @objc var messageId: Swift.String { get set }
+  @objc var color: Swift.Int { get set }
+  @objc var pointF: RKCooperationCore.RKPoint { get set }
+  @objc var width: Swift.Float { get set }
+  @objc var code: Swift.Int { get set }
+  @objc var errorMessage: Swift.String { get set }
+  @objc var actionType: RKCooperationCore.RKPointVideoAction { get set }
 }
 extension RKCooperationCore.RKShareSlamManager : RKCooperationCore.RKShareSlamInterface {
   @objc public static var shared: RKCooperationCore.RKShareSlamManager! {
@@ -211,7 +231,6 @@ extension RKCooperationCore.RKShareSlamManager : RKCooperationCore.RKShareSlamIn
   @objc func setCustom(property: Swift.String)
   @objc func getCustomProperty() -> Swift.String?
   @objc func sendChannelMessage(msg: Swift.String)
-  @objc func getChannelId() -> Swift.String?
   @objc func getChannelState() -> RKCooperationCore.RKChannelState
   @objc func getChannelPassword() -> Swift.String?
   @objc func isLocalAudioUpload() -> Swift.Bool
@@ -221,7 +240,6 @@ extension RKCooperationCore.RKShareSlamManager : RKCooperationCore.RKShareSlamIn
   @objc func getScreenShareUserId() -> Swift.String?
   @objc func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
   @objc func muteAll()
-  @objc func queryChannel(result: RKCooperationCore.RKOperationListener)
   @objc func getMaxResolution() -> RKCooperationCore.RKResolution
   @objc func startShareScreen()
   @objc func stopShareScreen()
@@ -369,9 +387,7 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc func getShareDoodleManager() -> RKCooperationCore.RKShareDoodleManager
   @objc func getShareScreenManager() -> RKCooperationCore.RKShareScreenManager
   @available(iOS 11.0, *)
-  @objc func getShareSlamManager() -> RKCooperationCore.RKShareSlamManager
   @objc func getSharePointManager() -> RKCooperationCore.RKSharePointManager
-  @objc func getVideoContrllMgr() -> RKCooperationCore.RKVideoControlManager
   @objc func initWith(params: RKCooperationCore.RKCooperationCoreParams)
   @objc func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
   @objc func updateToken(_ token: Swift.String)
@@ -430,6 +446,7 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc func cancel(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func accept(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func reject(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @objc func busy(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func addCallState(listener: RKCooperationCore.RKCallListener)
   @objc func removeCallState(listener: RKCooperationCore.RKCallListener)
   @objc func addIncomingCall(listener: RKCooperationCore.RKIncomingCallListener)
@@ -455,7 +472,7 @@ extension RKCooperationCore.RKCallManager : RKCooperationCore.RKCallInterface {
   @objc dynamic public func invite(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func cancel(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func accept(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
-  @objc dynamic public func busy(channelId: Swift.String)
+  @objc dynamic public func busy(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func reject(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func addIncomingCall(listener: RKCooperationCore.RKIncomingCallListener)
   @objc dynamic public func removeIncomingCall(listener: RKCooperationCore.RKIncomingCallListener)
@@ -520,7 +537,6 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
   @objc dynamic public func getScreenShareUserId() -> Swift.String?
   @objc dynamic public func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
   @objc dynamic public func muteAll()
-  @objc dynamic public func queryChannel(result: RKCooperationCore.RKOperationListener)
   @objc dynamic public func getMaxResolution() -> RKCooperationCore.RKResolution
   @objc dynamic public func startCamera()
   @objc dynamic public func stopCamera()
@@ -589,20 +605,32 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
   @objc func refreshToken(_ refreshToken: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func groupList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func contactsList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func createMeeting(with resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func getUserInfo(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func heartBeat(lisence: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func getMeeting(with meetingId: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
-  @objc func changePwd(old: Swift.String!, new: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func uploadImage(imgs: [UIKit.UIImage], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func getUserBindToken(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "use RKChannelManagerInterface.create")
+  @objc func createMeeting(with resolutionRatio: Swift.String?, meetingName: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
+  @objc func heartBeat(lisence: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
+  @objc func getMeeting(with meetingId: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
+  @objc func changePwd(old: Swift.String!, new: Swift.String!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func getFileUrl(bucketName: Swift.String!, expireTime: ObjectiveC.NSInteger, fileName: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func queryUserMeetingRecordPage(with pageNum: Swift.Int, pageSize: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func saveMeetingUsers(with meetingId: Swift.String!, userIdList: [Swift.String]!, sessionStatus: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func deleteMeetingUsers(with meetingId: Swift.String!, userIdList: [Swift.String]!, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func saveMeetingVideoUrl(with meetingId: Swift.String, bucket: Swift.String, videoUrl: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func reportDeviceInfo(with registerId: Swift.String?, deviceType: Swift.Int, isSlam: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func sendPushMessage(to userIdList: [Swift.String]?, notificationMessage: [Swift.String : Swift.String], extraMap: [Swift.String : Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.1.0 弃用")
   @objc func getTaggingColor(meetingId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKAPIManager : ObjectiveC.NSObject {
@@ -895,7 +923,7 @@ extension RKCooperationCore.RKAPIManager {
     get
   }
 }
-@objc @_inheritsConvenienceInitializers @objcMembers public class RKPointVideoMessage : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
+@objc @_inheritsConvenienceInitializers @objcMembers public class RKPointVideoMessage : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON, RKCooperationCore.RKPointInterface {
   @objc public var channelId: Swift.String
   @objc public var userId: Swift.String
   @objc public var messageId: Swift.String
@@ -1329,7 +1357,6 @@ extension RKCooperationCore.RKRTCManager {
   @objc dynamic public func isLocalAudioOutput() -> Swift.Bool
   @objc dynamic public func isScreenShare() -> Swift.Bool
   @objc dynamic public func getScreenShareUserId() -> Swift.String?
-  @objc dynamic public func queryChannel(channelId: Swift.String, result: RKCooperationCore.RKOperationListener)
   @objc dynamic public func getMaxResolution() -> RKCooperationCore.RKResolution
   @objc dynamic public func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
 }

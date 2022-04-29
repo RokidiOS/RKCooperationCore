@@ -281,42 +281,12 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 /// \param onFailed 失败回调
 ///
 - (void)contactsListWithKeyword:(NSString * _Nullable)keyword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 创建会议
-/// \param resolutionRatio 分辨率
-///
-/// \param meetingName 会议名称
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)createMeetingWith:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 获取用户信息
 /// \param onSuccess 成功回调
 ///
 /// \param onFailed 失败回调
 ///
 - (void)getUserInfoOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 上报心跳
-- (void)heartBeatWithLisence:(NSString * _Null_unspecified)lisence onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 通过会议ID查询会议
-/// \param meetingId 会议ID
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)getMeetingWith:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-/// 修改密码
-/// \param old 旧密码
-///
-/// \param new 新密码
-///
-/// \param onSuccess 成功回调
-///
-/// \param onFailed 失败回调
-///
-- (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 上传图片
 /// \param imgs 图片数组
 ///
@@ -331,6 +301,36 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 /// \param onFailed 失败回调
 ///
 - (void)getUserBindTokenOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+/// 创建会议
+/// \param resolutionRatio 分辨率
+///
+/// \param meetingName 会议名称
+///
+/// \param onSuccess 成功回调
+///
+/// \param onFailed 失败回调
+///
+- (void)createMeetingWith:(NSString * _Nullable)resolutionRatio meetingName:(NSString * _Nullable)meetingName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("use RKChannelManagerInterface.create");
+/// 上报心跳
+- (void)heartBeatWithLisence:(NSString * _Null_unspecified)lisence onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
+/// 通过会议ID查询会议
+/// \param meetingId 会议ID
+///
+/// \param onSuccess 成功回调
+///
+/// \param onFailed 失败回调
+///
+- (void)getMeetingWith:(NSString * _Null_unspecified)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
+/// 修改密码
+/// \param old 旧密码
+///
+/// \param new 新密码
+///
+/// \param onSuccess 成功回调
+///
+/// \param onFailed 失败回调
+///
+- (void)changePwdWithOld:(NSString * _Null_unspecified)old new:(NSString * _Null_unspecified)new_ onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 获取用户URL
 /// \param bucketName 文件夹名字
 ///
@@ -342,7 +342,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getFileUrlWithBucketName:(NSString * _Null_unspecified)bucketName expireTime:(NSInteger)expireTime fileName:(NSArray<NSString *> * _Null_unspecified)fileName onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 查询会议记录分页列表
 /// \param pageNum 页码 默认1
 ///
@@ -352,7 +352,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)queryUserMeetingRecordPageWith:(NSInteger)pageNum pageSize:(NSInteger)pageSize onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 新增会议参会人
 /// \param meetingId 会议ID
 ///
@@ -364,7 +364,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)saveMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList sessionStatus:(NSInteger)sessionStatus onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 删除会议参会人
 /// \param meetingId 会议ID
 ///
@@ -374,7 +374,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)deleteMeetingUsersWith:(NSString * _Null_unspecified)meetingId userIdList:(NSArray<NSString *> * _Null_unspecified)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 上传录制会议视频
 /// \param meetingId 会议ID
 ///
@@ -386,7 +386,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)saveMeetingVideoUrlWith:(NSString * _Nonnull)meetingId bucket:(NSString * _Nonnull)bucket videoUrl:(NSString * _Nonnull)videoUrl onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 设备用户设备信息上报
 /// \param registerId 极光推送ID
 ///
@@ -398,7 +398,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId deviceType:(NSInteger)deviceType isSlam:(BOOL)isSlam onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)reportDeviceInfoWith:(NSString * _Nullable)registerId deviceType:(NSInteger)deviceType isSlam:(BOOL)isSlam onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 发送推送
 /// \param userIdList 用户ID集
 ///
@@ -410,7 +410,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)sendPushMessageTo:(NSArray<NSString *> * _Nullable)userIdList notificationMessage:(NSDictionary<NSString *, NSString *> * _Nonnull)notificationMessage extraMap:(NSDictionary<NSString *, NSString *> * _Nonnull)extraMap onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)sendPushMessageTo:(NSArray<NSString *> * _Nullable)userIdList notificationMessage:(NSDictionary<NSString *, NSString *> * _Nonnull)notificationMessage extraMap:(NSDictionary<NSString *, NSString *> * _Nonnull)extraMap onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 /// 获取doodle color
 /// \param meetingId 会议ID
 ///
@@ -418,7 +418,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 ///
 /// \param onFailed 失败回调
 ///
-- (void)getTaggingColorWithMeetingId:(NSString * _Nonnull)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)getTaggingColorWithMeetingId:(NSString * _Nonnull)meetingId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_DEPRECATED_MSG("2.1.0 弃用");
 @end
 
 
@@ -496,7 +496,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManage
 ///   </li>
 /// </ul>
 - (void)inviteWithChannelId:(NSString * _Nonnull)channelId userIdList:(NSArray<NSString *> * _Nonnull)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
-/// 取消邀请，在对方进入会议之前有效，呼叫方将收到 RKCallListener.onCallCancel
+/// 取消邀请，在对方进入会议之前有效，被叫方将收到
+/// RKCallListener.onCallCancel
 /// \param channelId 频道ID 
 ///
 - (void)cancelWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
@@ -504,10 +505,16 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManage
 /// \param channelId 频道ID 
 ///
 - (void)acceptWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
-/// 挂断，拒绝加入频道
+/// 挂断，拒绝加入频道, 呼叫方会收到
+/// RKCallListener.onCallBusy  被呼叫方加入频道
 /// \param channelId 拒绝的频道ID 
 ///
 - (void)rejectWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
+/// 繁忙，拒绝加入频道，呼叫方会收到
+/// RKCallListener.onCallBusy 被叫方繁忙
+/// \param channelId 拒绝的频道ID 
+///
+- (void)busyWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
 /// 设置呼叫监听
 /// \param listener @RKCallListener
 ///
@@ -587,7 +594,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCallManage
 - (void)inviteWithChannelId:(NSString * _Nonnull)channelId userIdList:(NSArray<NSString *> * _Nonnull)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
 - (void)cancelWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
 - (void)acceptWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
-- (void)busyWithChannelId:(NSString * _Nonnull)channelId;
+- (void)busyWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
 - (void)rejectWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onfailed:(void (^ _Nullable)(NSError * _Nullable))onfailed;
 - (void)addIncomingCallWithListener:(id <RKIncomingCallListener> _Nonnull)listener;
 - (void)removeIncomingCallWithListener:(id <RKIncomingCallListener> _Nonnull)listener;
@@ -634,22 +641,27 @@ enum RKVideoSize : int32_t;
 enum RKNetStatus : int32_t;
 enum RKVolumeStatus : int32_t;
 enum RKChannelState : int32_t;
-@protocol RKOperationListener;
 enum RKResolution : int32_t;
 
 SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 @protocol RKChannelInterface <NSObject>
+/// 频道ID
 @property (nonatomic, readonly, copy) NSString * _Nonnull channelId;
+/// 频道名称
 @property (nonatomic, readonly, copy) NSString * _Nonnull channelName;
+/// 频道内成员
 @property (nonatomic, readonly, copy) NSArray<RKChannelParticipant *> * _Nonnull participants;
+/// 频道对应的共享信息
 @property (nonatomic, readonly, strong) RKShareInfo * _Nullable shareInfo;
+/// 频道参数
 @property (nonatomic, readonly, strong) RKChannelParam * _Nonnull channelParam;
+/// 自己
 @property (nonatomic, readonly, strong) RKChannelParticipant * _Nullable participantSelf;
 /// 添加频道内消息监听
 /// \param listener @RKChannelMessageListener 
 ///
 - (void)addChannelMsgWithListener:(id <RKChannelMsgListener> _Nonnull)listener;
-/// 移除频道内监听
+/// 移除频道消息内监听
 /// \param listener @RKChannelMessageListener 
 ///
 - (void)removeChannelMsgWithListener:(id <RKChannelMsgListener> _Nonnull)listener;
@@ -790,13 +802,6 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 ///   </li>
 /// </ul>
 - (void)sendChannelMessageWithMsg:(NSString * _Nonnull)msg;
-/// 获取频道id
-/// <ul>
-///   <li>
-///     Return 当前频道ID，如果未加入频道则返回null
-///   </li>
-/// </ul>
-- (NSString * _Nullable)getChannelId SWIFT_WARN_UNUSED_RESULT;
 /// 获取频道当前状态
 /// <ul>
 ///   <li>
@@ -850,10 +855,6 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 - (void)switchStreamWithUserId:(NSString * _Nonnull)userId isHighStram:(BOOL)isHighStram;
 /// 全员静音
 - (void)muteAll;
-/// 查询频道信息
-/// \param result 查询频道信息结果，@RKOperationListener 
-///
-- (void)queryChannelWithResult:(id <RKOperationListener> _Nonnull)result;
 /// 获取频道的最大分辨率
 /// 频道中的最大分辩由第一个加入频道的用户决定， JoinParam 参数中设置的分辩率并一定是频道的最大分辨率，
 /// 只有加入成功后才能准确知道
@@ -930,7 +931,6 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 - (NSString * _Nullable)getScreenShareUserId SWIFT_WARN_UNUSED_RESULT;
 - (void)switchStreamWithUserId:(NSString * _Nonnull)userId isHighStram:(BOOL)isHighStram;
 - (void)muteAll;
-- (void)queryChannelWithResult:(id <RKOperationListener> _Nonnull)result;
 - (enum RKResolution)getMaxResolution SWIFT_WARN_UNUSED_RESULT;
 /// 开启摄像头
 - (void)startCamera;
@@ -1241,7 +1241,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore14RKChannelParam")
 @property (nonatomic) enum RKResolution maxResolution;
 /// 频道密码，默认无密码
 @property (nonatomic, copy) NSString * _Nullable password;
-/// 频道视频帧率，默认30帧
+/// 频道视频帧率，默认24帧
 @property (nonatomic) int32_t frameRate;
 /// 频道自定义属性
 @property (nonatomic, copy) NSString * _Nullable extraParam;
@@ -1369,9 +1369,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore17RKCooperationCore")
 
 @class RKShareDoodleManager;
 @class RKShareScreenManager;
-@class RKShareSlamManager;
 @class RKSharePointManager;
-@class RKVideoControlManager;
 @class RKCooperationCoreParams;
 @protocol RKLoginCallback;
 
@@ -1388,11 +1386,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKShareDoodleManager * _Nonnull)getShareDoodleManager SWIFT_WARN_UNUSED_RESULT;
 /// 获取屏幕共享管理类
 - (RKShareScreenManager * _Nonnull)getShareScreenManager SWIFT_WARN_UNUSED_RESULT;
-- (RKShareSlamManager * _Nonnull)getShareSlamManager SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=11.0);
-/// 获取视频点选管理类
-- (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT;
-/// 获取视频控制管理类
-- (RKVideoControlManager * _Nonnull)getVideoContrllMgr SWIFT_WARN_UNUSED_RESULT;
+- (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=11.0);
 /// sdk参数配置
 - (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params SWIFT_METHOD_FAMILY(none);
 /// sdk登录 token登录
@@ -1417,6 +1411,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (void)removeCallWithListener:(id <RKCallListener> _Nonnull)listener;
 @end
 
+@class RKShareSlamManager;
+@class RKVideoControlManager;
 
 @interface RKCooperationCore (SWIFT_EXTENSION(RKCooperationCore)) <RKCooperationInterface>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperationCore * _Null_unspecified shared;)
@@ -1484,7 +1480,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKDeviceInterface_")
 ///     height    采集高度，默认720
 ///   </li>
 ///   <li>
-///     frameRate 采集帧速率，默认30
+///     frameRate 采集帧速率，默认24
 ///   </li>
 /// </ul>
 + (void)setCameraPropertyWithWidth:(int32_t)width height:(int32_t)height framerate:(int32_t)framerate;
@@ -1505,7 +1501,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKDeviceInterface_")
 + (void)startAudio;
 /// 关闭音频
 + (void)stopAudio;
-/// 开关扬声器
+/// 开关扬声器，true启用扬声器，false启用听筒
 + (void)enableSpeaker:(BOOL)enable;
 /// 开启自定义视频流传输
 + (void)startVideoFile;
@@ -1739,8 +1735,8 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKMessageInterface_")
 /// \param channelId 频道ID
 ///
 + (void)removeChannelMsgWithListener:(id <RKChannelMsgListener> _Nonnull)listener channelId:(NSString * _Nonnull)channelId;
-/// 发送频道内消息
-/// \param message 消息内容，不能为空，并且当 toUserId 不为 nil 时，content 不能大于 4k
+/// 发送频道内消息，不支持指定用户发送消息，调用此方法将给当前频道内所有成员发送消息，自己也会收到该消息
+/// \param message 消息内容，不能为空！
 ///
 + (void)sendChannelMessage:(NSString * _Nonnull)message;
 @end
@@ -1797,6 +1793,30 @@ SWIFT_CLASS("_TtC17RKCooperationCore7RKPoint")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+enum RKPointVideoAction : NSInteger;
+
+SWIFT_PROTOCOL("_TtP17RKCooperationCore16RKPointInterface_")
+@protocol RKPointInterface <NSObject>
+/// 频道ID
+@property (nonatomic, copy) NSString * _Nonnull channelId;
+/// 发送人userId
+@property (nonatomic, copy) NSString * _Nonnull userId;
+/// 消息唯一标识 uuid
+@property (nonatomic, copy) NSString * _Nonnull messageId;
+/// 点位标注的颜色
+@property (nonatomic) NSInteger color;
+/// 点位标记点位
+@property (nonatomic, strong) RKPoint * _Nonnull pointF;
+/// 宽度放大尺寸
+@property (nonatomic) float width;
+/// pointvideo MessageCode 错误码
+@property (nonatomic) NSInteger code;
+/// errorMessage 错误描述
+@property (nonatomic, copy) NSString * _Nonnull errorMessage;
+/// 是否0 为视频点选，1建立连接请求， 2建立连接请求
+@property (nonatomic) enum RKPointVideoAction actionType;
+@end
+
 typedef SWIFT_ENUM(NSInteger, RKPointVideoAction, open) {
   RKPointVideoActionPoint = 0,
   RKPointVideoActionReq = 1,
@@ -1806,7 +1826,7 @@ typedef SWIFT_ENUM(NSInteger, RKPointVideoAction, open) {
 enum RKSlamMessageType : NSInteger;
 
 SWIFT_CLASS("_TtC17RKCooperationCore19RKPointVideoMessage")
-@interface RKPointVideoMessage : NSObject
+@interface RKPointVideoMessage : NSObject <RKPointInterface>
 @property (nonatomic, copy) NSString * _Nonnull channelId;
 @property (nonatomic, copy) NSString * _Nonnull userId;
 @property (nonatomic, copy) NSString * _Nonnull messageId;
@@ -1890,13 +1910,13 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
-- (void)stopShareScreen;
+- (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
 @end
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
+- (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
+- (void)stopShareScreen;
 @end
 
 @protocol RKVideoFrameConsumer;
@@ -1996,7 +2016,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (BOOL)isLocalAudioOutput SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)isScreenShare SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)getScreenShareUserId SWIFT_WARN_UNUSED_RESULT;
-- (void)queryChannelWithChannelId:(NSString * _Nonnull)channelId result:(id <RKOperationListener> _Nonnull)result;
 - (enum RKResolution)getMaxResolution SWIFT_WARN_UNUSED_RESULT;
 - (void)switchStreamWithUserId:(NSString * _Nonnull)userId isHighStram:(BOOL)isHighStram;
 @end
@@ -2662,8 +2681,25 @@ typedef SWIFT_ENUM(NSInteger, RKSlamMessageType, open) {
 };
 
 
+SWIFT_PROTOCOL("_TtP17RKCooperationCore15RKUserInterface_")
+@protocol RKUserInterface <NSObject>
+/// 用户ID
+@property (nonatomic, copy) NSString * _Nonnull userId;
+/// 公司ID
+@property (nonatomic, copy) NSString * _Nullable companyId;
+/// 用户名
+@property (nonatomic, copy) NSString * _Nullable userName;
+/// 姓名
+@property (nonatomic, copy) NSString * _Nullable realName;
+/// 手机号
+@property (nonatomic, copy) NSString * _Nullable phone;
+/// 头像
+@property (nonatomic, copy) NSString * _Nullable avatar;
+@end
+
+
 SWIFT_CLASS("_TtC17RKCooperationCore6RKUser")
-@interface RKUser : NSObject
+@interface RKUser : NSObject <RKUserInterface>
 /// 用户ID
 @property (nonatomic, copy) NSString * _Nonnull userId;
 /// 公司ID
@@ -2687,6 +2723,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore12RKUserDevice")
 @property (nonatomic, strong) RKUser * _Nullable userInfo;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
 
 
 SWIFT_CLASS("_TtC17RKCooperationCore13RKVideoCanvas")
@@ -2777,7 +2814,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore12RKVideoParam")
 @property (nonatomic) NSInteger width;
 /// 采集高度，默认720
 @property (nonatomic) NSInteger height;
-/// 采集帧率，默认30
+/// 采集帧率，默认24
 @property (nonatomic) NSInteger framerate;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
