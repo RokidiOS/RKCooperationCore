@@ -305,9 +305,6 @@ extension RKCooperationCore.RKChannelManager : RKCooperationCore.RKChannelManage
   @objc dynamic public func getServerRecordingFiles(channelId: Swift.String)
   @objc dynamic public func deleteServerRecordingFiles(channelId: Swift.String)
 }
-extension RKCooperationCore.RKChannelManager {
-  @objc dynamic public func onlineMessageReceived(msg: RKCooperationCore.RKMessage)
-}
 extension RKCooperationCore.RKChannelManager : RKCooperationCore.RKChannelMsgListener {
   @objc dynamic public func onChannelMsgReceive(fromUserId: Swift.String, content: Swift.String)
 }
@@ -391,6 +388,7 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc func initWith(params: RKCooperationCore.RKCooperationCoreParams)
   @objc func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
   @objc func updateToken(_ token: Swift.String)
+  @objc func uploadLog()
   @objc func logout()
   @objc func destroy()
   @objc func addLogin(listener: RKCooperationCore.RKLoginCallback)
@@ -745,9 +743,6 @@ extension RKCooperationCore.RKAPIs : Moya.TargetType {
   public var method: Moya.Method {
     get
   }
-  public var logLevel: RKILogger.RKLogLevel {
-    get
-  }
   public var task: Moya.Task {
     get
   }
@@ -810,6 +805,7 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
   @objc dynamic public func initWith(params: RKCooperationCore.RKCooperationCoreParams)
   @objc dynamic public func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
   @objc dynamic public func updateToken(_ token: Swift.String)
+  @objc dynamic public func uploadLog()
   @objc dynamic public func logout()
   @objc dynamic public func destroy()
   @objc dynamic public func addLogin(listener: RKCooperationCore.RKLoginCallback)

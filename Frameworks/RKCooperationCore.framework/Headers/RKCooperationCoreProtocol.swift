@@ -52,6 +52,9 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     /// 更新token，外部更新token，在token失效之前更新
     @objc func updateToken(_ token: String)
     
+    /// 上报log
+    @objc func uploadLog()
+    
     /// sdk登出
     @objc func logout()
     

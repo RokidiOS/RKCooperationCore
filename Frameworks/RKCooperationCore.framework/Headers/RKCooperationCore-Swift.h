@@ -1100,12 +1100,6 @@ SWIFT_CLASS("_TtC17RKCooperationCore16RKChannelManager")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class RKMessage;
-
-@interface RKChannelManager (SWIFT_EXTENSION(RKCooperationCore))
-- (void)onlineMessageReceivedWithMsg:(RKMessage * _Nonnull)msg;
-@end
-
 
 SWIFT_PROTOCOL("_TtP17RKCooperationCore20RKChannelMsgListener_")
 @protocol RKChannelMsgListener <NSObject>
@@ -1387,6 +1381,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
 /// 更新token，外部更新token，在token失效之前更新
 - (void)updateToken:(NSString * _Nonnull)token;
+/// 上报log
+- (void)uploadLog;
 /// sdk登出
 - (void)logout;
 /// sdk销毁
@@ -1421,6 +1417,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params SWIFT_METHOD_FAMILY(none);
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
 - (void)updateToken:(NSString * _Nonnull)token;
+- (void)uploadLog;
 - (void)logout;
 - (void)destroy;
 - (void)addLoginWithListener:(id <RKLoginCallback> _Nonnull)listener;
@@ -1894,23 +1891,23 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (void)sendChannelMessageWithContent:(NSString * _Nonnull)content;
-@end
-
-
-@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
 - (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
+- (void)sendChannelMessageWithContent:(NSString * _Nonnull)content;
 @end
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
 - (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
 - (void)stopShareScreen;
+@end
+
+
+@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
+- (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
 @end
 
 @protocol RKVideoFrameConsumer;
