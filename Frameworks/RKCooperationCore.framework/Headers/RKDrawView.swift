@@ -219,9 +219,9 @@ public class RKDrawView: UIView {
     
     @objc func imageSavedToPhotosAlbum(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
         if let error = error {
-            RKLog("保存失败" + error.description)
+            RKLogError("保存失败" + error.description)
         } else {
-            RKLog("保存成功")
+            RKLogInfo("保存成功")
         }
     }
     
