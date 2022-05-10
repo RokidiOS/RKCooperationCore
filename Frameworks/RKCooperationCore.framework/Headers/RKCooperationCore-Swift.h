@@ -1382,7 +1382,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKShareScreenManager * _Nonnull)getShareScreenManager SWIFT_WARN_UNUSED_RESULT;
 - (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=11.0);
 /// sdk参数配置
-- (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params SWIFT_METHOD_FAMILY(none);
+- (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
 /// sdk登录 token登录
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
 /// 更新token，外部更新token，在token失效之前更新
@@ -1420,7 +1420,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKShareSlamManager * _Nonnull)getShareSlamManager SWIFT_WARN_UNUSED_RESULT;
 - (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT;
 - (RKVideoControlManager * _Nonnull)getVideoContrllMgr SWIFT_WARN_UNUSED_RESULT;
-- (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params SWIFT_METHOD_FAMILY(none);
+- (void)initWithParams:(RKCooperationCoreParams * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
 - (void)updateToken:(NSString * _Nonnull)token;
 - (void)uploadLog;

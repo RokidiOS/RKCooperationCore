@@ -44,7 +44,7 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     @objc func getSharePointManager() -> RKSharePointManager
     
     /// sdk参数配置
-    @objc func initWith(params: RKCooperationCoreParams)
+    @objc func initWith(params: RKCooperationCoreParams, onSuccess: RKOnSuccess?, onFailed: RKOnFailed?)
     
     /// sdk登录 token登录
     @objc func login(with token: String, userInfo: RKUser)

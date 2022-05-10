@@ -7,6 +7,7 @@
 
 import Foundation
 
+@objcMembers
 class RKCooperationCoreConfig: NSObject {
     
     static let shared = RKCooperationCoreConfig()
