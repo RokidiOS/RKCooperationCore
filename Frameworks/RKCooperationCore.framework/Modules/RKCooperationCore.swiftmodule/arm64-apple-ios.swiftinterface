@@ -431,11 +431,11 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc public func copy(with zone: ObjectiveC.NSZone?) -> Any
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @objcMembers public class RKCooperationCoreParams : ObjectiveC.NSObject {
+@objc @_inheritsConvenienceInitializers @objcMembers public class RKCooperationCoreParams : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
   @objc public var saasUrl: Swift.String
   @objc public var rtcUrl: Swift.String
   @objc public var wssUrl: Swift.String
-  @objc override dynamic public init()
+  @objc required override dynamic public init()
   @objc deinit
 }
 @objc public protocol RKCallInterface : ObjectiveC.NSObjectProtocol {

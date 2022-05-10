@@ -82,4 +82,8 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
 }
 
 @objcMembers
-public class RKCooperationCore: NSObject {}
+public class RKCooperationCore: NSObject {
+    /// 必要参数
+    var coreParams: RKCooperationCoreParams = RKCooperationCoreParams()
+    
+}

@@ -6,22 +6,17 @@
 //
 
 import Foundation
+import RKIHandyJSON
 
 @objcMembers
-class RKCooperationCoreConfig: NSObject {
-    
-    static let shared = RKCooperationCoreConfig()
-    /// 必要参数
-    var coreParams: RKCooperationCoreParams?
-}
-
-@objcMembers
-public class RKCooperationCoreParams: NSObject {
+public class RKCooperationCoreParams: NSObject, HandyJSON {
     
     /// SaaS 服务器地址
-    public var saasUrl: String = ""
+    @objc public var saasUrl: String = ""
     /// rtc 服务器地址
-    public var rtcUrl: String = ""
+    @objc public var rtcUrl: String = ""
     /// socket 服务器地址
-    public var wssUrl: String = ""
+    @objc public var wssUrl: String = ""
+    
+    required public override init() {}
 }
