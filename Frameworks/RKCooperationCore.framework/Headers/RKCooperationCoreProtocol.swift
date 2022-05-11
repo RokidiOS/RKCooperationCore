@@ -28,6 +28,8 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     /// sdk管理类
     static var shared: RKCooperationCore! { get }
     
+    @objc var coreParams: RKCooperationCoreParams { get }
+    
     /// 获取呼叫管理类
     @objc func getCallManager() -> RKCallManager
     
@@ -44,7 +46,7 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
     @objc func getSharePointManager() -> RKSharePointManager
     
     /// sdk参数配置
-    @objc func initWith(params: RKCooperationCoreParams)
+    @objc func initWith(params: RKCooperationCoreParams, onSuccess: RKOnSuccess?, onFailed: RKOnFailed?)
     
     /// sdk登录 token登录
     @objc func login(with token: String, userInfo: RKUser)
@@ -82,4 +84,6 @@ public typealias RKOnFailed = (_ error: NSError?) -> Void
 }
 
 @objcMembers
-public class RKCooperationCore: NSObject {}
+public class RKCooperationCore: NSObject {
+    public var coreParams = RKCooperationCoreParams()
+}

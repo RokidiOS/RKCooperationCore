@@ -157,7 +157,6 @@ extension RKCooperationCore.RKMessageCenter : RKCooperationCore.RKMessageInterfa
   @objc public var x: Swift.Float
   @objc public var y: Swift.Float
   @objc required override dynamic public init()
-  public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc deinit
 }
 @objc public protocol RKPointInterface : ObjectiveC.NSObjectProtocol {
@@ -379,13 +378,14 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
 }
 @objc public protocol RKCooperationInterface : ObjectiveC.NSObjectProtocol {
   @objc static var shared: RKCooperationCore.RKCooperationCore! { get }
+  @objc var coreParams: RKCooperationCore.RKCooperationCoreParams { get }
   @objc func getCallManager() -> RKCooperationCore.RKCallManager
   @objc func getChannelManager() -> RKCooperationCore.RKChannelManager
   @objc func getShareDoodleManager() -> RKCooperationCore.RKShareDoodleManager
   @objc func getShareScreenManager() -> RKCooperationCore.RKShareScreenManager
   @available(iOS 11.0, *)
   @objc func getSharePointManager() -> RKCooperationCore.RKSharePointManager
-  @objc func initWith(params: RKCooperationCore.RKCooperationCoreParams)
+  @objc func initWith(params: RKCooperationCore.RKCooperationCoreParams, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
   @objc func updateToken(_ token: Swift.String)
   @objc func uploadLog()
@@ -399,6 +399,7 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc func removeCall(listener: RKCooperationCore.RKCallListener)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKCooperationCore : ObjectiveC.NSObject {
+  @objc public var coreParams: RKCooperationCore.RKCooperationCoreParams
   @objc override dynamic public init()
   @objc deinit
 }
@@ -431,11 +432,11 @@ public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
   @objc public func copy(with zone: ObjectiveC.NSZone?) -> Any
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @objcMembers public class RKCooperationCoreParams : ObjectiveC.NSObject {
+@objc @_inheritsConvenienceInitializers @objcMembers public class RKCooperationCoreParams : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
   @objc public var saasUrl: Swift.String
   @objc public var rtcUrl: Swift.String
   @objc public var wssUrl: Swift.String
-  @objc override dynamic public init()
+  @objc required override dynamic public init()
   @objc deinit
 }
 @objc public protocol RKCallInterface : ObjectiveC.NSObjectProtocol {
@@ -802,7 +803,7 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
   @objc dynamic public func getShareSlamManager() -> RKCooperationCore.RKShareSlamManager
   @objc dynamic public func getSharePointManager() -> RKCooperationCore.RKSharePointManager
   @objc dynamic public func getVideoContrllMgr() -> RKCooperationCore.RKVideoControlManager
-  @objc dynamic public func initWith(params: RKCooperationCore.RKCooperationCoreParams)
+  @objc dynamic public func initWith(params: RKCooperationCore.RKCooperationCoreParams, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func login(with token: Swift.String, userInfo: RKCooperationCore.RKUser)
   @objc dynamic public func updateToken(_ token: Swift.String)
   @objc dynamic public func uploadLog()
