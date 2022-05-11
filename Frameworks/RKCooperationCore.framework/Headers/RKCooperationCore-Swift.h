@@ -427,6 +427,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKAPIManager
 + (RKAPIManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 /// 用户token
 @property (nonatomic, copy) NSString * _Nonnull token;
+@property (nonatomic, copy) NSString * _Nonnull saasUrl;
 /// 登录
 - (void)loginWithCompanyId:(NSString * _Nonnull)companyId userName:(NSString * _Nonnull)userName password:(NSString * _Nonnull)password onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 刷新token

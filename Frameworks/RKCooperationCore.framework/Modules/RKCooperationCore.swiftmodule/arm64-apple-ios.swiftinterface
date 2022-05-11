@@ -867,6 +867,10 @@ extension RKCooperationCore.RKAPIManager : RKCooperationCore.RKCooperationAPIInt
     @objc get
     @objc set
   }
+  @objc dynamic public var saasUrl: Swift.String {
+    @objc get
+    @objc set
+  }
   @objc dynamic public func login(companyId: Swift.String, userName: Swift.String, password: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func refreshToken(_ refreshToken: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func groupList(keyword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
