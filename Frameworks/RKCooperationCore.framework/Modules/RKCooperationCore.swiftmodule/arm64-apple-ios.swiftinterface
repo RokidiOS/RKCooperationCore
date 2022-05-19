@@ -98,6 +98,7 @@ extension RKCooperationCore.RKMessageCenter : RKCooperationCore.RKMessageInterfa
   @objc public static func addChannelMsg(listener: RKCooperationCore.RKChannelMsgListener, channelId: Swift.String)
   @objc public static func removeChannelMsg(listener: RKCooperationCore.RKChannelMsgListener, channelId: Swift.String)
   @objc public static func sendChannelMessage(_ message: Swift.String)
+  @objc public static func sendChannelMessage(_ message: Swift.String, userIdList: [Swift.String])
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKChannelParam : ObjectiveC.NSObject, RKIHandyJSON.HandyJSON {
   @objc public var maxMembers: Swift.Int
@@ -229,7 +230,7 @@ extension RKCooperationCore.RKShareSlamManager : RKCooperationCore.RKShareSlamIn
   @objc func getDisplayName(userId: Swift.String) -> Swift.String?
   @objc func setCustom(property: Swift.String)
   @objc func getCustomProperty() -> Swift.String?
-  @objc func sendChannelMessage(msg: Swift.String)
+  @objc func sendChannelMessage(msg: Swift.String, userIdList: [Swift.String]?)
   @objc func getChannelState() -> RKCooperationCore.RKChannelState
   @objc func getChannelPassword() -> Swift.String?
   @objc func isLocalAudioUpload() -> Swift.Bool
@@ -525,7 +526,7 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
   @objc dynamic public func getDisplayName(userId: Swift.String) -> Swift.String?
   @objc dynamic public func setCustom(property: Swift.String)
   @objc dynamic public func getCustomProperty() -> Swift.String?
-  @objc dynamic public func sendChannelMessage(msg: Swift.String)
+  @objc dynamic public func sendChannelMessage(msg: Swift.String, userIdList: [Swift.String]? = nil)
   @objc dynamic public func getChannelId() -> Swift.String?
   @objc dynamic public func getChannelState() -> RKCooperationCore.RKChannelState
   @objc dynamic public func getChannelPassword() -> Swift.String?
@@ -820,6 +821,7 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
   @objc static func addChannelMsg(listener: RKCooperationCore.RKChannelMsgListener, channelId: Swift.String)
   @objc static func removeChannelMsg(listener: RKCooperationCore.RKChannelMsgListener, channelId: Swift.String)
   @objc static func sendChannelMessage(_ message: Swift.String)
+  @objc static func sendChannelMessage(_ message: Swift.String, userIdList: [Swift.String])
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKMessageCenter : ObjectiveC.NSObject {
   @objc override dynamic public init()
@@ -1296,7 +1298,7 @@ extension RKCooperationCore.RKRTCManager : RKRTC.RKChannelEventHandler {
   @objc dynamic public func onUserBusy(userId: Swift.String)
   @objc dynamic public func onUserKicked(userIds: [Swift.String])
   @objc dynamic public func onKicked(byUserId: Swift.String)
-  @objc dynamic public func onChannelMessageReceived(_ message: Swift.String)
+  @objc dynamic public func onChannelMessageReceived(_ message: Swift.String, fromUserId: Swift.String)
   @objc dynamic public func onRemoteUserAudioChanged(userId: Swift.String, audio: Swift.Bool)
   @objc dynamic public func onRemoteUserVideoChanged(userId: Swift.String, video: Swift.Bool)
   @objc dynamic public func onUserStartScreenShare(userId: Swift.String)
@@ -1358,7 +1360,7 @@ extension RKCooperationCore.RKRTCManager {
   @objc dynamic public func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
 }
 extension RKCooperationCore.RKRTCManager {
-  @objc dynamic public func sendChannelMessage(content: Swift.String)
+  @objc dynamic public func sendChannelMessage(content: Swift.String, userIdList: [Swift.String]? = nil)
 }
 extension RKCooperationCore.RKRTCManager {
   @objc dynamic public func snapshot(userId: Swift.String, width: Swift.Int32, height: Swift.Int32, filePath: Swift.String) -> UIKit.UIImage?

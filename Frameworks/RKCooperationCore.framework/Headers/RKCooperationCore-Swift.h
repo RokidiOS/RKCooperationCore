@@ -789,7 +789,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 ///   </li>
 /// </ul>
 - (NSString * _Nullable)getCustomProperty SWIFT_WARN_UNUSED_RESULT;
-/// 发送频道内消息，toUserId不为空时将发送给指定用户，否则发给频道内所有用户
+/// 发送频道内消息
 /// <ul>
 ///   <li>
 ///     Parameters:
@@ -798,10 +798,10 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 ///     msg: 要发送的频道消息主体
 ///   </li>
 ///   <li>
-///     operationListener: 发送频道消息的结果，@RKOperationListener
+///     userIdList: 为空发给频道内所有人（包括自己）
 ///   </li>
 /// </ul>
-- (void)sendChannelMessageWithMsg:(NSString * _Nonnull)msg;
+- (void)sendChannelMessageWithMsg:(NSString * _Nonnull)msg userIdList:(NSArray<NSString *> * _Nullable)userIdList;
 /// 获取频道当前状态
 /// <ul>
 ///   <li>
@@ -920,7 +920,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 - (NSString * _Nullable)getDisplayNameWithUserId:(NSString * _Nonnull)userId SWIFT_WARN_UNUSED_RESULT;
 - (void)setCustomWithProperty:(NSString * _Nonnull)property;
 - (NSString * _Nullable)getCustomProperty SWIFT_WARN_UNUSED_RESULT;
-- (void)sendChannelMessageWithMsg:(NSString * _Nonnull)msg;
+- (void)sendChannelMessageWithMsg:(NSString * _Nonnull)msg userIdList:(NSArray<NSString *> * _Nullable)userIdList;
 - (NSString * _Nullable)getChannelId SWIFT_WARN_UNUSED_RESULT;
 - (enum RKChannelState)getChannelState SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)getChannelPassword SWIFT_WARN_UNUSED_RESULT;
@@ -1734,10 +1734,16 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKMessageInterface_")
 /// \param channelId 频道ID
 ///
 + (void)removeChannelMsgWithListener:(id <RKChannelMsgListener> _Nonnull)listener channelId:(NSString * _Nonnull)channelId;
-/// 发送频道内消息，不支持指定用户发送消息，调用此方法将给当前频道内所有成员发送消息，自己也会收到该消息
+/// 发送频道内消息，频道内所有用户将收到消息，自己也会收到
 /// \param message 消息内容，不能为空！
 ///
 + (void)sendChannelMessage:(NSString * _Nonnull)message;
+/// 指定用户发送消息
+/// \param message 消息内容，不能为空！
+///
+/// \param userIdList 需要发送的用户
+///
++ (void)sendChannelMessage:(NSString * _Nonnull)message userIdList:(NSArray<NSString *> * _Nonnull)userIdList;
 @end
 
 
@@ -1745,6 +1751,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKMessageInterface_")
 + (void)addChannelMsgWithListener:(id <RKChannelMsgListener> _Nonnull)listener channelId:(NSString * _Nonnull)channelId;
 + (void)removeChannelMsgWithListener:(id <RKChannelMsgListener> _Nonnull)listener channelId:(NSString * _Nonnull)channelId;
 + (void)sendChannelMessage:(NSString * _Nonnull)message;
++ (void)sendChannelMessage:(NSString * _Nonnull)message userIdList:(NSArray<NSString *> * _Nonnull)userIdList;
 @end
 
 
@@ -1904,7 +1911,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (void)sendChannelMessageWithContent:(NSString * _Nonnull)content;
+- (void)sendChannelMessageWithContent:(NSString * _Nonnull)content userIdList:(NSArray<NSString *> * _Nullable)userIdList;
 @end
 
 
@@ -1958,7 +1965,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (void)onUserBusyWithUserId:(NSString * _Nonnull)userId;
 - (void)onUserKickedWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
 - (void)onKickedByUserId:(NSString * _Nonnull)byUserId;
-- (void)onChannelMessageReceived:(NSString * _Nonnull)message;
+- (void)onChannelMessageReceived:(NSString * _Nonnull)message fromUserId:(NSString * _Nonnull)fromUserId;
 - (void)onRemoteUserAudioChangedWithUserId:(NSString * _Nonnull)userId audio:(BOOL)audio;
 - (void)onRemoteUserVideoChangedWithUserId:(NSString * _Nonnull)userId video:(BOOL)video;
 - (void)onUserStartScreenShareWithUserId:(NSString * _Nonnull)userId;

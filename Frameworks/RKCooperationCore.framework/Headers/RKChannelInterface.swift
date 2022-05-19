@@ -137,11 +137,11 @@ import Foundation
     /// - Return 返回频道的自定义属性
     @objc func getCustomProperty() -> String?
     
-    /// 发送频道内消息，toUserId不为空时将发送给指定用户，否则发给频道内所有用户
+    /// 发送频道内消息
     /// - Parameters:
     ///  - msg: 要发送的频道消息主体
-    ///  - operationListener: 发送频道消息的结果，@RKOperationListener
-    @objc func sendChannelMessage(msg: String)
+    ///  - userIdList: 为空发给频道内所有人（包括自己）
+    @objc func sendChannelMessage(msg: String, userIdList: [String]?)
     
     /// 获取频道当前状态
     /// - Return @RKChannelState
