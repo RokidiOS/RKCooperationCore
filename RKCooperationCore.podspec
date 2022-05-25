@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/RokidiOS/RKCooperationCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'amos' => 'xiaodong.chen@rokid.com' }
-  s.source = { :git => "https://github.com/RokidiOS/RKCooperationCore.git", :branch => "2.1.1_swift5.6.0" }
+  s.source = { :git => "https://github.com/RokidiOS/RKCooperationCore.git", :branch => "2.1.1_swift5.5.2" }
 
   s.ios.deployment_target = '10.0'
   
