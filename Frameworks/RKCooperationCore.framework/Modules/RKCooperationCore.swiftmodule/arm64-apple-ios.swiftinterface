@@ -486,7 +486,6 @@ extension RKCooperationCore.RKShareScreenManager : RKCooperationCore.RKShareScre
   @objc public var x: Swift.Float
   @objc public var y: Swift.Float
   @objc required override dynamic public init()
-  public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc deinit
 }
 @objc public protocol RKVideoControlInterface : ObjectiveC.NSObjectProtocol {
