@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
 // swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RKCooperationCore
 import AVFoundation
 import Alamofire
@@ -264,6 +264,7 @@ extension RKCooperationCore.RKCallManager : RKCooperationCore.RKCallInterface {
   @objc dynamic public func destroy()
   @objc dynamic public func invite(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func cancel(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func cancel(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func accept(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func busy(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func reject(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
@@ -275,6 +276,7 @@ extension RKCooperationCore.RKCallManager : RKCooperationCore.RKCallInterface {
 }
 extension RKCooperationCore.RKCallManager : RKRTC.RKCallEventHandler {
   @objc dynamic public func onReceiveCall(channelId: Swift.String, channelActionMsg: RKRTC.RKChannelActionMsg)
+  @objc dynamic public func onCallCanceled(channelId: Swift.String, userId: Swift.String)
 }
 public typealias RKOnSuccess = (_ data: Any?) -> Swift.Void
 public typealias RKOnFailed = (_ error: Foundation.NSError?) -> Swift.Void
@@ -398,11 +400,14 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
 }
 @objc public protocol RKIncomingCallListener : ObjectiveC.NSObjectProtocol {
   @objc optional func onReceiveCall(channelId: Swift.String, fromUserId: Swift.String, createTime: Swift.Int64, channelTitle: Swift.String, channelParam: RKCooperationCore.RKChannelParam?)
+  @objc optional func onCallCanceled(channelId: Swift.String, userId: Swift.String)
 }
 @objc public protocol RKCallInterface : ObjectiveC.NSObjectProtocol {
   @objc static var shared: RKCooperationCore.RKCallManager! { get }
   @objc func invite(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @available(*, deprecated, message: "2.2.1 弃用")
   @objc func cancel(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @objc func cancel(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func accept(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func reject(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func busy(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
@@ -486,7 +491,6 @@ extension RKCooperationCore.RKShareScreenManager : RKCooperationCore.RKShareScre
   @objc public var x: Swift.Float
   @objc public var y: Swift.Float
   @objc required override dynamic public init()
-  public func mapping(mapper: RKIHandyJSON.HelpingMapper)
   @objc deinit
 }
 @objc public protocol RKVideoControlInterface : ObjectiveC.NSObjectProtocol {
@@ -775,10 +779,11 @@ extension RKCooperationCore.RKRTCManager : RKRTC.RKRtcClientListener {
 }
 extension RKCooperationCore.RKRTCManager : RKRTC.RKChannelEventHandler {
   @objc dynamic public func onChannelMsg(from userId: Swift.String, msg: Swift.String)
-  @objc dynamic public func onUserJoined(user: RKRTC.RKChannelUserInfo)
+  @objc dynamic public func onCallCanceled(channelId: Swift.String, userId: Swift.String)
+  @objc dynamic public func onUserJoined(user: RKRTC.RKChannelUserInfo, inviteUserId: Swift.String?)
   @objc dynamic public func onUserLeft(userId: Swift.String)
-  @objc dynamic public func onUserRefused(userId: Swift.String)
-  @objc dynamic public func onUserBusy(userId: Swift.String)
+  @objc dynamic public func onUserRefused(userId: Swift.String, inviteUserId: Swift.String)
+  @objc dynamic public func onUserBusy(userId: Swift.String, inviteUserId: Swift.String)
   @objc dynamic public func onUserKicked(userIds: [Swift.String])
   @objc dynamic public func onKicked(byUserId: Swift.String)
   @objc dynamic public func onChannelMessageReceived(_ message: Swift.String, fromUserId: Swift.String)
@@ -1094,8 +1099,8 @@ public struct RKError : Swift.Error {
 }
 @objc public protocol RKCallListener : ObjectiveC.NSObjectProtocol {
   @objc optional func onCallAccept(channelId: Swift.String, userId: Swift.String)
-  @objc optional func onCallBusy(channelId: Swift.String, userId: Swift.String)
-  @objc optional func onCallRejected(channelId: Swift.String, userId: Swift.String)
+  @objc optional func onCallBusy(channelId: Swift.String, userId: Swift.String, inviteUserId: Swift.String)
+  @objc optional func onCallRejected(channelId: Swift.String, userId: Swift.String, inviteUserId: Swift.String)
   @available(*, deprecated, message: "2.0.0 弃用")
   @objc optional func onInviteResult(channelId: Swift.String, userId: Swift.String, result: Swift.Bool, reason: RKCooperationCore.RKCooperationCode)
   @available(*, deprecated, message: "2.0.0 弃用")
