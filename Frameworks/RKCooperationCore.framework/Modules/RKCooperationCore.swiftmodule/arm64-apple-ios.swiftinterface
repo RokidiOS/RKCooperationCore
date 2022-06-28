@@ -162,7 +162,10 @@ public enum RKMsgType : Swift.String, RKIHandyJSON.HandyJSONEnum {
   @objc public var channelName: Swift.String
   @objc public var participants: [RKCooperationCore.RKChannelParticipant]
   @objc public var shareInfo: RKCooperationCore.RKShareInfo?
-  @objc public var channelParam: RKCooperationCore.RKChannelParam
+  @objc public var channelParam: RKCooperationCore.RKChannelParam {
+    @objc get
+    @objc set
+  }
   @objc public var participantSelf: RKCooperationCore.RKChannelParticipant? {
     @objc get
   }
@@ -209,7 +212,8 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
   @objc dynamic public func isLocalAudioOutput() -> Swift.Bool
   @objc dynamic public func isScreenShare() -> Swift.Bool
   @objc dynamic public func getScreenShareUserId() -> Swift.String?
-  @objc dynamic public func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
+  @objc dynamic public func switchStream(userId: Swift.String, isHighStream: Swift.Bool)
+  @objc dynamic public func switchStream(userId: Swift.String, isHighStream: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func muteAll()
   @objc dynamic public func getMaxResolution() -> RKCooperationCore.RKResolution
   @objc dynamic public func startCamera()
@@ -266,6 +270,7 @@ extension RKCooperationCore.RKCallManager : RKCooperationCore.RKCallInterface {
   @objc dynamic public func cancel(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func cancel(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func accept(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @objc dynamic public func accept(channelId: Swift.String, defaultSubscribeMediaType: RKCooperationCore.SubscribeMediaType, defaultStreamType: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func busy(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func reject(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func addIncomingCall(listener: RKCooperationCore.RKIncomingCallListener)
@@ -331,6 +336,7 @@ extension RKCooperationCore.RKChannelManager : RKCooperationCore.RKChannelManage
   @objc dynamic public func create(channelId: Swift.String?, channelTitle: Swift.String?, channelParam: RKCooperationCore.RKChannelParam?, userIdList: [Swift.String]?, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc @discardableResult
   dynamic public func createLocalChannel(_ channelId: Swift.String, channelTitle: Swift.String?, channelParam: RKCooperationCore.RKChannelParam?) -> RKCooperationCore.RKChannel
+  @objc dynamic public func join(channelId: Swift.String, channelParam: RKCooperationCore.RKChannelParam?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func join(channelId: Swift.String, channelPassword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func leave(channelId: Swift.String)
   @objc dynamic public func startServerRecording(channelId: Swift.String, bucket: Swift.String, fileName: Swift.String, resolution: RKCooperationCore.RKResolution, subStream: RKCooperationCore.RKIStreamType, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
@@ -351,6 +357,8 @@ extension RKCooperationCore.RKChannelManager : RKCooperationCore.RKChannelMsgLis
   @objc static var shared: RKCooperationCore.RKShareScreenManager! { get }
   @objc func startShareScreen(channelId: Swift.String)
   @objc func stopShareScreen(channelId: Swift.String)
+  @available(iOS 11.0, *)
+  @objc func switchScreenRecorderCapture(_ open: Swift.Bool)
   @objc func getShareScreenVideo(channelId: Swift.String, renderType: RKCooperationCore.RKRenderType, videoSize: RKCooperationCore.RKVideoSize, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKShareScreenManager : ObjectiveC.NSObject {
@@ -409,6 +417,7 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
   @objc func cancel(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func cancel(channelId: Swift.String, userIdList: [Swift.String], onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func accept(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
+  @objc func accept(channelId: Swift.String, defaultSubscribeMediaType: RKCooperationCore.SubscribeMediaType, defaultStreamType: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func reject(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func busy(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func addCallState(listener: RKCooperationCore.RKCallListener)
@@ -471,6 +480,7 @@ extension RKCooperationCore.RKShareScreenManager : RKCooperationCore.RKShareScre
   }
   @objc dynamic public func startShareScreen(channelId: Swift.String)
   @objc dynamic public func realStartShareScreen(channelId: Swift.String)
+  @objc dynamic public func switchScreenRecorderCapture(_ open: Swift.Bool)
   @objc dynamic public func stopShareScreen(channelId: Swift.String)
   @objc dynamic public func getShareScreenVideo(channelId: Swift.String, renderType: RKCooperationCore.RKRenderType, videoSize: RKCooperationCore.RKVideoSize, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
 }
@@ -484,6 +494,8 @@ extension RKCooperationCore.RKShareScreenManager : RKCooperationCore.RKShareScre
   @objc public var isAudio: Swift.Bool
   @objc public var bitrate: Swift.Int32
   @objc public var maxDelay: Swift.Int32
+  @objc public var defaultSubscribeMediaType: RKCooperationCore.SubscribeMediaType
+  @objc public var defaultStreamType: Swift.Bool
   @objc required override dynamic public init()
   @objc deinit
 }
@@ -604,7 +616,8 @@ extension RKCooperationCore.RKVideoControlManager : RKCooperationCore.RKVideoCon
   @objc func isLocalAudioOutput() -> Swift.Bool
   @objc func isScreenShare() -> Swift.Bool
   @objc func getScreenShareUserId() -> Swift.String?
-  @objc func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
+  @objc func switchStream(userId: Swift.String, isHighStream: Swift.Bool)
+  @objc func switchStream(userId: Swift.String, isHighStream: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func muteAll()
   @objc func getMaxResolution() -> RKCooperationCore.RKResolution
   @objc func startShareScreen()
@@ -616,6 +629,17 @@ extension RKCooperationCore.RKVideoControlManager : RKCooperationCore.RKVideoCon
   @objc func inviteShareSlam(userId: Swift.String)
   @objc func stopInviteShareSlam()
   @objc func configVideoQuality(maxPublishBitrate: Swift.Int32, maxDelay: Swift.Int32)
+}
+@objc public enum SubscribeMediaType : Swift.Int {
+  case both = 0
+  case audio = 1
+  case video = 2
+  case none = 3
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKChannelParticipant : ObjectiveC.NSObject {
   @objc public var channelId: Swift.String
@@ -630,6 +654,14 @@ extension RKCooperationCore.RKVideoControlManager : RKCooperationCore.RKVideoCon
   @objc public var isVideoStart: Swift.Bool
   @objc public var videoCanvas: RKCooperationCore.RKVideoCanvas?
   @objc public var companyUser: RKCooperationCore.RKUser?
+  @objc public var mediaSubscribeState: RKCooperationCore.SubscribeMediaType {
+    @objc get
+  }
+  @objc public var isHighStream: Swift.Bool {
+    @objc get
+  }
+  @objc public func subscribeStateChange(_ state: RKCooperationCore.SubscribeMediaType, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc public func switchStream(isHighStream: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc override dynamic public init()
   @objc deinit
 }
@@ -845,7 +877,8 @@ extension RKCooperationCore.RKRTCManager {
   @objc dynamic public func isScreenShare() -> Swift.Bool
   @objc dynamic public func getScreenShareUserId() -> Swift.String?
   @objc dynamic public func getMaxResolution() -> RKCooperationCore.RKResolution
-  @objc dynamic public func switchStream(userId: Swift.String, isHighStram: Swift.Bool)
+  @objc dynamic public func switchStream(userId: Swift.String, isHighStream: Swift.Bool)
+  @objc dynamic public func switchStream(userId: Swift.String, isHighStream: Swift.Bool, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
 }
 extension RKCooperationCore.RKRTCManager {
   @objc dynamic public func sendChannelMessage(content: Swift.String, userIdList: [Swift.String]? = nil)
@@ -902,6 +935,7 @@ extension RKCooperationCore.RKDevice : RKCooperationCore.RKDeviceInterface {
   @objc func create(channelId: Swift.String?, channelTitle: Swift.String?, channelParam: RKCooperationCore.RKChannelParam?, userIdList: [Swift.String]?, onSuccess: RKCooperationCore.RKOnSuccess?, onfailed: RKCooperationCore.RKOnFailed?)
   @objc func getChannel(channelId: Swift.String) -> RKCooperationCore.RKChannel?
   @objc func queryChannelInfo(channelId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc func join(channelId: Swift.String, channelParam: RKCooperationCore.RKChannelParam?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func join(channelId: Swift.String, channelPassword: Swift.String?, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func leave(channelId: Swift.String)
   @objc func addChannel(listener: RKCooperationCore.RKChannelListener)
@@ -1297,6 +1331,9 @@ extension RKCooperationCore.RKDoodleAction : Swift.RawRepresentable {}
 extension RKCooperationCore.VideoCtrType : Swift.Equatable {}
 extension RKCooperationCore.VideoCtrType : Swift.Hashable {}
 extension RKCooperationCore.VideoCtrType : Swift.RawRepresentable {}
+extension RKCooperationCore.SubscribeMediaType : Swift.Equatable {}
+extension RKCooperationCore.SubscribeMediaType : Swift.Hashable {}
+extension RKCooperationCore.SubscribeMediaType : Swift.RawRepresentable {}
 extension RKCooperationCore.RKShareType : Swift.Equatable {}
 extension RKCooperationCore.RKShareType : Swift.Hashable {}
 extension RKCooperationCore.RKShareType : Swift.RawRepresentable {}
