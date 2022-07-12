@@ -1412,8 +1412,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=11.0);
 /// sdk参数配置，调用SDK完成初始化, appId和apiServer联系rokid获取
 - (void)initWithAppId:(NSString * _Nonnull)appId apiServer:(NSString * _Nonnull)apiServer onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
-/// sdk登录，接入方自行完成登录，分配唯一的userId 传入sdk即可。
-- (void)loginWith:(NSString * _Nonnull)userId;
+/// sdk登录，接入方自行完成登录，分配唯一的userId 传入sdk即可。 foreceRefreshToken 是否强制刷新token，不考虑本地缓存
+- (void)loginWith:(NSString * _Nonnull)userId foreceRefreshToken:(BOOL)foreceRefreshToken;
 /// 上报log 成功回调 logpath
 - (void)uploadLogOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// sdk登录 token登录
@@ -1452,7 +1452,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT;
 - (RKVideoControlManager * _Nonnull)getVideoContrllMgr SWIFT_WARN_UNUSED_RESULT;
 - (void)initWithAppId:(NSString * _Nonnull)appId apiServer:(NSString * _Nonnull)apiServer onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
-- (void)loginWith:(NSString * _Nonnull)userId;
+- (void)loginWith:(NSString * _Nonnull)userId foreceRefreshToken:(BOOL)foreceRefreshToken;
 - (void)uploadLogOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)loginWith:(NSString * _Nonnull)token userInfo:(RKUser * _Nonnull)userInfo;
 - (void)updateToken:(NSString * _Nonnull)token;
