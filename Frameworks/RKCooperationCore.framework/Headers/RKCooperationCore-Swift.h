@@ -994,6 +994,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKChannelMan
 /// \param channelId 频道ID 
 ///
 - (void)leaveWithChannelId:(NSString * _Nonnull)channelId;
+/// 关闭频道,  关闭频道
+/// \param channelId 频道ID 
+///
+- (void)stopWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 添加频道监听
 - (void)addChannelWithListener:(id <RKChannelListener> _Nonnull)listener;
 /// 移除频道监听
@@ -1056,6 +1060,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKChannelMan
 - (void)joinWithChannelId:(NSString * _Nonnull)channelId channelParam:(RKChannelParam * _Nullable)channelParam onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)joinWithChannelId:(NSString * _Nonnull)channelId channelPassword:(NSString * _Nullable)channelPassword onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)leaveWithChannelId:(NSString * _Nonnull)channelId;
+- (void)stopWithChannelId:(NSString * _Nonnull)channelId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 开始频道录制
 - (void)startServerRecordingWithChannelId:(NSString * _Nonnull)channelId bucket:(NSString * _Nonnull)bucket fileName:(NSString * _Nonnull)fileName resolution:(enum RKResolution)resolution subStream:(enum RKIStreamType)subStream onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 /// 结束频道录制
@@ -1926,7 +1931,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 + (RKRTCManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (void)initClient SWIFT_METHOD_FAMILY(none);
 - (void)loginWith:(NSString * _Nonnull)appId apiServer:(NSString * _Nonnull)apiServer userId:(NSString * _Nonnull)userId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)updateToken:(NSString * _Nonnull)token;
 - (void)logout;
 /// 开启摄像头
 - (void)startCamera;
@@ -1985,23 +1989,23 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
-@end
-
-
-@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
 - (void)sendChannelMessageWithContent:(NSString * _Nonnull)content userIdList:(NSArray<NSString *> * _Nullable)userIdList;
 @end
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
+- (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
 - (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
 - (void)stopShareScreen;
+@end
+
+
+@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
+- (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
 @end
 
 @protocol RKVideoFrameConsumer;
