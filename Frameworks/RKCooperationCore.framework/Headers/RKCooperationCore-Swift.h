@@ -899,6 +899,19 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKChannelListener_")
 ///   </li>
 /// </ul>
 - (void)onUserLeaveChannelWithChannelId:(NSString * _Nullable)channelId userId:(NSString * _Nullable)userId;
+/// 有成员重新加入会议
+/// <ul>
+///   <li>
+///     Parameters:
+///   </li>
+///   <li>
+///     channelId: 频道ID
+///   </li>
+///   <li>
+///     userId: 离开的成员用户ID
+///   </li>
+/// </ul>
+- (void)onUserRejoinWithChannelId:(NSString * _Nullable)channelId userId:(NSString * _Nullable)userId;
 /// 频道内共享状态回调
 /// <ul>
 ///   <li>
@@ -1096,9 +1109,9 @@ SWIFT_CLASS("_TtC17RKCooperationCore14RKChannelParam")
 @property (nonatomic) int32_t frameRate;
 /// 频道自定义属性
 @property (nonatomic, copy) NSString * _Nullable extraParam;
-/// 音频开关
-@property (nonatomic) BOOL isVideo;
 /// 视频开关
+@property (nonatomic) BOOL isVideo;
+/// 音频开关
 @property (nonatomic) BOOL isAudio;
 /// 码率大小 kbps
 @property (nonatomic) int32_t bitrate;
@@ -2074,6 +2087,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (void)onKickedByUserId:(NSString * _Nonnull)byUserId;
 - (void)onChannelMessageReceived:(NSString * _Nonnull)message fromUserId:(NSString * _Nonnull)fromUserId;
 - (void)onChannelThirdMessageReceived:(NSString * _Nonnull)message fromUserId:(NSString * _Nonnull)fromUserId;
+- (void)rejoinChannel:(NSString * _Nonnull)userId;
 - (void)onRemoteUserAudioChangedWithUserId:(NSString * _Nonnull)userId audio:(BOOL)audio;
 - (void)onRemoteUserVideoChangedWithUserId:(NSString * _Nonnull)userId video:(BOOL)video;
 - (void)onUserStartScreenShareWithUserId:(NSString * _Nonnull)userId;

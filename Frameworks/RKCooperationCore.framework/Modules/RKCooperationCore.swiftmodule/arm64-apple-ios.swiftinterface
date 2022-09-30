@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
-// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name RKCooperationCore
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name RKCooperationCore
 import AVFoundation
 import Alamofire
 import CoreMedia
@@ -350,6 +350,7 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
   @objc func onRecordStateChanged(recordState: RKCooperationCore.RKRecordState)
   @objc func onUserJoinChannel(channelId: Swift.String, userId: Swift.String)
   @objc func onUserLeaveChannel(channelId: Swift.String?, userId: Swift.String?)
+  @objc func onUserRejoin(channelId: Swift.String?, userId: Swift.String?)
   @objc func onChannelShare(channelId: Swift.String?, shareType: RKCooperationCore.RKShareType)
   @objc optional func onRecordingSwitch(_ isOpen: Swift.Bool)
   @objc optional func onRecordingStateChanged(_ recordingStateData: RKCooperationCore.RKIRecordingStateModel)
@@ -941,6 +942,7 @@ extension RKCooperationCore.RKRTCManager : RKRTC.RKChannelEventHandler {
   @objc dynamic public func onKicked(byUserId: Swift.String)
   @objc dynamic public func onChannelMessageReceived(_ message: Swift.String, fromUserId: Swift.String)
   @objc dynamic public func onChannelThirdMessageReceived(_ message: Swift.String, fromUserId: Swift.String)
+  @objc dynamic public func rejoinChannel(_ userId: Swift.String)
   @objc dynamic public func onRemoteUserAudioChanged(userId: Swift.String, audio: Swift.Bool)
   @objc dynamic public func onRemoteUserVideoChanged(userId: Swift.String, video: Swift.Bool)
   @objc dynamic public func onUserStartScreenShare(userId: Swift.String)
