@@ -6,6 +6,6 @@ framework module RKCooperationCore {
 }
 
 module RKCooperationCore.Swift {
-    header "RKCooperationCore-Swift.h"
-    requires objc
+  header "RKCooperationCore-Swift.h"
+  requires objc
 }
