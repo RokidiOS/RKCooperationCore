@@ -23893,6 +23893,84 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "appId",
+            "printedName": "appId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKCooperationCore(py)appId",
+            "mangledName": "$s17RKCooperationCoreAAC5appIdSSvp",
+            "moduleName": "RKCooperationCore",
+            "isOpen": true,
+            "declAttributes": [
+              "Dynamic",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@CM@RKCooperationCore@objc(cs)RKCooperationCore(im)appId",
+                "mangledName": "$s17RKCooperationCoreAAC5appIdSSvg",
+                "moduleName": "RKCooperationCore",
+                "isOpen": true,
+                "declAttributes": [
+                  "Dynamic",
+                  "ObjC"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@CM@RKCooperationCore@objc(cs)RKCooperationCore(im)setAppId:",
+                "mangledName": "$s17RKCooperationCoreAAC5appIdSSvs",
+                "moduleName": "RKCooperationCore",
+                "isOpen": true,
+                "declAttributes": [
+                  "Dynamic",
+                  "ObjC"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              }
+            ]
           }
         ],
         "declKind": "Class",
@@ -24424,70 +24502,6 @@
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "addCaptureInterceptor",
-            "printedName": "addCaptureInterceptor(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RKCaptureInterceptor",
-                "printedName": "RKRTC.RKCaptureInterceptor",
-                "usr": "c:@M@RKRTC@objc(pl)RKCaptureInterceptor"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@RKCooperationCore@objc(pl)RKDeviceInterface(cm)addCaptureInterceptor:",
-            "mangledName": "$s17RKCooperationCore17RKDeviceInterfaceP21addCaptureInterceptoryy5RKRTC09RKCaptureG0_pFZ",
-            "moduleName": "RKCooperationCore",
-            "genericSig": "<τ_0_0 where τ_0_0 : RKCooperationCore.RKDeviceInterface>",
-            "sugared_genericSig": "<Self where Self : RKCooperationCore.RKDeviceInterface>",
-            "static": true,
-            "protocolReq": true,
-            "declAttributes": [
-              "ObjC",
-              "RawDocComment"
-            ],
-            "reqNewWitnessTableEntry": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "removeCaptureInterceptor",
-            "printedName": "removeCaptureInterceptor(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RKCaptureInterceptor",
-                "printedName": "RKRTC.RKCaptureInterceptor",
-                "usr": "c:@M@RKRTC@objc(pl)RKCaptureInterceptor"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@RKCooperationCore@objc(pl)RKDeviceInterface(cm)removeCaptureInterceptor:",
-            "mangledName": "$s17RKCooperationCore17RKDeviceInterfaceP24removeCaptureInterceptoryy5RKRTC09RKCaptureG0_pFZ",
-            "moduleName": "RKCooperationCore",
-            "genericSig": "<τ_0_0 where τ_0_0 : RKCooperationCore.RKDeviceInterface>",
-            "sugared_genericSig": "<Self where Self : RKCooperationCore.RKDeviceInterface>",
-            "static": true,
-            "protocolReq": true,
-            "declAttributes": [
-              "ObjC",
-              "RawDocComment"
-            ],
-            "reqNewWitnessTableEntry": true,
-            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -24882,68 +24896,6 @@
             "moduleName": "RKCooperationCore",
             "static": true,
             "objc_name": "stopVideoFile",
-            "declAttributes": [
-              "Final",
-              "ObjC",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "addCaptureInterceptor",
-            "printedName": "addCaptureInterceptor(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RKCaptureInterceptor",
-                "printedName": "RKRTC.RKCaptureInterceptor",
-                "usr": "c:@M@RKRTC@objc(pl)RKCaptureInterceptor"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKDevice(cm)addCaptureInterceptor:",
-            "mangledName": "$s17RKCooperationCore8RKDeviceC21addCaptureInterceptoryy5RKRTC09RKCaptureF0_pFZ",
-            "moduleName": "RKCooperationCore",
-            "static": true,
-            "objc_name": "addCaptureInterceptor:",
-            "declAttributes": [
-              "Final",
-              "ObjC",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "removeCaptureInterceptor",
-            "printedName": "removeCaptureInterceptor(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RKCaptureInterceptor",
-                "printedName": "RKRTC.RKCaptureInterceptor",
-                "usr": "c:@M@RKRTC@objc(pl)RKCaptureInterceptor"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKDevice(cm)removeCaptureInterceptor:",
-            "mangledName": "$s17RKCooperationCore8RKDeviceC24removeCaptureInterceptoryy5RKRTC09RKCaptureF0_pFZ",
-            "moduleName": "RKCooperationCore",
-            "static": true,
-            "objc_name": "removeCaptureInterceptor:",
             "declAttributes": [
               "Final",
               "ObjC",
@@ -41368,22 +41320,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "RKRTC.RKVideoFrameConsumer?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "RKVideoFrameConsumer",
-                    "printedName": "RKRTC.RKVideoFrameConsumer",
-                    "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "RKVideoFrameConsumer",
+                "printedName": "RKRTC.RKVideoFrameConsumer",
+                "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
               }
             ],
             "declKind": "Var",
             "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(py)consumer",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pSgvp",
+            "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pvp",
             "moduleName": "RKCooperationCore",
             "isOpen": true,
             "declAttributes": [
@@ -41400,22 +41344,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "RKRTC.RKVideoFrameConsumer?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "RKVideoFrameConsumer",
-                        "printedName": "RKRTC.RKVideoFrameConsumer",
-                        "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "RKVideoFrameConsumer",
+                    "printedName": "RKRTC.RKVideoFrameConsumer",
+                    "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
                   }
                 ],
                 "declKind": "Accessor",
                 "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(im)consumer",
-                "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pSgvg",
+                "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pvg",
                 "moduleName": "RKCooperationCore",
                 "implicit": true,
                 "isOpen": true,
@@ -41436,22 +41372,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "RKRTC.RKVideoFrameConsumer?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "RKVideoFrameConsumer",
-                        "printedName": "RKRTC.RKVideoFrameConsumer",
-                        "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "RKVideoFrameConsumer",
+                    "printedName": "RKRTC.RKVideoFrameConsumer",
+                    "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
                   }
                 ],
                 "declKind": "Accessor",
                 "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(im)setConsumer:",
-                "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pSgvs",
+                "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pvs",
                 "moduleName": "RKCooperationCore",
                 "implicit": true,
                 "isOpen": true,
@@ -41472,8 +41400,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pSgvM",
-                "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pSgvM",
+                "usr": "s:17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pvM",
+                "mangledName": "$s17RKCooperationCore12RKRTCManagerC8consumer5RKRTC20RKVideoFrameConsumer_pvM",
                 "moduleName": "RKCooperationCore",
                 "implicit": true,
                 "isOpen": true,
@@ -42561,22 +42489,13 @@
           },
           {
             "kind": "Function",
-            "name": "getRKParticipant",
-            "printedName": "getRKParticipant(from:)",
+            "name": "updateParticipant",
+            "printedName": "updateParticipant(from:)",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "RKCooperationCore.RKChannelParticipant?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "RKChannelParticipant",
-                    "printedName": "RKCooperationCore.RKChannelParticipant",
-                    "usr": "c:@M@RKCooperationCore@objc(cs)RKChannelParticipant"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "Void",
+                "printedName": "()"
               },
               {
                 "kind": "TypeNominal",
@@ -42586,12 +42505,12 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(im)getRKParticipantFrom:",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC16getRKParticipant4fromAA20RKChannelParticipantCSgSS_tF",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(im)updateParticipantFrom:",
+            "mangledName": "$s17RKCooperationCore12RKRTCManagerC17updateParticipant4fromySS_tF",
             "moduleName": "RKCooperationCore",
             "isOpen": true,
             "declAttributes": [
-              "DiscardableResult",
+              "RawDocComment",
               "ObjC"
             ],
             "funcSelfKind": "NonMutating"
@@ -43879,112 +43798,6 @@
           },
           {
             "kind": "Function",
-            "name": "onCreate",
-            "printedName": "onCreate(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RKVideoFrameConsumer",
-                "printedName": "RKRTC.RKVideoFrameConsumer",
-                "usr": "c:@M@RKRTC@objc(pl)RKVideoFrameConsumer"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)onCreate:",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC8onCreateyy5RKRTC20RKVideoFrameConsumer_pF",
-            "moduleName": "RKCooperationCore",
-            "isOpen": true,
-            "objc_name": "onCreate:",
-            "declAttributes": [
-              "Dynamic",
-              "ObjC",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "onStart",
-            "printedName": "onStart()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)onStart",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC7onStartyyF",
-            "moduleName": "RKCooperationCore",
-            "isOpen": true,
-            "objc_name": "onStart",
-            "declAttributes": [
-              "Dynamic",
-              "ObjC",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "onStop",
-            "printedName": "onStop()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)onStop",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC6onStopyyF",
-            "moduleName": "RKCooperationCore",
-            "isOpen": true,
-            "objc_name": "onStop",
-            "declAttributes": [
-              "Dynamic",
-              "ObjC",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "startShareScreen",
-            "printedName": "startShareScreen()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)startShareScreen",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC16startShareScreenSbyF",
-            "moduleName": "RKCooperationCore",
-            "isOpen": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
             "name": "addChannelMsg",
             "printedName": "addChannelMsg(listener:)",
             "children": [
@@ -45036,42 +44849,6 @@
           {
             "kind": "Function",
             "name": "switchStream",
-            "printedName": "switchStream(userId:isHighStream:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)switchStreamWithUserId:isHighStream:",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC12switchStream6userId06isHighE0ySS_SbtF",
-            "moduleName": "RKCooperationCore",
-            "isOpen": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "switchStream",
             "printedName": "switchStream(userId:isHighStream:onSuccess:onFailed:)",
             "children": [
               {
@@ -45162,6 +44939,104 @@
             "declKind": "Func",
             "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)switchStreamWithUserId:isHighStream:onSuccess:onFailed:",
             "mangledName": "$s17RKCooperationCore12RKRTCManagerC12switchStream6userId06isHighE09onSuccess0J6FailedySS_SbyypSgcSgySo7NSErrorCSgcSgtF",
+            "moduleName": "RKCooperationCore",
+            "isOpen": true,
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "screenStream",
+            "printedName": "screenStream(userId:onSuccess:onFailed:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Any?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Any?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Any?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "Any"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.NSError?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.NSError?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Foundation.NSError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NSError",
+                            "printedName": "Foundation.NSError",
+                            "usr": "c:objc(cs)NSError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)screenStreamWithUserId:onSuccess:onFailed:",
+            "mangledName": "$s17RKCooperationCore12RKRTCManagerC12screenStream6userId9onSuccess0H6FailedySS_yypSgcSgySo7NSErrorCSgcSgtF",
             "moduleName": "RKCooperationCore",
             "isOpen": true,
             "declAttributes": [
@@ -45353,6 +45228,62 @@
             "declKind": "Func",
             "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)snapshotWithUserId:width:height:renderView:filePath:",
             "mangledName": "$s17RKCooperationCore12RKRTCManagerC8snapshot6userId5width6height10renderView8filePathSo7UIImageCSgSS_s5Int32VANSo6UIViewCSgSStF",
+            "moduleName": "RKCooperationCore",
+            "isOpen": true,
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "snapshot",
+            "printedName": "snapshot(userId:compeletBlock:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(UIKit.UIImage?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "UIKit.UIImage?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UIImage",
+                        "printedName": "UIKit.UIImage",
+                        "usr": "c:objc(cs)UIImage"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)snapshotWithUserId:compeletBlock:",
+            "mangledName": "$s17RKCooperationCore12RKRTCManagerC8snapshot6userId13compeletBlockySS_ySo7UIImageCSgctF",
             "moduleName": "RKCooperationCore",
             "isOpen": true,
             "declAttributes": [
@@ -45652,13 +45583,6 @@
             "printedName": "RKAVQualityListener",
             "usr": "c:@M@RKRTC@objc(pl)RKAVQualityListener",
             "mangledName": "$s5RKRTC19RKAVQualityListenerP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RKVideoSource",
-            "printedName": "RKVideoSource",
-            "usr": "c:@M@RKRTC@objc(pl)RKVideoSource",
-            "mangledName": "$s5RKRTC13RKVideoSourceP"
           },
           {
             "kind": "Conformance",
@@ -60746,6 +60670,54 @@
           },
           {
             "kind": "Function",
+            "name": "snapshot",
+            "printedName": "snapshot(compeletBock:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(UIKit.UIImage?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "UIKit.UIImage?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UIImage",
+                        "printedName": "UIKit.UIImage",
+                        "usr": "c:objc(cs)UIImage"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKVideoCanvas(im)snapshotWithCompeletBock:",
+            "mangledName": "$s17RKCooperationCore13RKVideoCanvasC8snapshot12compeletBockyySo7UIImageCSgc_tF",
+            "moduleName": "RKCooperationCore",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "focus",
             "printedName": "focus(xPercent:yPercent:)",
             "children": [
@@ -64386,6 +64358,20 @@
       "value": "[]"
     },
     {
+      "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKChannel.swift",
+      "kind": "StringLiteral",
+      "offset": 466,
+      "length": 24,
+      "value": "\"shareInfo \""
+    },
+    {
+      "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKChannel.swift",
+      "kind": "StringLiteral",
+      "offset": 489,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/Public\/RKChannelEnum.swift",
       "kind": "IntegerLiteral",
       "offset": 235,
@@ -65081,7 +65067,7 @@
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKChannelManager.swift",
       "kind": "Array",
-      "offset": 6524,
+      "offset": 6913,
       "length": 2,
       "value": "[]"
     },
@@ -65256,14 +65242,14 @@
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/RKCooperationCore.swift",
       "kind": "StringLiteral",
-      "offset": 5188,
+      "offset": 5147,
       "length": 9,
       "value": "\"RKAppId\""
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/RKCooperationCore.swift",
       "kind": "StringLiteral",
-      "offset": 5229,
+      "offset": 5188,
       "length": 13,
       "value": "\"RKApiServer\""
     },
@@ -66159,35 +66145,35 @@
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "Dictionary",
-      "offset": 360,
+      "offset": 361,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "StringLiteral",
-      "offset": 397,
+      "offset": 398,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 466,
+      "offset": 467,
       "length": 11,
       "value": "30000000000"
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "Dictionary",
-      "offset": 900,
+      "offset": 928,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 43049,
+      "offset": 42114,
       "length": 4,
       "value": "2000"
     },
@@ -66411,28 +66397,28 @@
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MeetingShare\/RKShareManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 9455,
+      "offset": 9911,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MeetingShare\/RKShareManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 9479,
+      "offset": 9935,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MeetingShare\/RKShareManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 9455,
+      "offset": 9911,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MeetingShare\/RKShareManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 9479,
+      "offset": 9935,
       "length": 1,
       "value": "1"
     },
