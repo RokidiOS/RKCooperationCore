@@ -1542,6 +1542,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore8RKDevice")
 @class UIView;
 enum RKIAudioDevice : int32_t;
 enum RKRotation : int32_t;
+@protocol RKCaptureInterceptor;
 
 SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKDeviceInterface_")
 @protocol RKDeviceInterface <NSObject>
@@ -1600,6 +1601,10 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKDeviceInterface_")
 + (void)setVideoFileFrame:(CVPixelBufferRef _Nonnull)bufferRef rotation:(enum RKRotation)rotation;
 /// 结束自定义视频流传输，如果之前开启了相机视频流，默认恢复相机视频流
 + (void)stopVideoFile;
+/// 添加视频帧回调
++ (void)addCaptureInterceptor:(id <RKCaptureInterceptor> _Nonnull)rkCaptureInterceptor;
+/// 移除视频帧回调
++ (void)removeCaptureInterceptor:(id <RKCaptureInterceptor> _Nonnull)rkCaptureInterceptor;
 @end
 
 
@@ -1624,6 +1629,8 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKDeviceInterface_")
 + (NSArray * _Nonnull)getAllAudioDevice SWIFT_WARN_UNUSED_RESULT;
 + (void)startVideoFile;
 + (void)stopVideoFile;
++ (void)addCaptureInterceptor:(id <RKCaptureInterceptor> _Nonnull)rkCaptureInterceptor;
++ (void)removeCaptureInterceptor:(id <RKCaptureInterceptor> _Nonnull)rkCaptureInterceptor;
 + (void)setVideoFileFrame:(CVPixelBufferRef _Nonnull)bufferRef rotation:(enum RKRotation)rotation;
 + (void)startCustomAudio;
 + (void)customAudio;
@@ -2055,7 +2062,17 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
+- (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
 - (void)sendChannelMessageWithContent:(NSString * _Nonnull)content userIdList:(NSArray<NSString *> * _Nullable)userIdList onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+@end
+
+
+@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
+- (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height renderView:(UIView * _Nullable)renderView filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -2063,10 +2080,12 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
 @end
 
+@protocol RKVideoFrameConsumer;
 
-@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height renderView:(UIView * _Nullable)renderView filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
-- (void)snapshotWithUserId:(NSString * _Nonnull)userId compeletBlock:(void (^ _Nonnull)(UIImage * _Nullable))compeletBlock;
+@interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore)) <RKVideoSource>
+- (void)onCreate:(id <RKVideoFrameConsumer> _Nonnull)consumer;
+- (void)onStart;
+- (void)onStop;
 @end
 
 @class RKJoinedChannel;
@@ -2164,8 +2183,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (BOOL)isScreenShare SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)getScreenShareUserId SWIFT_WARN_UNUSED_RESULT;
 - (enum RKResolution)getMaxResolution SWIFT_WARN_UNUSED_RESULT;
+- (void)switchStreamWithUserId:(NSString * _Nonnull)userId isHighStream:(BOOL)isHighStream;
 - (void)switchStreamWithUserId:(NSString * _Nonnull)userId isHighStream:(BOOL)isHighStream onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
-- (void)screenStreamWithUserId:(NSString * _Nonnull)userId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 @end
 
 typedef SWIFT_ENUM(int32_t, RKRecordProtocol, open) {
@@ -2901,7 +2920,6 @@ SWIFT_CLASS("_TtC17RKCooperationCore13RKVideoCanvas")
 /// @param filePath 要保存的图片路径
 /// @param result 视频通话截图结果回调，见[RKOperationListener]
 - (UIImage * _Nullable)snapshotWithWidth:(int32_t)width height:(int32_t)height filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
-- (void)snapshotWithCompeletBock:(void (^ _Nonnull)(UIImage * _Nullable))compeletBock;
 /// 对焦
 /// @param xPercent 焦点所在渲染视图 x 轴的比例,取值需要归一化 0-1
 /// @param yPercent 焦点所在渲染视图 y 轴的比例,取值需要归一化 0-1
