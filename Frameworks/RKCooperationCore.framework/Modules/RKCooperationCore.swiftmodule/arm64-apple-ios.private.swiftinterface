@@ -45,6 +45,7 @@ import _StringProcessing
   @objc optional func onInviteResult(channelId: Swift.String, userId: Swift.String, result: Swift.Bool, reason: RKCooperationCore.RKCooperationCode)
   @available(*, deprecated, message: "2.0.0 弃用")
   @objc optional func onError(channelId: Swift.String, reason: RKCooperationCore.RKCooperationCode)
+  @objc optional func onInviteFail(channelId: Swift.String, userId: Swift.String, inviteUserId: Swift.String)
 }
 extension RKCooperationCore.RKCallManager : RKCooperationCore.RKCallInterface {
   @objc public static var shared: RKCooperationCore.RKCallManager! {
@@ -940,6 +941,7 @@ extension RKCooperationCore.RKRTCManager : RKRTC.RKChannelEventHandler {
   @objc dynamic public func onUserLeft(userId: Swift.String)
   @objc dynamic public func onUserRefused(userId: Swift.String, inviteUserId: Swift.String)
   @objc dynamic public func onUserBusy(userId: Swift.String, inviteUserId: Swift.String)
+  @objc dynamic public func onInviteFail(channelId: Swift.String, userId: Swift.String, inviteUserId: Swift.String)
   @objc dynamic public func onUserKicked(userIds: [Swift.String])
   @objc dynamic public func onKicked(byUserId: Swift.String)
   @objc dynamic public func onChannelMessageReceived(_ message: Swift.String, fromUserId: Swift.String)

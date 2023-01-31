@@ -2750,6 +2750,51 @@
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onInviteFail",
+            "printedName": "onInviteFail(channelId:userId:inviteUserId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RKCooperationCore@objc(pl)RKCallListener(im)onInviteFailWithChannelId:userId:inviteUserId:",
+            "mangledName": "$s17RKCooperationCore14RKCallListenerP12onInviteFail9channelId04userI0010inviteUserI0ySS_S2StF",
+            "moduleName": "RKCooperationCore",
+            "genericSig": "<τ_0_0 where τ_0_0 : RKCooperationCore.RKCallListener>",
+            "sugared_genericSig": "<Self where Self : RKCooperationCore.RKCallListener>",
+            "protocolReq": true,
+            "objc_name": "onInviteFailWithChannelId:userId:inviteUserId:",
+            "declAttributes": [
+              "Optional",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -43049,6 +43094,49 @@
           },
           {
             "kind": "Function",
+            "name": "onInviteFail",
+            "printedName": "onInviteFail(channelId:userId:inviteUserId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKRTCManager(im)onInviteFailWithChannelId:userId:inviteUserId:",
+            "mangledName": "$s17RKCooperationCore12RKRTCManagerC12onInviteFail9channelId04userH0010inviteUserH0ySS_S2StF",
+            "moduleName": "RKCooperationCore",
+            "isOpen": true,
+            "objc_name": "onInviteFailWithChannelId:userId:inviteUserId:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "onUserKicked",
             "printedName": "onUserKicked(userIds:)",
             "children": [
@@ -66229,7 +66317,7 @@
     {
       "filePath": "\/Users\/chzy\/Desktop\/Cooperation\/RKCooperationCore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 43065,
+      "offset": 43544,
       "length": 4,
       "value": "2000"
     },

@@ -425,6 +425,14 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore14RKCallListener_")
 /// \param reason 失败的原因 
 ///
 - (void)onErrorWithChannelId:(NSString * _Nonnull)channelId reason:(enum RKCooperationCode)reason SWIFT_DEPRECATED_MSG("2.0.0 弃用");
+/// 收到邀请失败
+/// \param channelId 用户频道id
+///
+/// \param userId 被邀请UserId
+///
+/// \param inviteUserId 邀请人UserId
+///
+- (void)onInviteFailWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId inviteUserId:(NSString * _Nonnull)inviteUserId;
 @end
 
 
@@ -2121,6 +2129,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (void)onUserLeftWithUserId:(NSString * _Nonnull)userId;
 - (void)onUserRefusedWithUserId:(NSString * _Nonnull)userId inviteUserId:(NSString * _Nonnull)inviteUserId;
 - (void)onUserBusyWithUserId:(NSString * _Nonnull)userId inviteUserId:(NSString * _Nonnull)inviteUserId;
+- (void)onInviteFailWithChannelId:(NSString * _Nonnull)channelId userId:(NSString * _Nonnull)userId inviteUserId:(NSString * _Nonnull)inviteUserId;
 - (void)onUserKickedWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
 - (void)onKickedByUserId:(NSString * _Nonnull)byUserId;
 - (void)onChannelMessageReceived:(NSString * _Nonnull)message fromUserId:(NSString * _Nonnull)fromUserId;
