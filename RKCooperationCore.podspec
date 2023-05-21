@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   
   s.dependency 'RKIHandyJSON'
 
-  s.dependency 'RKRTC' :git => "https://github.com/RokidiOS/RKRTC", :branch => '4.5.0_beta1'
+  s.dependency 'RKRTC', :git => "https://github.com/RokidiOS/RKRTC", :branch => '4.5.0_beta1'
 
   s.dependency 'Moya'
 
