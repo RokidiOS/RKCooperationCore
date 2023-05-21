@@ -1,11 +1,4 @@
 framework module RKCooperationCore {
-  umbrella header "RKCooperationCore-umbrella.h"
-
-  export *
-  module * { export * }
-}
-
-module RKCooperationCore.Swift {
   header "RKCooperationCore-Swift.h"
   requires objc
 }
