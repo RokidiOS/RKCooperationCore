@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RKCooperationCore'
-  s.version          = '4.5.0_beta1'
+  s.version          = '4.5.0'
   s.summary          = 'iOS Rokid meeting core .'
   s.description      = <<-DESC
   Rokid iOS Core SDK .
