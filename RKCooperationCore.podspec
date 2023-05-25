@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/RokidiOS/RKCooperationCore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'amos' => 'xiaodong.chen@rokid.com' }
-  s.source = { :git => "https://github.com/RokidiOS/RKCooperationCore.git", :branch => "4.5.0_beta1" }
+  s.source = { :git => "https://github.com/RokidiOS/RKCooperationCore.git", :branch => "4.5.0_beta2" }
 
   s.ios.deployment_target = '10.0'
   
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   
   s.dependency 'RKIHandyJSON'
 
-  s.dependency 'RKRTC' #, :git => "https://github.com/RokidiOS/RKRTC", :branch => '4.5.0_beta1'
+  s.dependency 'RKRTC' #, :git => "https://github.com/RokidiOS/RKRTC", :branch => '4.5.0_beta2'
 
   s.dependency 'Moya'
 
