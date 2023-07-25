@@ -1690,6 +1690,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore17RKDeviceInterface_")
 /// 设置摄像头采集分辨率
 + (void)setCameraPropertyWithWidth:(int32_t)width height:(int32_t)height framerate:(int32_t)framerate;
 + (void)startCameraVideoWithType:(enum RKRenderType)type view:(UIView * _Nonnull)view;
++ (void)ignoreCameraPortraitOrientation:(BOOL)ignore;
 /// 打开音频
 + (void)startAudio;
 /// 关闭音频
@@ -2069,6 +2070,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 - (void)switchCamera;
 /// 设置摄像头采集分辨率
 - (void)setCameraPropertyWithWidth:(int32_t)width height:(int32_t)height framerate:(int32_t)framerate;
+- (void)ignoreCameraPortraitOrientation:(BOOL)ignore;
 /// 开始自身视频渲染
 - (RKVideoCanvas * _Nullable)startLocalVideo:(RKChannelParticipant * _Nonnull)participant renderType:(enum RKRenderType)renderType in:(UIView * _Nullable)view SWIFT_WARN_UNUSED_RESULT;
 /// 获取他人视频流

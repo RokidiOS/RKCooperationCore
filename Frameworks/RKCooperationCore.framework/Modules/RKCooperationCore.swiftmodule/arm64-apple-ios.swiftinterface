@@ -819,6 +819,7 @@ extension RKCooperationCore.RKSharePointManager : RKCooperationCore.RKSharePoint
   @objc public func stopCamera()
   @objc public func switchCamera()
   @objc public func setCameraProperty(width: Swift.Int32, height: Swift.Int32, framerate: Swift.Int32)
+  @objc public func ignoreCameraPortraitOrientation(_ ignore: Swift.Bool)
   @objc public func startLocalVideo(_ participant: RKCooperationCore.RKChannelParticipant, renderType: RKCooperationCore.RKRenderType, in view: UIKit.UIView? = nil) -> RKCooperationCore.RKVideoCanvas?
   @objc public func startRemoteVideo(_ participant: RKCooperationCore.RKChannelParticipant, renderType: RKCooperationCore.RKRenderType, in view: UIKit.UIView? = nil, canvasBlock: @escaping (RKCooperationCore.RKVideoCanvas?) -> Swift.Void)
   @objc public func startVideoFile()
@@ -943,6 +944,7 @@ extension RKCooperationCore.RKDevice : RKCooperationCore.RKDeviceInterface {
   @objc public static func switchCamera()
   @objc public static func setCameraProperty(width: Swift.Int32, height: Swift.Int32, framerate: Swift.Int32)
   @objc public static func startCameraVideo(type: RKCooperationCore.RKRenderType, view: UIKit.UIView)
+  @objc public static func ignoreCameraPortraitOrientation(_ ignore: Swift.Bool)
   @objc public static func startAudio()
   @objc public static func stopAudio()
   @objc public static func enableSpeaker(_ enable: Swift.Bool)
