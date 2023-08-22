@@ -9960,6 +9960,36 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "enableMaintainResolution",
+            "printedName": "enableMaintainResolution(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKChannel(im)enableMaintainResolution:",
+            "mangledName": "$s17RKCooperationCore9RKChannelC24enableMaintainResolutionyySbF",
+            "moduleName": "RKCooperationCore",
+            "objc_name": "enableMaintainResolution:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Class",
@@ -28525,6 +28555,37 @@
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "enableMaintainResolution",
+            "printedName": "enableMaintainResolution(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RKCooperationCore@objc(pl)RKChannelInterface(im)enableMaintainResolution:",
+            "mangledName": "$s17RKCooperationCore18RKChannelInterfaceP24enableMaintainResolutionyySbF",
+            "moduleName": "RKCooperationCore",
+            "genericSig": "<τ_0_0 where τ_0_0 : RKCooperationCore.RKChannelInterface>",
+            "sugared_genericSig": "<Self where Self : RKCooperationCore.RKChannelInterface>",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC",
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -42611,6 +42672,44 @@
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "enableMaintainResolution",
+            "printedName": "enableMaintainResolution(channelId:enable:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RKCooperationCore@objc(pl)RKChannelManagerInterface(im)enableMaintainResolutionWithChannelId:enable:",
+            "mangledName": "$s17RKCooperationCore25RKChannelManagerInterfaceP24enableMaintainResolution9channelId0F0ySS_SbtF",
+            "moduleName": "RKCooperationCore",
+            "genericSig": "<τ_0_0 where τ_0_0 : RKCooperationCore.RKChannelManagerInterface>",
+            "sugared_genericSig": "<Self where Self : RKCooperationCore.RKChannelManagerInterface>",
+            "protocolReq": true,
+            "objc_name": "enableMaintainResolutionWithChannelId:enable:",
+            "declAttributes": [
+              "ObjC",
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -44097,6 +44196,42 @@
             "mangledName": "$s17RKCooperationCore16RKChannelManagerC15enableSimulcastyySbF",
             "moduleName": "RKCooperationCore",
             "objc_name": "enableSimulcast:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "enableMaintainResolution",
+            "printedName": "enableMaintainResolution(channelId:enable:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKChannelManager(im)enableMaintainResolutionWithChannelId:enable:",
+            "mangledName": "$s17RKCooperationCore16RKChannelManagerC24enableMaintainResolution9channelId0E0ySS_SbtF",
+            "moduleName": "RKCooperationCore",
+            "objc_name": "enableMaintainResolutionWithChannelId:enable:",
             "declAttributes": [
               "Dynamic",
               "ObjC",

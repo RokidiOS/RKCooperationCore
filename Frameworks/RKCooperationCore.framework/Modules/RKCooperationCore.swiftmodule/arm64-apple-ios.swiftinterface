@@ -256,6 +256,7 @@ extension RKCooperationCore.RKChannel : RKCooperationCore.RKChannelInterface {
   @objc dynamic public func inviteShareSlam(timeoutSec: Swift.Int, userId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func stopInviteShareSlam(timeoutSec: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func configVideoQuality(maxPublishBitrate: Swift.Int32, maxDelay: Swift.Int32)
+  @objc dynamic public func enableMaintainResolution(_ enable: Swift.Bool)
 }
 @objc public protocol RKDeviceInterface : ObjectiveC.NSObjectProtocol {
   @objc static func openCamera()
@@ -379,6 +380,7 @@ extension RKCooperationCore.RKChannelManager : RKCooperationCore.RKChannelMsgLis
   @objc dynamic public func onChannelThirdMsgReceive(fromUserId: Swift.String, content: Swift.String)
   @objc dynamic public func onChannelMsgReceive(fromUserId: Swift.String, content: Swift.String)
   @objc dynamic public func enableSimulcast(_ enable: Swift.Bool)
+  @objc dynamic public func enableMaintainResolution(channelId: Swift.String, enable: Swift.Bool)
 }
 @_hasMissingDesignatedInitializers public class RKUserManager {
   public static let shared: RKCooperationCore.RKUserManager
@@ -670,6 +672,7 @@ extension RKCooperationCore.RKVideoControlManager : RKCooperationCore.RKVideoCon
   @objc func inviteShareSlam(timeoutSec: Swift.Int, userId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func stopInviteShareSlam(timeoutSec: Swift.Int, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func configVideoQuality(maxPublishBitrate: Swift.Int32, maxDelay: Swift.Int32)
+  @objc func enableMaintainResolution(_ enable: Swift.Bool)
 }
 @objc public enum SubscribeMediaType : Swift.Int {
   case both = 0
@@ -997,6 +1000,7 @@ extension RKCooperationCore.RKDevice : RKCooperationCore.RKDeviceInterface {
   @objc func startServerRecording(channelId: Swift.String, bucket: Swift.String, fileName: Swift.String, resolution: RKCooperationCore.RKResolution, subStream: RKCooperationCore.RKIStreamType, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func stopServerRecording(channelId: Swift.String, save: Swift.Bool)
   @objc func enableSimulcast(_ enable: Swift.Bool)
+  @objc func enableMaintainResolution(channelId: Swift.String, enable: Swift.Bool)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKChannelManager : ObjectiveC.NSObject {
   @objc override dynamic public init()

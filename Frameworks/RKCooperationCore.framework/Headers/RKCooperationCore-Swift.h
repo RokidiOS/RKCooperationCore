@@ -808,6 +808,10 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 /// \param maxDelay 视频最大延迟，单位ms 
 ///
 - (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
+/// 是否启用分辨率优先 默认不启用
+/// \param enable 是否启用
+///
+- (void)enableMaintainResolution:(BOOL)enable;
 @end
 
 
@@ -873,6 +877,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore18RKChannelInterface_")
 - (void)inviteShareSlamWithTimeoutSec:(NSInteger)timeoutSec userId:(NSString * _Nonnull)userId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)stopInviteShareSlamWithTimeoutSec:(NSInteger)timeoutSec onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)configVideoQualityWithMaxPublishBitrate:(int32_t)maxPublishBitrate maxDelay:(int32_t)maxDelay;
+- (void)enableMaintainResolution:(BOOL)enable;
 @end
 
 
@@ -1057,6 +1062,7 @@ SWIFT_PROTOCOL("_TtP17RKCooperationCore20RKChannelMsgListener_")
 - (void)onChannelThirdMsgReceiveFromUserId:(NSString * _Nonnull)fromUserId content:(NSString * _Nonnull)content;
 - (void)onChannelMsgReceiveFromUserId:(NSString * _Nonnull)fromUserId content:(NSString * _Nonnull)content;
 - (void)enableSimulcast:(BOOL)enable;
+- (void)enableMaintainResolutionWithChannelId:(NSString * _Nonnull)channelId enable:(BOOL)enable;
 @end
 
 enum RKIStreamType : int32_t;
@@ -1173,6 +1179,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKChannelMan
 /// \param enable 是否启用
 ///
 - (void)enableSimulcast:(BOOL)enable;
+/// 是否启用分辨率优先 默认不启用
+/// \param enable 是否启用
+///
+- (void)enableMaintainResolutionWithChannelId:(NSString * _Nonnull)channelId enable:(BOOL)enable;
 @end
 
 
