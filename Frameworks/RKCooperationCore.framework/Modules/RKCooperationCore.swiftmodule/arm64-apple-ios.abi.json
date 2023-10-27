@@ -11412,6 +11412,1069 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "RKCooperationIceServer",
+        "printedName": "RKCooperationIceServer",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "urls",
+            "printedName": "urls",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "[Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(py)urls",
+            "mangledName": "$s17RKCooperationCore0A9IceServerC4urlsSaySSGSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "[Swift.String]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.String]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)urls",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC4urlsSaySSGSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "[Swift.String]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.String]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)setUrls:",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC4urlsSaySSGSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A9IceServerC4urlsSaySSGSgvM",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC4urlsSaySSGSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "username",
+            "printedName": "username",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(py)username",
+            "mangledName": "$s17RKCooperationCore0A9IceServerC8usernameSSSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)username",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC8usernameSSSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)setUsername:",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC8usernameSSSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A9IceServerC8usernameSSSgvM",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC8usernameSSSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "password",
+            "printedName": "password",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(py)password",
+            "mangledName": "$s17RKCooperationCore0A9IceServerC8passwordSSSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)password",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC8passwordSSSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)setPassword:",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC8passwordSSSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A9IceServerC8passwordSSSgvM",
+                "mangledName": "$s17RKCooperationCore0A9IceServerC8passwordSSSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RKCooperationIceServer",
+                "printedName": "RKCooperationCore.RKCooperationIceServer",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer(im)init",
+            "mangledName": "$s17RKCooperationCore0A9IceServerCACycfc",
+            "moduleName": "RKCooperationCore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer",
+        "mangledName": "$s17RKCooperationCore0A9IceServerC",
+        "moduleName": "RKCooperationCore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "RKCooperationParams",
+        "printedName": "RKCooperationParams",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "appId",
+            "printedName": "appId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(py)appId",
+            "mangledName": "$s17RKCooperationCore0A6ParamsC5appIdSSSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)appId",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC5appIdSSSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)setAppId:",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC5appIdSSSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A6ParamsC5appIdSSSgvM",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC5appIdSSSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "apiServer",
+            "printedName": "apiServer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(py)apiServer",
+            "mangledName": "$s17RKCooperationCore0A6ParamsC9apiServerSSSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)apiServer",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC9apiServerSSSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)setApiServer:",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC9apiServerSSSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A6ParamsC9apiServerSSSgvM",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC9apiServerSSSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "wsServer",
+            "printedName": "wsServer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(py)wsServer",
+            "mangledName": "$s17RKCooperationCore0A6ParamsC8wsServerSSSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)wsServer",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC8wsServerSSSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)setWsServer:",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC8wsServerSSSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A6ParamsC8wsServerSSSgvM",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC8wsServerSSSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "iceServers",
+            "printedName": "iceServers",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[RKCooperationCore.RKCooperationIceServer]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[RKCooperationCore.RKCooperationIceServer]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RKCooperationIceServer",
+                        "printedName": "RKCooperationCore.RKCooperationIceServer",
+                        "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(py)iceServers",
+            "mangledName": "$s17RKCooperationCore0A6ParamsC10iceServersSayAA0A9IceServerCGSgvp",
+            "moduleName": "RKCooperationCore",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[RKCooperationCore.RKCooperationIceServer]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[RKCooperationCore.RKCooperationIceServer]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "RKCooperationIceServer",
+                            "printedName": "RKCooperationCore.RKCooperationIceServer",
+                            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)iceServers",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC10iceServersSayAA0A9IceServerCGSgvg",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[RKCooperationCore.RKCooperationIceServer]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[RKCooperationCore.RKCooperationIceServer]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "RKCooperationIceServer",
+                            "printedName": "RKCooperationCore.RKCooperationIceServer",
+                            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationIceServer"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)setIceServers:",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC10iceServersSayAA0A9IceServerCGSgvs",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17RKCooperationCore0A6ParamsC10iceServersSayAA0A9IceServerCGSgvM",
+                "mangledName": "$s17RKCooperationCore0A6ParamsC10iceServersSayAA0A9IceServerCGSgvM",
+                "moduleName": "RKCooperationCore",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "RKCooperationParams",
+                "printedName": "RKCooperationCore.RKCooperationParams",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams(im)init",
+            "mangledName": "$s17RKCooperationCore0A6ParamsCACycfc",
+            "moduleName": "RKCooperationCore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams",
+        "mangledName": "$s17RKCooperationCore0A6ParamsC",
+        "moduleName": "RKCooperationCore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "RKCooperationInterface",
         "printedName": "RKCooperationInterface",
         "children": [
@@ -11609,6 +12672,104 @@
             "declAttributes": [
               "ObjC",
               "Available"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "initWith",
+            "printedName": "initWith(params:onSuccess:onFailed:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RKCooperationParams",
+                "printedName": "RKCooperationCore.RKCooperationParams",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Any?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Any?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Any?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "Any"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.NSError?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.NSError?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Foundation.NSError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NSError",
+                            "printedName": "Foundation.NSError",
+                            "usr": "c:objc(cs)NSError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@RKCooperationCore@objc(pl)RKCooperationInterface(im)initWithParams:onSuccess:onFailed:",
+            "mangledName": "$s17RKCooperationCore0A9InterfaceP8initWith6params9onSuccess0G6FailedyAA0A6ParamsC_yypSgcSgySo7NSErrorCSgcSgtF",
+            "moduleName": "RKCooperationCore",
+            "genericSig": "<τ_0_0 where τ_0_0 : RKCooperationCore.RKCooperationInterface>",
+            "sugared_genericSig": "<Self where Self : RKCooperationCore.RKCooperationInterface>",
+            "protocolReq": true,
+            "objc_name": "initWithParams:onSuccess:onFailed:",
+            "declAttributes": [
+              "ObjC"
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
@@ -12445,6 +13606,103 @@
               "Dynamic",
               "AccessControl",
               "ObjC"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "initWith",
+            "printedName": "initWith(params:onSuccess:onFailed:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RKCooperationParams",
+                "printedName": "RKCooperationCore.RKCooperationParams",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Any?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Any?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Any?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "Any"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.NSError?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.NSError?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Foundation.NSError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NSError",
+                            "printedName": "Foundation.NSError",
+                            "usr": "c:objc(cs)NSError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@RKCooperationCore@objc(cs)RKCooperationCore(im)initWithParams:onSuccess:onFailed:",
+            "mangledName": "$s17RKCooperationCoreAAC8initWith6params9onSuccess0F6FailedyAA0A6ParamsC_yypSgcSgySo7NSErrorCSgcSgtF",
+            "moduleName": "RKCooperationCore",
+            "objc_name": "initWithParams:onSuccess:onFailed:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -35758,7 +37016,7 @@
           {
             "kind": "Function",
             "name": "login",
-            "printedName": "login(with:apiServer:userId:onSuccess:onFailed:)",
+            "printedName": "login(userId:params:onSuccess:onFailed:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -35773,15 +37031,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "RKCooperationParams",
+                "printedName": "RKCooperationCore.RKCooperationParams",
+                "usr": "c:@M@RKCooperationCore@objc(cs)RKCooperationParams"
               },
               {
                 "kind": "TypeNominal",
@@ -35852,8 +37104,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(im)loginWith:apiServer:userId:onSuccess:onFailed:",
-            "mangledName": "$s17RKCooperationCore12RKRTCManagerC5login4with9apiServer6userId9onSuccess0J6FailedySS_S2SyypSgcSgySo7NSErrorCSgcSgtF",
+            "usr": "c:@M@RKCooperationCore@objc(cs)RKRTCManager(im)loginWithUserId:params:onSuccess:onFailed:",
+            "mangledName": "$s17RKCooperationCore12RKRTCManagerC5login6userId6params9onSuccess0H6FailedySS_AA0A6ParamsCyypSgcSgySo7NSErrorCSgcSgtF",
             "moduleName": "RKCooperationCore",
             "declAttributes": [
               "AccessControl",
@@ -60471,23 +61723,9 @@
     {
       "filePath": "\/Users\/yubo\/Workspace\/rkcooperationcore\/RKCooperationCore\/Classes\/RKCooperationCore.swift",
       "kind": "BooleanLiteral",
-      "offset": 3227,
+      "offset": 3518,
       "length": 4,
       "value": "true"
-    },
-    {
-      "filePath": "\/Users\/yubo\/Workspace\/rkcooperationcore\/RKCooperationCore\/Classes\/RKCooperationCore.swift",
-      "kind": "StringLiteral",
-      "offset": 5188,
-      "length": 9,
-      "value": "\"RKAppId\""
-    },
-    {
-      "filePath": "\/Users\/yubo\/Workspace\/rkcooperationcore\/RKCooperationCore\/Classes\/RKCooperationCore.swift",
-      "kind": "StringLiteral",
-      "offset": 5229,
-      "length": 13,
-      "value": "\"RKApiServer\""
     },
     {
       "filePath": "\/Users\/yubo\/Workspace\/rkcooperationcore\/RKCooperationCore\/Classes\/MeetingShare\/Model\/RKVideoControlMessage.swift",
@@ -61220,7 +62458,7 @@
     {
       "filePath": "\/Users\/yubo\/Workspace\/rkcooperationcore\/RKCooperationCore\/Classes\/MideaStreamCenter\/RKRTCManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 47672,
+      "offset": 48127,
       "length": 4,
       "value": "2000"
     },

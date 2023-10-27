@@ -1542,6 +1542,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore17RKCooperationCore")
 @class RKShareDoodleManager;
 @class RKShareScreenManager;
 @class RKSharePointManager;
+@class RKCooperationParams;
 @protocol RKLoginCallback;
 
 SWIFT_PROTOCOL("_TtP17RKCooperationCore22RKCooperationInterface_")
@@ -1558,6 +1559,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 /// 获取屏幕共享管理类
 - (RKShareScreenManager * _Nonnull)getShareScreenManager SWIFT_WARN_UNUSED_RESULT;
 - (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=11.0);
+- (void)initWithParams:(RKCooperationParams * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
 /// sdk参数配置，调用SDK完成初始化, appId和apiServer联系rokid获取
 - (void)initWithAppId:(NSString * _Nonnull)appId apiServer:(NSString * _Nonnull)apiServer onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
 /// sdk登录，接入方自行完成登录，分配唯一的userId 传入sdk即可。 foreceRefreshToken 是否强制刷新token，不考虑本地缓存
@@ -1599,6 +1601,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (RKShareSlamManager * _Nonnull)getShareSlamManager SWIFT_WARN_UNUSED_RESULT;
 - (RKSharePointManager * _Nonnull)getSharePointManager SWIFT_WARN_UNUSED_RESULT;
 - (RKVideoControlManager * _Nonnull)getVideoContrllMgr SWIFT_WARN_UNUSED_RESULT;
+- (void)initWithParams:(RKCooperationParams * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
 - (void)initWithAppId:(NSString * _Nonnull)appId apiServer:(NSString * _Nonnull)apiServer onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed SWIFT_METHOD_FAMILY(none);
 - (void)loginWith:(NSString * _Nonnull)userId foreceRefreshToken:(BOOL)foreceRefreshToken;
 - (void)uploadLogOnSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
@@ -1614,6 +1617,25 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKCooperatio
 - (void)removeCallWithListener:(id <RKCallListener> _Nonnull)listener;
 @end
 
+
+SWIFT_CLASS("_TtC17RKCooperationCore22RKCooperationIceServer")
+@interface RKCooperationIceServer : NSObject
+@property (nonatomic, copy) NSArray<NSString *> * _Null_unspecified urls;
+@property (nonatomic, copy) NSString * _Nullable username;
+@property (nonatomic, copy) NSString * _Nullable password;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+SWIFT_CLASS("_TtC17RKCooperationCore19RKCooperationParams")
+@interface RKCooperationParams : NSObject
+@property (nonatomic, copy) NSString * _Null_unspecified appId;
+@property (nonatomic, copy) NSString * _Null_unspecified apiServer;
+@property (nonatomic, copy) NSString * _Nullable wsServer;
+@property (nonatomic, copy) NSArray<RKCooperationIceServer *> * _Nullable iceServers;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 
 SWIFT_CLASS("_TtC17RKCooperationCore8RKDevice")
@@ -2070,7 +2092,7 @@ SWIFT_CLASS("_TtC17RKCooperationCore12RKRTCManager")
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager * _Nonnull shared;)
 + (RKRTCManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (void)initClient SWIFT_METHOD_FAMILY(none);
-- (void)loginWith:(NSString * _Nonnull)appId apiServer:(NSString * _Nonnull)apiServer userId:(NSString * _Nonnull)userId onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
+- (void)loginWithUserId:(NSString * _Nonnull)userId params:(RKCooperationParams * _Nonnull)params onSuccess:(void (^ _Nullable)(id _Nullable))onSuccess onFailed:(void (^ _Nullable)(NSError * _Nullable))onFailed;
 - (void)logout;
 /// 开启摄像头
 - (void)startCamera;
@@ -2130,12 +2152,12 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RKRTCManager
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height renderView:(UIView * _Nullable)renderView filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
 @interface RKRTCManager (SWIFT_EXTENSION(RKCooperationCore))
-- (BOOL)startShareScreen SWIFT_WARN_UNUSED_RESULT;
+- (UIImage * _Nullable)snapshotWithUserId:(NSString * _Nonnull)userId width:(int32_t)width height:(int32_t)height renderView:(UIView * _Nullable)renderView filePath:(NSString * _Nonnull)filePath SWIFT_WARN_UNUSED_RESULT;
 @end
 
 

@@ -320,6 +320,21 @@ public typealias RKOnComplete = (_ data: Any?, _ error: Foundation.NSError?) -> 
   @objc func onLogout(reason: RKCooperationCore.RKCooperationCode)
   @objc func onJoinedChannelList(_ channelList: [RKCooperationCore.RKIJoinedChannel]?)
 }
+@_inheritsConvenienceInitializers @objc public class RKCooperationIceServer : ObjectiveC.NSObject {
+  @objc public var urls: [Swift.String]!
+  @objc public var username: Swift.String?
+  @objc public var password: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class RKCooperationParams : ObjectiveC.NSObject {
+  @objc public var appId: Swift.String!
+  @objc public var apiServer: Swift.String!
+  @objc public var wsServer: Swift.String?
+  @objc public var iceServers: [RKCooperationCore.RKCooperationIceServer]?
+  @objc override dynamic public init()
+  @objc deinit
+}
 @objc public protocol RKCooperationInterface : ObjectiveC.NSObjectProtocol {
   @objc static var shared: RKCooperationCore.RKCooperationCore! { get }
   @objc func getCallManager() -> RKCooperationCore.RKCallManager
@@ -328,6 +343,7 @@ public typealias RKOnComplete = (_ data: Any?, _ error: Foundation.NSError?) -> 
   @objc func getShareScreenManager() -> RKCooperationCore.RKShareScreenManager
   @available(iOS 11.0, *)
   @objc func getSharePointManager() -> RKCooperationCore.RKSharePointManager
+  @objc func initWith(params: RKCooperationCore.RKCooperationParams, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func initWith(appId: Swift.String, apiServer: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc func login(with userId: Swift.String, foreceRefreshToken: Swift.Bool)
   @objc func uploadLog(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
@@ -427,6 +443,7 @@ extension RKCooperationCore.RKCooperationCore : RKCooperationCore.RKCooperationI
   @objc dynamic public func getShareSlamManager() -> RKCooperationCore.RKShareSlamManager
   @objc dynamic public func getSharePointManager() -> RKCooperationCore.RKSharePointManager
   @objc dynamic public func getVideoContrllMgr() -> RKCooperationCore.RKVideoControlManager
+  @objc dynamic public func initWith(params: RKCooperationCore.RKCooperationParams, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func initWith(appId: Swift.String, apiServer: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc dynamic public func login(with userId: Swift.String, foreceRefreshToken: Swift.Bool = true)
   @objc dynamic public func uploadLog(onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
@@ -816,7 +833,7 @@ extension RKCooperationCore.RKSharePointManager : RKCooperationCore.RKSharePoint
 @objc @_inheritsConvenienceInitializers @objcMembers public class RKRTCManager : ObjectiveC.NSObject {
   @objc public static let shared: RKCooperationCore.RKRTCManager
   @objc public func initClient()
-  @objc public func login(with appId: Swift.String, apiServer: Swift.String, userId: Swift.String, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
+  @objc public func login(userId: Swift.String, params: RKCooperationCore.RKCooperationParams, onSuccess: RKCooperationCore.RKOnSuccess?, onFailed: RKCooperationCore.RKOnFailed?)
   @objc public func logout()
   @objc public func startCamera()
   @objc public func stopCamera()
